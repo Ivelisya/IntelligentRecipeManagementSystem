@@ -1,0 +1,26 @@
+{
+  "recipes": [
+    {
+      "cookingTime": 15,
+      "cuisine": "川菜",
+      "difficulty": "Easy",
+      "id": 1,
+      "imageUrl": null,
+      "ingredients": [],
+      "name": "宫保鸡丁",
+      "nutritionalInfo": null,
+      "steps": []
+    },
+    {
+      "cookingTime": 10,
+      "cuisine": "家常菜",
+      "difficulty": "Easy",
+      "id": 2,
+      "imageUrl": null,
+      "ingredients": [],
+      "name": "番茄炒蛋",
+      "nutritionalInfo": null,
+      "steps": []
+    }
+  ]
+}
