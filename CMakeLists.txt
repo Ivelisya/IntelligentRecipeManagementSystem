@@ -45,7 +45,9 @@ set(EXECUTABLE_SOURCES
     src/persistence/JsonRecipeRepository.cpp # Added JsonRecipeRepository
     src/persistence/JsonRestaurantRepository.cpp # Added JsonRestaurantRepository
     src/cli/CliUtils.cpp             # CLI 辅助函数
-    src/cli/handlers/RecipeCommandHandler.cpp # 菜谱命令处理程序
+    src/cli/recipe/RecipeCommandHandler.cpp # 菜谱命令处理程序
+    src/cli/restaurant/RestaurantCommandHandler.cpp
+    src/cli/user/UserCommandHandler.cpp
     # src/api/dll_api.cpp # DLL 接口文件暂时不包含在 CLI 中
     # 注意: CustomLinkedList.h 是仅头文件库，不需要添加到源文件列表
 )

@@ -25,7 +25,13 @@
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\CliUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\RecipeCommandHandler.cpp">
+    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\recipe\RecipeCommandHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\restaurant\RestaurantCommandHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\user\UserCommandHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

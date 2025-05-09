@@ -1,6 +1,9 @@
 #ifndef EXIT_CODES_H
 #define EXIT_CODES_H
 
+#include <exception>
+#include <stdexcept>
+
 // Standardized exit codes, inspired by sysexits.h
 
 namespace RecipeApp
@@ -35,6 +38,37 @@ namespace RecipeApp
         const int EX_APP_INVALID_INPUT = 84;    // For app-level validation beyond basic data format
         const int EX_APP_OPERATION_FAILED = 85; // Generic application operation failure
         const int EX_APP_ALREADY_EXISTS = 86;   // Item already exists (e.g. username, recipe name)
+
+        // Custom Exception Classes
+        class RecipeAppException : public std::runtime_error
+        {
+        public:
+            RecipeAppException(const std::string &message) : std::runtime_error(message) {}
+        };
+
+        class RecipeNotFoundException : public RecipeAppException
+        {
+        public:
+            RecipeNotFoundException(const std::string &message) : RecipeAppException(message) {}
+        };
+
+        class InvalidRecipeDataException : public RecipeAppException
+        {
+        public:
+            InvalidRecipeDataException(const std::string &message) : RecipeAppException(message) {}
+        };
+
+        class PersistenceException : public RecipeAppException
+        {
+        public:
+            PersistenceException(const std::string &message) : RecipeAppException(message) {}
+        };
+
+        class AuthorizationException : public RecipeAppException
+        {
+        public:
+            AuthorizationException(const std::string &message) : RecipeAppException(message) {}
+        };
     } // namespace Cli
 } // namespace RecipeApp
 

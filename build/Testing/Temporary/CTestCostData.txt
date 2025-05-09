@@ -1,6 +1,6 @@
-TestRestaurant 3 0.0025008
-TestRestaurantManager 3 0.00318657
-TestRecipe 3 0.0024246
-TestJsonRecipeRepository 2 0.0102742
-TestRecipeManager 2 0.0063996
+TestRestaurant 4 0.0017109
+TestRestaurantManager 4 0.00201853
+TestRecipe 4 0.00164945
+TestJsonRecipeRepository 3 0.00640207
+TestRecipeManager 3 0.0047385
 ---
