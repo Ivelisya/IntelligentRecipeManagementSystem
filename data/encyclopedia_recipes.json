@@ -1,0 +1,3011 @@
+[
+    {
+        "id": 1001,
+        "name": "宫保鸡丁 (百科)",
+        "ingredients": [
+            {
+                "name": "鸡胸肉",
+                "quantity": "250g"
+            },
+            {
+                "name": "花生米",
+                "quantity": "50g"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "10g"
+            },
+            {
+                "name": "葱",
+                "quantity": "1段"
+            },
+            {
+                "name": "姜",
+                "quantity": "1块"
+            },
+            {
+                "name": "蒜",
+                "quantity": "2瓣"
+            },
+            {
+                "name": "酱油",
+                "quantity": "1勺"
+            },
+            {
+                "name": "醋",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "鸡胸肉切丁，加盐、料酒、淀粉抓匀腌制10分钟。",
+            "花生米炸熟或烤熟。",
+            "葱姜蒜切末，干辣椒切段。",
+            "碗中加入酱油、醋、糖、料酒、淀粉和少量水调成碗汁。",
+            "锅中放油烧热，放入鸡丁滑炒至变色盛出。",
+            "锅留底油，放入干辣椒、花椒炒香，再放入葱姜蒜末炒香。",
+            "放入鸡丁，倒入碗汁，快速翻炒均匀。",
+            "加入花生米，翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "家常菜",
+            "鸡肉"
+        ],
+        "nutritionalInfo": "富含蛋白质和维生素。",
+        "imageUrl": "http://example.com/gongbaojiding.jpg"
+    },
+    {
+        "id": 1002,
+        "name": "红烧肉 (百科)",
+        "ingredients": [
+            {
+                "name": "五花肉",
+                "quantity": "500g"
+            },
+            {
+                "name": "冰糖",
+                "quantity": "50g"
+            },
+            {
+                "name": "老抽",
+                "quantity": "2勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "2勺"
+            },
+            {
+                "name": "葱",
+                "quantity": "1段"
+            },
+            {
+                "name": "姜",
+                "quantity": "3片"
+            },
+            {
+                "name": "八角",
+                "quantity": "2个"
+            }
+        ],
+        "steps": [
+            "五花肉切块，冷水下锅焯水后捞出洗净。",
+            "锅中放少许油，放入冰糖炒出糖色。",
+            "放入五花肉块翻炒上色。",
+            "加入葱段、姜片、八角炒香。",
+            "烹入料酒，加入老抽、生抽翻炒均匀。",
+            "加入足量开水没过五花肉，大火烧开转小火炖煮1小时。",
+            "大火收汁至浓稠即可。"
+        ],
+        "cookingTime": 90,
+        "difficulty": "Medium",
+        "tags": [
+            "家常菜",
+            "猪肉",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "高蛋白，高脂肪，美味可口。",
+        "imageUrl": "http://example.com/hongshaorou.jpg"
+    },
+    {
+        "id": 1003,
+        "name": "番茄炒蛋 (百科)",
+        "ingredients": [
+            {
+                "name": "番茄",
+                "quantity": "2个"
+            },
+            {
+                "name": "鸡蛋",
+                "quantity": "3个"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "番茄洗净切块，鸡蛋打散。",
+            "锅中放油烧热，倒入蛋液炒熟盛出。",
+            "锅中再放少许油，放入番茄块翻炒出汁。",
+            "加入炒好的鸡蛋，调入盐和少许糖翻炒均匀。",
+            "撒上葱花即可出锅。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "快手菜",
+            "鸡蛋",
+            "素菜"
+        ],
+        "nutritionalInfo": "富含维生素C和蛋白质。",
+        "imageUrl": "http://example.com/fanqiechaodan.jpg"
+    },
+    {
+        "id": 1004,
+        "name": "麻婆豆腐 (百科)",
+        "ingredients": [
+            {
+                "name": "豆腐",
+                "quantity": "1块"
+            },
+            {
+                "name": "牛肉末",
+                "quantity": "50g"
+            },
+            {
+                "name": "豆瓣酱",
+                "quantity": "1勺"
+            },
+            {
+                "name": "豆豉",
+                "quantity": "少许"
+            },
+            {
+                "name": "花椒粉",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒜苗",
+                "quantity": "1根"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "豆腐切小块，放入加盐的开水中焯烫一下捞出。",
+            "锅中放油，放入牛肉末炒散。",
+            "加入豆瓣酱、豆豉、姜末、蒜末炒出红油。",
+            "加入适量水或高汤烧开。",
+            "放入豆腐块，轻轻推动，煮5分钟。",
+            "分两次加入水淀粉勾芡，撒上花椒粉和蒜苗末即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "豆腐",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "富含植物蛋白，麻辣鲜香。",
+        "imageUrl": "http://example.com/mapodoufu.jpg"
+    },
+    {
+        "id": 1005,
+        "name": "鱼香肉丝 (百科)",
+        "ingredients": [
+            {
+                "name": "猪里脊",
+                "quantity": "200g"
+            },
+            {
+                "name": "木耳",
+                "quantity": "30g"
+            },
+            {
+                "name": "胡萝卜",
+                "quantity": "半根"
+            },
+            {
+                "name": "青椒",
+                "quantity": "半个"
+            },
+            {
+                "name": "泡椒",
+                "quantity": "适量"
+            },
+            {
+                "name": "葱姜蒜",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "猪里脊切丝，加盐、料酒、淀粉抓匀腌制。",
+            "木耳泡发切丝，胡萝卜、青椒切丝。",
+            "葱姜蒜切末，泡椒切碎。",
+            "调鱼香汁：酱油、醋、糖、料酒、淀粉、水。",
+            "锅中放油，放入肉丝滑炒至变色盛出。",
+            "锅留底油，爆香葱姜蒜末和泡椒。",
+            "放入胡萝卜丝、木耳丝、青椒丝翻炒。",
+            "放入肉丝，倒入鱼香汁，快速翻炒均匀即可。"
+        ],
+        "cookingTime": 30,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "家常菜",
+            "猪肉"
+        ],
+        "nutritionalInfo": "酸甜微辣，营养丰富。",
+        "imageUrl": "http://example.com/yuxiangrousi.jpg"
+    },
+    {
+        "id": 1006,
+        "name": "可乐鸡翅 (百科)",
+        "ingredients": [
+            {
+                "name": "鸡中翅",
+                "quantity": "10个"
+            },
+            {
+                "name": "可乐",
+                "quantity": "1罐"
+            },
+            {
+                "name": "姜片",
+                "quantity": "3片"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "老抽",
+                "quantity": "半勺"
+            }
+        ],
+        "steps": [
+            "鸡翅洗净，两面划几刀，冷水下锅焯水后捞出。",
+            "锅中放少许油，放入鸡翅煎至两面金黄。",
+            "加入姜片炒香。",
+            "倒入可乐，加入料酒、老抽，大火烧开转小火煮20分钟。",
+            "大火收汁至浓稠即可。"
+        ],
+        "cookingTime": 35,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "鸡肉",
+            "甜口"
+        ],
+        "nutritionalInfo": "做法简单，味道鲜美。",
+        "imageUrl": "http://example.com/kelejichi.jpg"
+    },
+    {
+        "id": 1007,
+        "name": "清蒸鲈鱼 (百科)",
+        "ingredients": [
+            {
+                "name": "鲈鱼",
+                "quantity": "1条"
+            },
+            {
+                "name": "葱丝",
+                "quantity": "适量"
+            },
+            {
+                "name": "姜丝",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒸鱼豉油",
+                "quantity": "2勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            }
+        ],
+        "steps": [
+            "鲈鱼处理干净，在鱼身两面各划几刀，抹上料酒和少许盐腌制10分钟。",
+            "盘底铺上姜片和葱段，放上鲈鱼，鱼身上再铺上姜丝和葱丝。",
+            "蒸锅水开后，放入鲈鱼，大火蒸8-10分钟（根据鱼的大小调整）。",
+            "取出蒸好的鲈鱼，倒掉盘中的汤汁，去掉葱姜。",
+            "重新铺上新的葱丝和姜丝，淋上蒸鱼豉油。",
+            "锅中烧热少许油，淋在葱姜丝上即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "粤菜",
+            "海鲜",
+            "清淡"
+        ],
+        "nutritionalInfo": "肉质鲜嫩，营养价值高。",
+        "imageUrl": "http://example.com/qingzhengluyu.jpg"
+    },
+    {
+        "id": 1008,
+        "name": "蒜蓉西兰花 (百科)",
+        "ingredients": [
+            {
+                "name": "西兰花",
+                "quantity": "1颗"
+            },
+            {
+                "name": "大蒜",
+                "quantity": "3瓣"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "蚝油",
+                "quantity": "少许 (可选)"
+            }
+        ],
+        "steps": [
+            "西兰花掰成小朵，用盐水浸泡10分钟后洗净。",
+            "大蒜切末。",
+            "锅中烧开水，加入少许盐和几滴油，放入西兰花焯烫1-2分钟捞出沥干。",
+            "锅中放油烧热，放入蒜末炒香。",
+            "放入焯好的西兰花，快速翻炒均匀。",
+            "加入盐和少许蚝油（可选）调味即可。"
+        ],
+        "cookingTime": 15,
+        "difficulty": "Easy",
+        "tags": [
+            "素菜",
+            "家常菜",
+            "健康"
+        ],
+        "nutritionalInfo": "富含维生素C和膳食纤维。",
+        "imageUrl": "http://example.com/suanrongxilanhu.jpg"
+    },
+    {
+        "id": 1009,
+        "name": "地三鲜 (百科)",
+        "ingredients": [
+            {
+                "name": "土豆",
+                "quantity": "1个"
+            },
+            {
+                "name": "茄子",
+                "quantity": "1个"
+            },
+            {
+                "name": "青椒",
+                "quantity": "1个"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "酱油",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "土豆、茄子去皮切滚刀块，青椒切块。",
+            "茄子用盐腌制10分钟后挤干水分。",
+            "锅中多放些油，将土豆块炸至金黄捞出，再将茄子块炸至金黄捞出。",
+            "锅留底油，爆香蒜末。",
+            "放入青椒块翻炒几下。",
+            "加入炸好的土豆和茄子，倒入由酱油、糖、淀粉和少量水调成的碗汁。",
+            "快速翻炒均匀，让食材裹上芡汁即可。"
+        ],
+        "cookingTime": 30,
+        "difficulty": "Medium",
+        "tags": [
+            "东北菜",
+            "家常菜",
+            "素菜"
+        ],
+        "nutritionalInfo": "咸鲜可口，非常下饭。",
+        "imageUrl": "http://example.com/disanxian.jpg"
+    },
+    {
+        "id": 1010,
+        "name": "酸辣土豆丝 (百科)",
+        "ingredients": [
+            {
+                "name": "土豆",
+                "quantity": "2个"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "适量"
+            },
+            {
+                "name": "花椒",
+                "quantity": "少许"
+            },
+            {
+                "name": "白醋",
+                "quantity": "1勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "土豆去皮切细丝，用清水冲洗几遍去除淀粉，然后沥干水分。",
+            "干辣椒切段。",
+            "锅中放油烧热，放入花椒和干辣椒段炒香。",
+            "放入土豆丝快速翻炒。",
+            "加入白醋继续翻炒，保持土豆丝的爽脆。",
+            "加入盐调味，翻炒均匀。",
+            "出锅前撒上葱花即可。"
+        ],
+        "cookingTime": 15,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "素菜",
+            "开胃"
+        ],
+        "nutritionalInfo": "酸辣爽口，简单易做。",
+        "imageUrl": "http://example.com/suanlatudousi.jpg"
+    },
+    {
+        "id": 1011,
+        "name": "拍黄瓜 (百科)",
+        "ingredients": [
+            {
+                "name": "黄瓜",
+                "quantity": "2根"
+            },
+            {
+                "name": "大蒜",
+                "quantity": "3瓣"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "香醋",
+                "quantity": "1勺"
+            },
+            {
+                "name": "白糖",
+                "quantity": "少许"
+            },
+            {
+                "name": "香油",
+                "quantity": "几滴"
+            },
+            {
+                "name": "小米辣",
+                "quantity": "1-2个 (可选)"
+            }
+        ],
+        "steps": [
+            "黄瓜洗净，用刀拍裂后切成小段。",
+            "大蒜切末，小米辣切圈（可选）。",
+            "将拍好的黄瓜放入碗中，加入蒜末和小米辣。",
+            "加入生抽、香醋、白糖和香油。",
+            "搅拌均匀，腌制10分钟使其入味即可。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "凉菜",
+            "素菜",
+            "开胃"
+        ],
+        "nutritionalInfo": "清爽可口，解腻开胃。",
+        "imageUrl": "http://example.com/paihuanggua.jpg"
+    },
+    {
+        "id": 1012,
+        "name": "扬州炒饭 (百科)",
+        "ingredients": [
+            {
+                "name": "米饭",
+                "quantity": "1碗 (隔夜饭佳)"
+            },
+            {
+                "name": "鸡蛋",
+                "quantity": "2个"
+            },
+            {
+                "name": "虾仁",
+                "quantity": "50g"
+            },
+            {
+                "name": "火腿丁",
+                "quantity": "30g"
+            },
+            {
+                "name": "胡萝卜丁",
+                "quantity": "30g"
+            },
+            {
+                "name": "豌豆",
+                "quantity": "30g"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "鸡蛋打散，虾仁用料酒和少许盐腌制一下。",
+            "锅中放油烧热，倒入蛋液炒散盛出。",
+            "锅中再放少许油，放入虾仁炒至变色盛出。",
+            "放入葱花爆香，加入胡萝卜丁、豌豆、火腿丁翻炒。",
+            "倒入米饭，用铲子打散，翻炒均匀。",
+            "加入炒好的鸡蛋和虾仁，调入盐翻炒均匀。",
+            "出锅前再撒些葱花即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "主食",
+            "家常菜",
+            "米饭"
+        ],
+        "nutritionalInfo": "食材丰富，营养均衡。",
+        "imageUrl": "http://example.com/yangzhouchaofan.jpg"
+    },
+    {
+        "id": 1013,
+        "name": "水煮牛肉 (百科)",
+        "ingredients": [
+            {
+                "name": "牛里脊",
+                "quantity": "250g"
+            },
+            {
+                "name": "豆芽",
+                "quantity": "100g"
+            },
+            {
+                "name": "青菜",
+                "quantity": "100g (如白菜、油麦菜)"
+            },
+            {
+                "name": "豆瓣酱",
+                "quantity": "2勺"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "一把"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小撮"
+            },
+            {
+                "name": "葱姜蒜",
+                "quantity": "适量"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "适量"
+            },
+            {
+                "name": "酱油",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            }
+        ],
+        "steps": [
+            "牛里脊切薄片，加酱油、料酒、淀粉、少许油抓匀腌制15分钟。",
+            "豆芽和青菜焯水后铺在碗底。",
+            "锅中放油，放入豆瓣酱、部分干辣椒、花椒、葱姜蒜末炒出红油和香味。",
+            "加入适量开水或高汤烧开。",
+            "将腌好的牛肉片逐片下入锅中，煮至变色。",
+            "将煮好的牛肉连汤倒入铺好蔬菜的碗中。",
+            "在牛肉表面撒上剩余的干辣椒段、花椒、蒜末、葱花。",
+            "锅中烧热适量油，淋在调料上激出香味即可。"
+        ],
+        "cookingTime": 35,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "牛肉",
+            "麻辣"
+        ],
+        "nutritionalInfo": "麻辣鲜香，肉质滑嫩。",
+        "imageUrl": "http://example.com/shuizhuniurou.jpg"
+    },
+    {
+        "id": 1014,
+        "name": "葱油拌面 (百科)",
+        "ingredients": [
+            {
+                "name": "细面条",
+                "quantity": "200g"
+            },
+            {
+                "name": "小葱",
+                "quantity": "一把"
+            },
+            {
+                "name": "食用油",
+                "quantity": "适量"
+            },
+            {
+                "name": "老抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "2勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "1茶匙"
+            }
+        ],
+        "steps": [
+            "小葱洗净切长段，葱白和葱叶分开。",
+            "锅中多放些油，小火将葱白段炸至金黄捞出。",
+            "再放入葱叶段，小火炸至葱叶焦黄酥脆，制成葱油，捞出葱叶。",
+            "碗中加入老抽、生抽、糖，倒入适量熬好的热葱油拌匀成调味汁。",
+            "另起锅烧水，水开后放入面条煮熟。",
+            "煮好的面条捞出沥干水分，放入碗中，淋上调味汁，放上炸好的葱叶即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "主食",
+            "面食",
+            "快手"
+        ],
+        "nutritionalInfo": "葱香浓郁，简单美味。",
+        "imageUrl": "http://example.com/congyoubanmian.jpg"
+    },
+    {
+        "id": 1015,
+        "name": "冬瓜丸子汤 (百科)",
+        "ingredients": [
+            {
+                "name": "冬瓜",
+                "quantity": "300g"
+            },
+            {
+                "name": "猪肉末",
+                "quantity": "150g"
+            },
+            {
+                "name": "鸡蛋",
+                "quantity": "1个 (取蛋清)"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "胡椒粉",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "猪肉末中加入姜末、蛋清、少许盐和胡椒粉，朝一个方向搅拌上劲。",
+            "冬瓜去皮去瓤，切成薄片。",
+            "锅中烧开水，转小火，用勺子或手将肉馅挤成丸子下入锅中。",
+            "待丸子全部浮起后，撇去浮沫。",
+            "加入冬瓜片，煮至冬瓜变透明。",
+            "加入盐和少许胡椒粉调味，撒上葱花即可。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Easy",
+        "tags": [
+            "汤羹",
+            "家常菜",
+            "清淡"
+        ],
+        "nutritionalInfo": "清淡爽口，营养丰富。",
+        "imageUrl": "http://example.com/dongguawanzitang.jpg"
+    },
+    {
+        "id": 1016,
+        "name": "啤酒鸭 (百科)",
+        "ingredients": [
+            {
+                "name": "鸭子",
+                "quantity": "半只"
+            },
+            {
+                "name": "啤酒",
+                "quantity": "1罐"
+            },
+            {
+                "name": "姜片",
+                "quantity": "5片"
+            },
+            {
+                "name": "蒜瓣",
+                "quantity": "5瓣"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "适量"
+            },
+            {
+                "name": "八角",
+                "quantity": "2个"
+            },
+            {
+                "name": "桂皮",
+                "quantity": "1小块"
+            },
+            {
+                "name": "生抽",
+                "quantity": "2勺"
+            },
+            {
+                "name": "老抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "1茶匙"
+            }
+        ],
+        "steps": [
+            "鸭子斩块，冷水下锅焯水后捞出洗净。",
+            "锅中放少许油，放入鸭块煸炒至表面微黄出油。",
+            "加入姜片、蒜瓣、干辣椒、八角、桂皮炒香。",
+            "烹入生抽、老抽翻炒上色。",
+            "倒入啤酒，没过鸭块，加入糖。",
+            "大火烧开后转小火，盖上锅盖焖煮30-40分钟，直到鸭肉酥烂。",
+            "开盖转大火收汁，待汤汁浓稠即可。"
+        ],
+        "cookingTime": 60,
+        "difficulty": "Medium",
+        "tags": [
+            "家常菜",
+            "荤菜",
+            "鸭肉"
+        ],
+        "nutritionalInfo": "鸭肉鲜嫩，带有啤酒的清香。",
+        "imageUrl": "http://example.com/pijiuya.jpg"
+    },
+    {
+        "id": 1017,
+        "name": "糖醋排骨 (百科)",
+        "ingredients": [
+            {
+                "name": "猪小排",
+                "quantity": "500g"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "香醋",
+                "quantity": "3勺"
+            },
+            {
+                "name": "白糖",
+                "quantity": "4勺"
+            },
+            {
+                "name": "姜片",
+                "quantity": "3片"
+            },
+            {
+                "name": "葱段",
+                "quantity": "适量"
+            },
+            {
+                "name": "熟白芝麻",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "排骨洗净，冷水下锅，加入料酒、姜片、葱段焯水后捞出。",
+            "锅中放少许油，放入排骨煸炒至表面金黄。",
+            "调糖醋汁：碗中加入1勺料酒、1勺生抽、3勺香醋、4勺白糖和少许清水拌匀（比例可根据口味调整）。",
+            "将调好的糖醋汁倒入锅中，没过排骨。",
+            "大火烧开后转小火，盖上锅盖焖煮20-30分钟，直到排骨入味酥烂。",
+            "开盖转大火收汁，待汤汁浓稠并均匀裹在排骨上。",
+            "出锅前撒上熟白芝麻即可。"
+        ],
+        "cookingTime": 45,
+        "difficulty": "Medium",
+        "tags": [
+            "家常菜",
+            "猪肉",
+            "酸甜"
+        ],
+        "nutritionalInfo": "酸甜可口，外酥里嫩。",
+        "imageUrl": "http://example.com/tangcupaigu.jpg"
+    },
+    {
+        "id": 1018,
+        "name": "清炒时蔬 (百科)",
+        "ingredients": [
+            {
+                "name": "时令蔬菜",
+                "quantity": "300g (如上海青、菜心、油麦菜等)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "食用油",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "蔬菜洗净，根据种类处理（如切段）。",
+            "锅中放油烧热，放入蒜末爆香。",
+            "放入蔬菜，大火快速翻炒。",
+            "待蔬菜变软断生后，加入适量盐调味。",
+            "翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "素菜",
+            "快手菜",
+            "健康"
+        ],
+        "nutritionalInfo": "简单快捷，保留蔬菜原味。",
+        "imageUrl": "http://example.com/qingchaoshishu.jpg"
+    },
+    {
+        "id": 1019,
+        "name": "肉末茄子 (百科)",
+        "ingredients": [
+            {
+                "name": "长茄子",
+                "quantity": "2根"
+            },
+            {
+                "name": "猪肉末",
+                "quantity": "100g"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "豆瓣酱",
+                "quantity": "1勺 (可选)"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "半勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "茄子洗净切滚刀块或长条，用盐水浸泡10分钟后捞出沥干。",
+            "猪肉末中加入料酒、少许淀粉抓匀腌制。",
+            "锅中多放些油，烧热后放入茄子炸至表面微黄变软捞出控油。",
+            "锅留底油，放入姜末、蒜末爆香，加入肉末炒散变色。",
+            "加入豆瓣酱（可选）炒出红油。",
+            "放入炸好的茄子，加入生抽、糖和少量水翻炒均匀。",
+            "小火焖煮2-3分钟使茄子入味。",
+            "最后撒上葱花，如果汤汁较多可用少许水淀粉勾芡。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "家常菜",
+            "下饭菜",
+            "茄子"
+        ],
+        "nutritionalInfo": "咸香入味，非常下饭。",
+        "imageUrl": "http://example.com/roumoqiezi.jpg"
+    },
+    {
+        "id": 1020,
+        "name": "香菇滑鸡 (百科)",
+        "ingredients": [
+            {
+                "name": "鸡腿肉",
+                "quantity": "2个"
+            },
+            {
+                "name": "干香菇",
+                "quantity": "5-6朵"
+            },
+            {
+                "name": "姜片",
+                "quantity": "3片"
+            },
+            {
+                "name": "葱段",
+                "quantity": "适量"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "蚝油",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "半勺"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            },
+            {
+                "name": "香油",
+                "quantity": "几滴"
+            }
+        ],
+        "steps": [
+            "鸡腿去骨切块，加入生抽、料酒、淀粉、少许糖抓匀腌制15分钟。",
+            "干香菇用温水泡发后切片，泡香菇的水留用。",
+            "锅中放油烧热，放入姜片、葱段爆香。",
+            "放入腌好的鸡块滑炒至变色。",
+            "加入香菇片翻炒均匀。",
+            "倒入适量泡香菇的水（滤掉底部沉淀），加入蚝油。",
+            "大火烧开转小火焖煮10-15分钟，直到鸡肉熟透入味。",
+            "如果汤汁较多，可大火收浓，出锅前淋几滴香油。"
+        ],
+        "cookingTime": 30,
+        "difficulty": "Easy",
+        "tags": [
+            "粤菜",
+            "家常菜",
+            "鸡肉"
+        ],
+        "nutritionalInfo": "鸡肉滑嫩，香菇鲜美。",
+        "imageUrl": "http://example.com/xiangGuhuaJi.jpg"
+    },
+    {
+        "id": 1021,
+        "name": "金针菇肥牛 (百科)",
+        "ingredients": [
+            {
+                "name": "肥牛片",
+                "quantity": "200g"
+            },
+            {
+                "name": "金针菇",
+                "quantity": "150g"
+            },
+            {
+                "name": "小米辣",
+                "quantity": "2个 (可选)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "蚝油",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            },
+            {
+                "name": "泡椒汁",
+                "quantity": "1勺 (可选，增添风味)"
+            }
+        ],
+        "steps": [
+            "金针菇去根洗净，撕成小束。",
+            "小米辣切圈，蒜切末。",
+            "锅中烧开水，放入金针菇焯烫30秒捞出，铺在碗底。",
+            "锅中再次烧开水，放入肥牛片迅速焯烫至变色即捞出，铺在金针菇上。",
+            "锅中放少许油，烧热后放入蒜末、小米辣炒香。",
+            "加入生抽、蚝油、糖、泡椒汁（可选）和少量水煮开制成酱汁。",
+            "将煮好的酱汁均匀淋在肥牛和金针菇上。",
+            "撒上葱花即可。"
+        ],
+        "cookingTime": 15,
+        "difficulty": "Easy",
+        "tags": [
+            "快手菜",
+            "牛肉",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "鲜香微辣，制作简单。",
+        "imageUrl": "http://example.com/jinzhengufeiniu.jpg"
+    },
+    {
+        "id": 1022,
+        "name": "韭菜炒鸡蛋 (百科)",
+        "ingredients": [
+            {
+                "name": "韭菜",
+                "quantity": "200g"
+            },
+            {
+                "name": "鸡蛋",
+                "quantity": "3个"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "料酒",
+                "quantity": "少许 (可选，去腥)"
+            }
+        ],
+        "steps": [
+            "韭菜洗净切段。",
+            "鸡蛋打入碗中，加入少许盐和料酒（可选）搅打均匀。",
+            "锅中放适量油烧热，倒入蛋液，快速炒散凝固后盛出。",
+            "锅中再放少许油，放入韭菜段快速翻炒至断生。",
+            "加入炒好的鸡蛋，再加入适量盐调味。",
+            "翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "素菜",
+            "快手菜"
+        ],
+        "nutritionalInfo": "简单美味，营养家常。",
+        "imageUrl": "http://example.com/jiucaijidan.jpg"
+    },
+    {
+        "id": 1023,
+        "name": "红烧带鱼 (百科)",
+        "ingredients": [
+            {
+                "name": "带鱼段",
+                "quantity": "500g"
+            },
+            {
+                "name": "葱段",
+                "quantity": "适量"
+            },
+            {
+                "name": "姜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒜瓣",
+                "quantity": "几瓣"
+            },
+            {
+                "name": "料酒",
+                "quantity": "2勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "2勺"
+            },
+            {
+                "name": "老抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "1勺"
+            },
+            {
+                "name": "醋",
+                "quantity": "1勺 (出锅前放)"
+            },
+            {
+                "name": "八角",
+                "quantity": "1-2个 (可选)"
+            }
+        ],
+        "steps": [
+            "带鱼段处理干净，表面划几刀，用厨房纸吸干水分。",
+            "锅中放适量油，烧至七成热，放入带鱼段煎至两面金黄后盛出。",
+            "锅留底油，放入葱段、姜片、蒜瓣、八角（可选）爆香。",
+            "放入煎好的带鱼段。",
+            "烹入料酒，加入生抽、老抽、糖和适量开水（没过带鱼）。",
+            "大火烧开后转小火，盖上锅盖焖煮15-20分钟，使带鱼入味。",
+            "开盖转大火收汁，待汤汁浓稠时，沿锅边烹入1勺醋。",
+            "快速翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 35,
+        "difficulty": "Medium",
+        "tags": [
+            "家常菜",
+            "海鲜",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "鱼肉鲜嫩，咸鲜适口。",
+        "imageUrl": "http://example.com/hongshaodaiyu.jpg"
+    },
+    {
+        "id": 1024,
+        "name": "蒜苔炒肉丝 (百科)",
+        "ingredients": [
+            {
+                "name": "蒜苔",
+                "quantity": "200g"
+            },
+            {
+                "name": "猪里脊肉",
+                "quantity": "100g"
+            },
+            {
+                "name": "红辣椒",
+                "quantity": "1个 (可选，配色)"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "半勺"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "蒜苔洗净切段，红辣椒切丝（可选）。",
+            "猪里脊肉切丝，加入料酒、生抽、淀粉抓匀腌制10分钟。",
+            "锅中放油烧热，放入腌好的肉丝滑炒至变色盛出。",
+            "锅留底油，放入姜末、红辣椒丝（可选）炒香。",
+            "放入蒜苔段翻炒至断生。",
+            "加入炒好的肉丝，调入适量盐和少许生抽（调味）。",
+            "快速翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "小炒",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "蒜苔爽脆，肉丝鲜嫩。",
+        "imageUrl": "http://example.com/suantaichaoRousi.jpg"
+    },
+    {
+        "id": 1025,
+        "name": "木须肉 (百科)",
+        "ingredients": [
+            {
+                "name": "猪里脊肉",
+                "quantity": "150g"
+            },
+            {
+                "name": "鸡蛋",
+                "quantity": "2个"
+            },
+            {
+                "name": "干木耳",
+                "quantity": "10g"
+            },
+            {
+                "name": "黄瓜",
+                "quantity": "半根"
+            },
+            {
+                "name": "胡萝卜",
+                "quantity": "少许 (配色)"
+            },
+            {
+                "name": "葱姜蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "半勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "猪里脊肉切片，加料酒、少许盐、淀粉抓匀腌制。",
+            "鸡蛋打散，加少许盐。",
+            "干木耳泡发洗净撕小朵，黄瓜、胡萝卜切菱形片。",
+            "锅中放油烧热，倒入蛋液炒熟划散盛出。",
+            "锅中再放少许油，放入腌好的肉片滑炒至变色盛出。",
+            "锅留底油，爆香葱姜蒜末。",
+            "放入胡萝卜片、木耳翻炒片刻。",
+            "加入黄瓜片、炒好的鸡蛋和肉片。",
+            "调入生抽和适量盐，快速翻炒均匀即可。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "家常菜",
+            "鲁菜",
+            "经典"
+        ],
+        "nutritionalInfo": "食材丰富，口感多样。",
+        "imageUrl": "http://example.com/muxurou.jpg"
+    },
+    {
+        "id": 1026,
+        "name": "雪菜肉丝面 (百科)",
+        "ingredients": [
+            {
+                "name": "面条",
+                "quantity": "200g"
+            },
+            {
+                "name": "袋装雪菜（雪里蕻）",
+                "quantity": "100g"
+            },
+            {
+                "name": "猪肉丝",
+                "quantity": "50g"
+            },
+            {
+                "name": "小红辣椒",
+                "quantity": "1-2个 (可选)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "料酒",
+                "quantity": "少许"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量 (根据雪菜咸度调整)"
+            },
+            {
+                "name": "高汤或清水",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "猪肉丝加料酒、少许淀粉抓匀腌制。",
+            "雪菜用清水稍作清洗，挤干水分切末。小红辣椒切圈。",
+            "锅中放油烧热，放入肉丝滑炒至变色盛出。",
+            "锅留底油，放入蒜末、小红辣椒圈爆香。",
+            "放入雪菜末翻炒出香味。",
+            "加入炒好的肉丝，烹入生抽。",
+            "加入适量高汤或清水煮开，制成雪菜肉丝浇头，尝味后酌情加盐。",
+            "另起锅烧水煮面条，面条煮熟后捞出放入碗中。",
+            "将雪菜肉丝浇头淋在面条上即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "主食",
+            "面食",
+            "家常"
+        ],
+        "nutritionalInfo": "咸鲜开胃，简单快捷。",
+        "imageUrl": "http://example.com/xuecairousimian.jpg"
+    },
+    {
+        "id": 1027,
+        "name": "干煸豆角 (百科)",
+        "ingredients": [
+            {
+                "name": "四季豆（豆角）",
+                "quantity": "300g"
+            },
+            {
+                "name": "猪肉末",
+                "quantity": "50g (可选)"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "适量"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小撮"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "少许"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "四季豆去筋洗净，掰成段，沥干水分。",
+            "锅中多放些油，烧至六七成热，放入四季豆炸至表皮起皱（或用少油煸炒至熟）。捞出控油。",
+            "锅留底油，放入猪肉末（可选）炒散变色。",
+            "加入干辣椒、花椒、蒜末、姜末炒香。",
+            "放入处理好的四季豆翻炒。",
+            "调入生抽、盐、糖，快速翻炒均匀入味即可。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "家常菜",
+            "素菜"
+        ],
+        "nutritionalInfo": "干香入味，非常下饭。",
+        "imageUrl": "http://example.com/ganbiandoujiao.jpg"
+    },
+    {
+        "id": 1028,
+        "name": "油焖大虾 (百科)",
+        "ingredients": [
+            {
+                "name": "大虾",
+                "quantity": "300g"
+            },
+            {
+                "name": "葱段",
+                "quantity": "适量"
+            },
+            {
+                "name": "姜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "番茄酱",
+                "quantity": "1勺 (可选，增色增味)"
+            },
+            {
+                "name": "糖",
+                "quantity": "1勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "少许"
+            },
+            {
+                "name": "清水",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "大虾剪去虾须虾枪，挑去虾线，洗净沥干。",
+            "锅中放适量油烧热，放入大虾煸炒至虾身变红，虾壳酥脆，盛出。",
+            "锅留底油，放入葱段、姜片爆香。",
+            "加入番茄酱（可选）炒出红油。",
+            "放入煸好的大虾，烹入料酒，加入生抽、糖、盐和少许清水。",
+            "翻炒均匀，盖上锅盖小火焖煮2-3分钟，使虾入味。",
+            "开盖大火收浓汤汁即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Medium",
+        "tags": [
+            "鲁菜",
+            "海鲜",
+            "家常宴客"
+        ],
+        "nutritionalInfo": "色泽红亮，咸甜鲜美。",
+        "imageUrl": "http://example.com/youmendaXia.jpg"
+    },
+    {
+        "id": 1029,
+        "name": "芹菜炒香干 (百科)",
+        "ingredients": [
+            {
+                "name": "芹菜",
+                "quantity": "200g"
+            },
+            {
+                "name": "香干（豆腐干）",
+                "quantity": "100g"
+            },
+            {
+                "name": "红辣椒丝",
+                "quantity": "少许 (配色)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许 (提鲜)"
+            }
+        ],
+        "steps": [
+            "芹菜洗净切段，香干切条或片。",
+            "锅中烧开水，放入芹菜段焯烫一下捞出沥干（可选，使芹菜更翠绿）。",
+            "锅中放油烧热，放入蒜末、红辣椒丝爆香。",
+            "放入香干翻炒至表面微黄。",
+            "加入芹菜段，快速翻炒。",
+            "调入生抽、盐、少许糖，翻炒均匀即可。"
+        ],
+        "cookingTime": 15,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "素菜",
+            "快手"
+        ],
+        "nutritionalInfo": "清淡爽口，营养搭配。",
+        "imageUrl": "http://example.com/qincaixianggan.jpg"
+    },
+    {
+        "id": 1030,
+        "name": "酸菜鱼 (百科)",
+        "ingredients": [
+            {
+                "name": "草鱼或黑鱼",
+                "quantity": "1条 (约500g)"
+            },
+            {
+                "name": "袋装酸菜",
+                "quantity": "200g"
+            },
+            {
+                "name": "鸡蛋清",
+                "quantity": "1个"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "适量"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "适量"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小撮"
+            },
+            {
+                "name": "姜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒜瓣",
+                "quantity": "几瓣"
+            },
+            {
+                "name": "泡椒",
+                "quantity": "几个 (可选)"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "白胡椒粉",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "鱼处理干净，鱼头鱼骨剁块，鱼肉片成薄片。鱼片用料酒、盐、白胡椒粉、蛋清和淀粉抓匀腌制15分钟。",
+            "酸菜切段，干辣椒切段，姜蒜切片，泡椒切碎。",
+            "锅中放油烧热，放入鱼头鱼骨煎至两面微黄。",
+            "加入姜片、蒜瓣、泡椒（可选）炒香。",
+            "放入酸菜翻炒出香味。",
+            "加入足量开水或高汤，大火烧开后转中火煮10-15分钟，煮出酸菜味，加盐调味。",
+            "用漏勺捞出锅中的鱼骨和酸菜铺在碗底。",
+            "转小火，将腌好的鱼片逐片下入锅中，煮至鱼片变白浮起。",
+            "将煮好的鱼片连汤倒入碗中。",
+            "在鱼片表面撒上干辣椒段和花椒。",
+            "另起锅烧热适量油，淋在干辣椒和花椒上激出香味即可。"
+        ],
+        "cookingTime": 40,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "鱼",
+            "酸辣"
+        ],
+        "nutritionalInfo": "鱼肉嫩滑，汤汁酸辣可口。",
+        "imageUrl": "http://example.com/suancaiyu.jpg"
+    },
+    {
+        "id": 1031,
+        "name": "蚝油生菜 (百科)",
+        "ingredients": [
+            {
+                "name": "生菜",
+                "quantity": "300g"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "蚝油",
+                "quantity": "2勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1茶匙 (可选)"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许 (可选)"
+            },
+            {
+                "name": "清水",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "生菜洗净，沥干水分。",
+            "锅中烧开水，加入少许盐和几滴油，放入生菜焯烫15-30秒（断生即可，保持爽脆），捞出沥干装盘。",
+            "锅中放少许底油，放入蒜末爆香。",
+            "加入蚝油、生抽（可选）、糖（可选）和少许清水，煮开制成蚝油汁。",
+            "将煮好的蚝油汁均匀淋在焯好的生菜上即可。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "粤菜",
+            "素菜",
+            "快手"
+        ],
+        "nutritionalInfo": "清淡爽脆，简单美味。",
+        "imageUrl": "http://example.com/haoyoushengcai.jpg"
+    },
+    {
+        "id": 1032,
+        "name": "蚂蚁上树 (百科)",
+        "ingredients": [
+            {
+                "name": "粉条（红薯粉）",
+                "quantity": "100g"
+            },
+            {
+                "name": "猪肉末",
+                "quantity": "100g"
+            },
+            {
+                "name": "郫县豆瓣酱",
+                "quantity": "1勺"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "料酒",
+                "quantity": "半勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "粉条用温水泡软，剪成适当长度。",
+            "猪肉末加料酒、少许淀粉抓匀腌制。",
+            "锅中放油烧热，放入肉末炒散变色。",
+            "加入郫县豆瓣酱炒出红油，再加入姜末、蒜末炒香。",
+            "加入泡软的粉条，翻炒均匀。",
+            "加入适量清水或高汤（约没过粉条），调入生抽、糖。",
+            "中火煮至粉条入味，汤汁收浓。",
+            "出锅前撒上葱花即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "川菜",
+            "家常菜",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "肉末香浓，粉条滑爽。",
+        "imageUrl": "http://example.com/mayishangshu.jpg"
+    },
+    {
+        "id": 1033,
+        "name": "京酱肉丝 (百科)",
+        "ingredients": [
+            {
+                "name": "猪里脊肉",
+                "quantity": "200g"
+            },
+            {
+                "name": "甜面酱",
+                "quantity": "2-3勺"
+            },
+            {
+                "name": "鸡蛋清",
+                "quantity": "半个"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "白糖",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "香油",
+                "quantity": "少许"
+            },
+            {
+                "name": "大葱白",
+                "quantity": "1段 (切丝，配菜)"
+            },
+            {
+                "name": "豆腐皮或春饼",
+                "quantity": "适量 (配菜)"
+            }
+        ],
+        "steps": [
+            "猪里脊肉切细丝，加入料酒、蛋清、淀粉抓匀上浆腌制15分钟。",
+            "大葱白切细丝，铺在盘底备用。",
+            "锅中放适量油烧至四成热，下入肉丝滑炒至变色散开，捞出沥油。",
+            "锅留少许底油，放入甜面酱，小火炒出香味（注意不要炒糊）。",
+            "加入白糖和少许清水，继续炒匀。",
+            "倒入滑好的肉丝，快速翻炒，使每根肉丝都均匀裹上酱汁。",
+            "淋入少许香油，翻炒均匀后出锅，盛在铺好葱丝的盘中。",
+            "搭配豆腐皮或春饼食用。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "京菜",
+            "家常菜",
+            "猪肉"
+        ],
+        "nutritionalInfo": "酱香浓郁，咸甜适口。",
+        "imageUrl": "http://example.com/jingjiangrousi.jpg"
+    },
+    {
+        "id": 1034,
+        "name": "剁椒鱼头 (百科)",
+        "ingredients": [
+            {
+                "name": "胖头鱼头",
+                "quantity": "1个 (约750g)"
+            },
+            {
+                "name": "剁椒",
+                "quantity": "150g"
+            },
+            {
+                "name": "姜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "料酒",
+                "quantity": "2勺"
+            },
+            {
+                "name": "蒸鱼豉油",
+                "quantity": "2勺"
+            },
+            {
+                "name": "食用油",
+                "quantity": "2勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "少许 (如果剁椒够咸可不放)"
+            }
+        ],
+        "steps": [
+            "鱼头从中间劈开（不要完全切断，保持连接），洗净，抹上料酒和少许盐（如果需要）腌制15分钟。",
+            "盘底铺上姜片和葱段（可选）。",
+            "将腌好的鱼头铺在盘中，鱼皮朝上。",
+            "将剁椒均匀地铺在鱼头上，再撒上姜末、蒜末。",
+            "蒸锅水烧开后，放入鱼头，大火蒸12-15分钟（根据鱼头大小调整）。",
+            "取出蒸好的鱼头，倒掉盘中多余的汤汁（可选）。",
+            "淋上蒸鱼豉油，撒上葱花。",
+            "锅中烧热2勺食用油，烧至冒烟，迅速淋在葱花和剁椒上激出香味即可。"
+        ],
+        "cookingTime": 30,
+        "difficulty": "Medium",
+        "tags": [
+            "湘菜",
+            "鱼",
+            "鲜辣"
+        ],
+        "nutritionalInfo": "鲜辣开胃，鱼肉嫩滑。",
+        "imageUrl": "http://example.com/duojiaoyutou.jpg"
+    },
+    {
+        "id": 1035,
+        "name": "皮蛋瘦肉粥 (百科)",
+        "ingredients": [
+            {
+                "name": "大米",
+                "quantity": "100g"
+            },
+            {
+                "name": "皮蛋",
+                "quantity": "2个"
+            },
+            {
+                "name": "猪里脊肉或梅花肉",
+                "quantity": "100g"
+            },
+            {
+                "name": "姜丝",
+                "quantity": "少许"
+            },
+            {
+                "name": "葱花",
+                "quantity": "适量"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "白胡椒粉",
+                "quantity": "少许"
+            },
+            {
+                "name": "香油",
+                "quantity": "几滴"
+            }
+        ],
+        "steps": [
+            "大米淘洗干净，加少许油和盐腌制30分钟（可选，粥更绵滑）。",
+            "猪肉切细丝或小丁，加少许盐、料酒、淀粉抓匀腌制。",
+            "皮蛋去壳切小丁。",
+            "锅中加入足量水烧开，放入腌好的大米，大火煮开后转小火，保持微沸状态熬煮30-40分钟，期间不时搅拌防止粘底。",
+            "待粥变得浓稠后，加入腌好的肉丝搅散，煮至肉丝变白。",
+            "加入皮蛋丁和姜丝，继续煮5-10分钟。",
+            "调入适量盐和白胡椒粉。",
+            "出锅前撒上葱花，淋几滴香油即可。"
+        ],
+        "cookingTime": 60,
+        "difficulty": "Easy",
+        "tags": [
+            "粥品",
+            "粤菜",
+            "早餐"
+        ],
+        "nutritionalInfo": "咸鲜可口，营养易消化。",
+        "imageUrl": "http://example.com/pidanshourouzhou.jpg"
+    },
+    {
+        "id": 1036,
+        "name": "辣子鸡丁 (百科)",
+        "ingredients": [
+            {
+                "name": "鸡腿肉",
+                "quantity": "2个"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "一大把 (根据喜辣程度调整)"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小把"
+            },
+            {
+                "name": "姜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "葱段",
+                "quantity": "适量"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "1勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许 (提鲜)"
+            },
+            {
+                "name": "熟白芝麻",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "鸡腿去骨切成小丁，加入料酒、生抽、盐、淀粉抓匀腌制20分钟。",
+            "干辣椒剪成段，去籽（可减少辣度）。",
+            "锅中放足量油，烧至六七成热，下入腌好的鸡丁炸至金黄酥脆，捞出沥油。",
+            "锅留少许底油，放入干辣椒段、花椒，小火煸炒出香味和红油（注意不要炒糊）。",
+            "加入姜片、蒜片、葱段炒香。",
+            "倒入炸好的鸡丁，快速翻炒均匀。",
+            "加入少许盐（尝味后决定）、糖调味。",
+            "撒上熟白芝麻，翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 30,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "鸡肉",
+            "麻辣"
+        ],
+        "nutritionalInfo": "麻辣干香，外酥里嫩。",
+        "imageUrl": "http://example.com/lazijiding.jpg"
+    },
+    {
+        "id": 1037,
+        "name": "清炖羊肉汤 (百科)",
+        "ingredients": [
+            {
+                "name": "羊肉（带骨羊排或羊腿肉）",
+                "quantity": "500g"
+            },
+            {
+                "name": "白萝卜",
+                "quantity": "半根 (可选)"
+            },
+            {
+                "name": "姜片",
+                "quantity": "5-6片"
+            },
+            {
+                "name": "大葱段",
+                "quantity": "2段"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小撮 (用纱布包好)"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "白胡椒粉",
+                "quantity": "少许"
+            },
+            {
+                "name": "香菜末或葱花",
+                "quantity": "适量 (出锅用)"
+            }
+        ],
+        "steps": [
+            "羊肉斩块，冷水下锅，加入料酒、几片姜，焯水去除血沫后捞出洗净。",
+            "白萝卜去皮切滚刀块（如果使用）。",
+            "将焯好的羊肉放入砂锅或深锅中，加入足量开水（没过羊肉）。",
+            "加入剩余的姜片、大葱段、花椒包。",
+            "大火烧开后转小火，盖上锅盖慢炖1-1.5小时，直到羊肉酥烂。",
+            "如果使用白萝卜，在羊肉炖了约1小时后加入萝卜块，继续炖煮至萝卜软烂。",
+            "取出葱段和花椒包。",
+            "加入适量盐和少许白胡椒粉调味。",
+            "食用时撒上香菜末或葱花即可。"
+        ],
+        "cookingTime": 120,
+        "difficulty": "Easy",
+        "tags": [
+            "汤羹",
+            "滋补",
+            "羊肉"
+        ],
+        "nutritionalInfo": "汤鲜肉烂，暖身滋补。",
+        "imageUrl": "http://example.com/qingdunyangroutang.jpg"
+    },
+    {
+        "id": 1038,
+        "name": "拔丝地瓜 (百科)",
+        "ingredients": [
+            {
+                "name": "红薯（地瓜）",
+                "quantity": "300g"
+            },
+            {
+                "name": "白砂糖",
+                "quantity": "100g"
+            },
+            {
+                "name": "食用油",
+                "quantity": "足量 (炸红薯用)"
+            },
+            {
+                "name": "清水",
+                "quantity": "少许 (熬糖用)"
+            }
+        ],
+        "steps": [
+            "红薯去皮，切滚刀块。",
+            "锅中放足量油，烧至五六成热，放入红薯块炸至表面金黄、内里熟透，捞出沥油。",
+            "另起一锅（或将炸油倒出，洗净锅），锅中加入白砂糖和少许清水（刚没过糖即可）。",
+            "中小火慢慢加热，用勺子不停搅拌，直到糖完全融化并开始冒小泡。",
+            "继续加热，糖浆颜色会逐渐变深，从白色小泡变成黄色大泡，再到浅琥珀色。",
+            "当糖浆变成浅琥珀色，泡沫变细密时，迅速倒入炸好的红薯块。",
+            "快速翻炒，使每块红薯都均匀裹上糖浆。",
+            "立即出锅，盛入抹了少许油的盘子中（防粘）。食用时配一碗凉开水蘸食。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "甜品",
+            "家常菜",
+            "宴客菜"
+        ],
+        "nutritionalInfo": "外脆内糯，香甜可口。",
+        "imageUrl": "http://example.com/basidigua.jpg"
+    },
+    {
+        "id": 1039,
+        "name": "醋溜白菜 (百科)",
+        "ingredients": [
+            {
+                "name": "大白菜",
+                "quantity": "半颗"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "几个 (可选)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "香醋",
+                "quantity": "2勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "盐",
+                "quantity": "少许"
+            },
+            {
+                "name": "水淀粉",
+                "quantity": "少许 (可选，勾芡用)"
+            }
+        ],
+        "steps": [
+            "大白菜洗净，斜刀片成薄片，白菜帮和白菜叶分开。",
+            "干辣椒切段（可选）。",
+            "调碗汁：碗中加入香醋、生抽、糖、盐和少许清水拌匀。",
+            "锅中放油烧热，放入干辣椒段（可选）和蒜末爆香。",
+            "先放入白菜帮翻炒至微软。",
+            "再放入白菜叶，快速翻炒至断生。",
+            "倒入调好的碗汁，大火快速翻炒均匀。",
+            "如果喜欢汤汁浓稠，可用少许水淀粉勾薄芡。",
+            "翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 15,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "素菜",
+            "酸爽"
+        ],
+        "nutritionalInfo": "酸辣开胃，清脆爽口。",
+        "imageUrl": "http://example.com/culiubaicai.jpg"
+    },
+    {
+        "id": 1040,
+        "name": "香辣虾 (百科)",
+        "ingredients": [
+            {
+                "name": "大虾",
+                "quantity": "300g"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "一把"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小撮"
+            },
+            {
+                "name": "姜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "蒜瓣",
+                "quantity": "几瓣 (拍散)"
+            },
+            {
+                "name": "葱段",
+                "quantity": "适量"
+            },
+            {
+                "name": "郫县豆瓣酱",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许"
+            },
+            {
+                "name": "熟白芝麻",
+                "quantity": "少许"
+            },
+            {
+                "name": "香菜段",
+                "quantity": "少许 (装饰)"
+            }
+        ],
+        "steps": [
+            "大虾剪去虾须虾枪，挑去虾线，洗净沥干，用厨房纸吸干表面水分。",
+            "锅中放适量油，烧至七成热，放入大虾炸至外壳酥脆变红，捞出沥油。",
+            "锅留底油，放入姜片、蒜瓣、葱段、干辣椒、花椒，小火煸炒出香味。",
+            "加入郫县豆瓣酱，炒出红油。",
+            "倒入炸好的大虾，快速翻炒均匀。",
+            "烹入料酒，加入生抽、少许糖调味。",
+            "继续翻炒，使虾均匀裹上酱料。",
+            "出锅前撒上熟白芝麻和香菜段即可。"
+        ],
+        "cookingTime": 25,
+        "difficulty": "Medium",
+        "tags": [
+            "川菜",
+            "海鲜",
+            "麻辣"
+        ],
+        "nutritionalInfo": "麻辣鲜香，虾壳酥脆。",
+        "imageUrl": "http://example.com/xianglaxia.jpg"
+    },
+    {
+        "id": 1041,
+        "name": "菠萝咕咾肉 (百科)",
+        "ingredients": [
+            {
+                "name": "猪里脊肉或梅花肉",
+                "quantity": "200g"
+            },
+            {
+                "name": "新鲜菠萝",
+                "quantity": "1/4个"
+            },
+            {
+                "name": "青椒",
+                "quantity": "半个"
+            },
+            {
+                "name": "红椒",
+                "quantity": "半个"
+            },
+            {
+                "name": "鸡蛋",
+                "quantity": "1个"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "适量 (腌肉和炸肉用)"
+            },
+            {
+                "name": "番茄酱",
+                "quantity": "2勺"
+            },
+            {
+                "name": "白醋",
+                "quantity": "1勺"
+            },
+            {
+                "name": "糖",
+                "quantity": "2勺"
+            },
+            {
+                "name": "盐",
+                "quantity": "少许"
+            },
+            {
+                "name": "料酒",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "猪肉切小块，加盐、料酒、蛋液抓匀，再裹上一层干淀粉。",
+            "菠萝切块，用淡盐水浸泡片刻。青红椒切块。",
+            "锅中放足量油，烧至六七成热，下入裹好淀粉的肉块炸至金黄酥脆，捞出沥油。油温升高后可复炸一次更酥脆。",
+            "调糖醋汁：碗中加入番茄酱、白醋、糖、少许盐和少量清水拌匀。",
+            "锅留少许底油，放入青红椒块略微翻炒断生。",
+            "倒入调好的糖醋汁，小火煮至浓稠冒泡。",
+            "加入炸好的肉块和菠萝块，快速翻炒，使食材均匀裹上酱汁。",
+            "待酱汁收紧即可出锅。"
+        ],
+        "cookingTime": 30,
+        "difficulty": "Medium",
+        "tags": [
+            "粤菜",
+            "家常菜",
+            "酸甜"
+        ],
+        "nutritionalInfo": "酸甜开胃，果香浓郁。",
+        "imageUrl": "http://example.com/boluogulaorou.jpg"
+    },
+    {
+        "id": 1042,
+        "name": "榄菜肉末四季豆 (百科)",
+        "ingredients": [
+            {
+                "name": "四季豆",
+                "quantity": "250g"
+            },
+            {
+                "name": "猪肉末",
+                "quantity": "50g"
+            },
+            {
+                "name": "瓶装橄榄菜",
+                "quantity": "2勺"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "小红辣椒",
+                "quantity": "1-2个 (可选)"
+            },
+            {
+                "name": "料酒",
+                "quantity": "少许"
+            },
+            {
+                "name": "生抽",
+                "quantity": "少许 (可选，橄榄菜有咸度)"
+            }
+        ],
+        "steps": [
+            "四季豆去筋洗净，切成小丁或短段。",
+            "猪肉末加少许料酒抓匀腌制。",
+            "锅中放适量油，烧热后放入四季豆丁煸炒（或炸）至表面起皱、熟透，盛出备用。",
+            "锅留底油，放入蒜末、小红辣椒（可选）爆香。",
+            "加入肉末炒散变色。",
+            "加入橄榄菜，翻炒出香味。",
+            "倒入处理好的四季豆丁，快速翻炒均匀。",
+            "尝味后可酌情加入少许生抽调味（橄榄菜本身有咸度）。",
+            "翻炒均匀即可出锅。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "下饭菜",
+            "创新菜"
+        ],
+        "nutritionalInfo": "咸香下饭，风味独特。",
+        "imageUrl": "http://example.com/lancaishijidou.jpg"
+    },
+    {
+        "id": 1043,
+        "name": "梅菜扣肉 (百科)",
+        "ingredients": [
+            {
+                "name": "带皮五花肉",
+                "quantity": "500g"
+            },
+            {
+                "name": "梅干菜",
+                "quantity": "100g"
+            },
+            {
+                "name": "姜片",
+                "quantity": "几片"
+            },
+            {
+                "name": "葱段",
+                "quantity": "几段"
+            },
+            {
+                "name": "八角",
+                "quantity": "1-2个"
+            },
+            {
+                "name": "老抽",
+                "quantity": "2勺 (1勺煮肉，1勺抹肉皮)"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "白糖",
+                "quantity": "1勺"
+            },
+            {
+                "name": "蜂蜜或麦芽糖",
+                "quantity": "少许 (抹肉皮用，可选)"
+            }
+        ],
+        "steps": [
+            "梅干菜用温水泡发洗净，挤干水分切碎。",
+            "五花肉整块冷水下锅，加入姜片、葱段、八角、1勺老抽、料酒，煮约30分钟至七八成熟，捞出沥干。",
+            "趁热在肉皮上均匀抹上1勺老抽和少许蜂蜜（可选），用牙签在肉皮上扎些小孔。",
+            "锅中放适量油，烧至七成热，将肉皮朝下放入锅中炸至肉皮呈金黄色并起泡（注意防溅烫），捞出立即放入冷水中浸泡片刻，待肉皮起皱（虎皮状）。",
+            "将炸好的五花肉切成约0.5-0.8厘米厚的片。",
+            "锅留底油，放入梅干菜、姜末（可选）炒香，加入生抽、白糖和少量煮肉的汤汁调味，翻炒均匀。",
+            "取一个深碗，将肉片皮朝下整齐码放在碗底，铺上炒好的梅干菜，压实。",
+            "将碗放入蒸锅中，大火蒸1-1.5小时，直到肉质酥烂。",
+            "取出蒸好的扣肉，将碗中的汤汁滗出到炒锅中（可选，用于勾芡）。",
+            "取一个盘子扣在碗上，迅速翻转过来，将扣肉倒扣在盘中。",
+            "如果需要，将滗出的汤汁在炒锅中加热勾薄芡，淋在扣肉上即可。"
+        ],
+        "cookingTime": 120,
+        "difficulty": "Hard",
+        "tags": [
+            "客家菜",
+            "经典大菜",
+            "猪肉"
+        ],
+        "nutritionalInfo": "肉质酥烂，咸鲜入味。",
+        "imageUrl": "http://example.com/meicaikourou.jpg"
+    },
+    {
+        "id": 1044,
+        "name": "手撕包菜 (百科)",
+        "ingredients": [
+            {
+                "name": "包菜（卷心菜）",
+                "quantity": "半颗"
+            },
+            {
+                "name": "干辣椒",
+                "quantity": "几个"
+            },
+            {
+                "name": "花椒",
+                "quantity": "一小撮 (可选)"
+            },
+            {
+                "name": "蒜片",
+                "quantity": "适量"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "香醋",
+                "quantity": "1勺 (出锅前放)"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许 (提鲜)"
+            }
+        ],
+        "steps": [
+            "包菜用手撕成小片，洗净沥干水分。",
+            "干辣椒切段。",
+            "锅中放油烧热，放入干辣椒段、花椒（可选）、蒜片爆香。",
+            "倒入包菜片，大火快速翻炒至菜叶稍软。",
+            "调入生抽、盐、少许糖，继续翻炒均匀。",
+            "待包菜炒至断生但仍保持爽脆时，沿锅边烹入香醋。",
+            "快速翻炒几下即可出锅。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "素菜",
+            "快手"
+        ],
+        "nutritionalInfo": "酸辣爽脆，简单美味。",
+        "imageUrl": "http://example.com/shousibaocai.jpg"
+    },
+    {
+        "id": 1045,
+        "name": "白灼虾 (百科)",
+        "ingredients": [
+            {
+                "name": "新鲜基围虾或明虾",
+                "quantity": "300g"
+            },
+            {
+                "name": "姜片",
+                "quantity": "3-4片"
+            },
+            {
+                "name": "葱段",
+                "quantity": "2段"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "蘸料：生抽、香醋、姜末、蒜末、小米辣圈、香油等按喜好调配"
+            }
+        ],
+        "steps": [
+            "虾洗净，剪去虾须，挑去虾线（可选，保持完整也可）。",
+            "锅中加入适量清水，放入姜片、葱段、料酒，大火烧开。",
+            "水开后放入处理好的虾。",
+            "煮约2-3分钟，待虾身变红弯曲，完全熟透后立即捞出。",
+            "（可选）将捞出的虾迅速放入冰水中浸泡片刻，可使虾肉更紧实Q弹。",
+            "捞出沥干水分，装盘。",
+            "根据个人喜好调制蘸料，与白灼虾一同上桌。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "粤菜",
+            "海鲜",
+            "清淡"
+        ],
+        "nutritionalInfo": "原汁原味，鲜甜可口。",
+        "imageUrl": "http://example.com/baizhuoxia.jpg"
+    },
+    {
+        "id": 1046,
+        "name": "农家小炒肉 (百科)",
+        "ingredients": [
+            {
+                "name": "五花肉",
+                "quantity": "200g"
+            },
+            {
+                "name": "青尖椒",
+                "quantity": "100g"
+            },
+            {
+                "name": "红尖椒",
+                "quantity": "50g (可选，配色)"
+            },
+            {
+                "name": "豆豉",
+                "quantity": "1勺 (可选)"
+            },
+            {
+                "name": "蒜瓣",
+                "quantity": "几瓣 (拍散)"
+            },
+            {
+                "name": "姜片",
+                "quantity": "几片"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "老抽",
+                "quantity": "半勺 (上色)"
+            },
+            {
+                "name": "料酒",
+                "quantity": "少许"
+            },
+            {
+                "name": "盐",
+                "quantity": "少许 (如果豆豉和酱油够咸可不放)"
+            }
+        ],
+        "steps": [
+            "五花肉切薄片。青红尖椒去籽斜切成段。",
+            "锅烧热，不放油或放少许油，下入五花肉片煸炒，炒出多余油脂，至肉片表面微焦黄，盛出备用。",
+            "利用锅中煸出的底油（如果油太多可倒掉一些），放入姜片、蒜瓣、豆豉（可选）爆香。",
+            "放入青红尖椒段，大火翻炒至断生，表面起虎皮纹。",
+            "倒入煸好的五花肉片，快速翻炒均匀。",
+            "烹入料酒，加入生抽、老抽调色调味。",
+            "尝味后酌情加盐。",
+            "快速翻炒均匀入味即可出锅。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "湘菜",
+            "家常菜",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "香辣过瘾，肥而不腻。",
+        "imageUrl": "http://example.com/nongjiaxiaochaoRou.jpg"
+    },
+    {
+        "id": 1047,
+        "name": "香煎鳕鱼 (百科)",
+        "ingredients": [
+            {
+                "name": "鳕鱼块（银鳕鱼或普通鳕鱼）",
+                "quantity": "2块 (约300g)"
+            },
+            {
+                "name": "黄油",
+                "quantity": "10g (或橄榄油)"
+            },
+            {
+                "name": "黑胡椒碎",
+                "quantity": "适量"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "柠檬",
+                "quantity": "1/4个 (挤汁用)"
+            },
+            {
+                "name": "可选配菜：芦笋、小番茄等"
+            }
+        ],
+        "steps": [
+            "鳕鱼块解冻后用厨房纸吸干表面水分。",
+            "在鳕鱼两面均匀撒上盐和黑胡椒碎，轻轻按摩使其入味，腌制10-15分钟。",
+            "平底锅中放入黄油（或橄榄油），中小火加热至黄油融化。",
+            "放入腌好的鳕鱼块，中小火煎制。",
+            "每面煎约3-5分钟（根据鳕鱼厚度调整），直到两面金黄，鱼肉熟透。",
+            "煎的过程中可以轻轻晃动锅子，防止粘锅。",
+            "出锅前挤上少许柠檬汁。",
+            "可搭配焯水或烤制的芦笋、小番茄等一同食用。"
+        ],
+        "cookingTime": 15,
+        "difficulty": "Easy",
+        "tags": [
+            "西餐",
+            "海鲜",
+            "健康"
+        ],
+        "nutritionalInfo": "肉质细嫩，简单美味。",
+        "imageUrl": "http://example.com/xiangjianxueyu.jpg"
+    },
+    {
+        "id": 1048,
+        "name": "腐乳空心菜 (百科)",
+        "ingredients": [
+            {
+                "name": "空心菜",
+                "quantity": "300g"
+            },
+            {
+                "name": "红腐乳（南乳）",
+                "quantity": "1-2块"
+            },
+            {
+                "name": "腐乳汁",
+                "quantity": "1勺"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "小米辣",
+                "quantity": "1-2个 (可选，切圈)"
+            },
+            {
+                "name": "糖",
+                "quantity": "少许 (中和咸度，提鲜)"
+            },
+            {
+                "name": "食用油",
+                "quantity": "适量"
+            }
+        ],
+        "steps": [
+            "空心菜洗净，摘去老梗，切成段。",
+            "红腐乳块用勺子压碎，与腐乳汁、少许糖混合均匀备用。",
+            "锅中放油烧热，放入蒜末、小米辣圈（可选）爆香。",
+            "倒入空心菜，大火快速翻炒至菜叶变软。",
+            "倒入调好的腐乳汁，快速翻炒均匀，使每根空心菜都裹上酱汁。",
+            "待空心菜完全炒熟即可出锅（不宜久炒，保持爽脆）。"
+        ],
+        "cookingTime": 10,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "素菜",
+            "特色"
+        ],
+        "nutritionalInfo": "风味独特，咸香可口。",
+        "imageUrl": "http://example.com/furukongxincai.jpg"
+    },
+    {
+        "id": 1049,
+        "name": "老醋花生 (百科)",
+        "ingredients": [
+            {
+                "name": "生花生米",
+                "quantity": "200g"
+            },
+            {
+                "name": "陈醋（或香醋）",
+                "quantity": "3-4勺"
+            },
+            {
+                "name": "白糖",
+                "quantity": "1-2勺"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺 (可选)"
+            },
+            {
+                "name": "香油",
+                "quantity": "少许"
+            },
+            {
+                "name": "黄瓜丁",
+                "quantity": "少许 (可选，配色增爽)"
+            },
+            {
+                "name": "洋葱丁",
+                "quantity": "少许 (可选，增味)"
+            },
+            {
+                "name": "香菜末",
+                "quantity": "少许 (可选)"
+            }
+        ],
+        "steps": [
+            "生花生米用清水洗净，沥干水分。",
+            "锅中放适量冷油，放入花生米，小火慢慢加热并不断翻炒，直到花生米颜色变深，发出噼啪声，表皮微微裂开，捞出沥油，晾凉后会变酥脆。（也可烤箱烤熟或空气炸锅炸熟）",
+            "调老醋汁：碗中加入陈醋、白糖、生抽（可选）、香油拌匀，直到糖融化。",
+            "将晾凉的炸花生米放入一个较大的碗中。",
+            "加入黄瓜丁、洋葱丁（如果使用）。",
+            "倒入调好的老醋汁，搅拌均匀。",
+            "撒上香菜末（如果使用），腌制10-15分钟使其入味即可食用。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "凉菜",
+            "下酒菜",
+            "开胃"
+        ],
+        "nutritionalInfo": "酸甜爽口，花生香脆。",
+        "imageUrl": "http://example.com/laocuhuasheng.jpg"
+    },
+    {
+        "id": 1050,
+        "name": "豉汁排骨 (百科)",
+        "ingredients": [
+            {
+                "name": "猪肋排",
+                "quantity": "300g"
+            },
+            {
+                "name": "豆豉",
+                "quantity": "1勺 (剁碎)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "1勺"
+            },
+            {
+                "name": "姜末",
+                "quantity": "半勺"
+            },
+            {
+                "name": "小米辣",
+                "quantity": "1-2个 (可选，切圈)"
+            },
+            {
+                "name": "生抽",
+                "quantity": "1勺"
+            },
+            {
+                "name": "蚝油",
+                "quantity": "半勺"
+            },
+            {
+                "name": "料酒",
+                "quantity": "1勺"
+            },
+            {
+                "name": "白糖",
+                "quantity": "半茶匙"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "1勺"
+            },
+            {
+                "name": "食用油",
+                "quantity": "少许"
+            }
+        ],
+        "steps": [
+            "排骨斩小块，用清水浸泡30分钟去除血水，然后洗净沥干。",
+            "在排骨中加入剁碎的豆豉、蒜末、姜末、小米辣圈（可选）。",
+            "加入生抽、蚝油、料酒、白糖、淀粉和少许食用油。",
+            "用手充分抓拌均匀，使每块排骨都裹上调料，腌制至少30分钟（时间越长越入味）。",
+            "将腌好的排骨平铺在耐热的盘子中。",
+            "蒸锅水烧开后，放入排骨，大火蒸20-25分钟，直到排骨熟透入味。",
+            "取出后可撒上少许葱花点缀。"
+        ],
+        "cookingTime": 60,
+        "difficulty": "Easy",
+        "tags": [
+            "粤菜",
+            "蒸菜",
+            "猪肉"
+        ],
+        "nutritionalInfo": "豉香浓郁，排骨鲜嫩。",
+        "imageUrl": "http://example.com/chizhipaigu.jpg"
+    },
+    {
+        "id": 1051,
+        "name": "杂蔬炒虾仁 (百科)",
+        "ingredients": [
+            {
+                "name": "虾仁",
+                "quantity": "150g"
+            },
+            {
+                "name": "西兰花",
+                "quantity": "100g (切小朵)"
+            },
+            {
+                "name": "胡萝卜",
+                "quantity": "50g (切片或丁)"
+            },
+            {
+                "name": "玉米粒",
+                "quantity": "50g (新鲜或速冻)"
+            },
+            {
+                "name": "豌豆",
+                "quantity": "50g (新鲜或速冻)"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "适量"
+            },
+            {
+                "name": "料酒",
+                "quantity": "少许"
+            },
+            {
+                "name": "淀粉",
+                "quantity": "少许 (腌虾仁用)"
+            },
+            {
+                "name": "盐",
+                "quantity": "适量"
+            },
+            {
+                "name": "白胡椒粉",
+                "quantity": "少许 (可选)"
+            }
+        ],
+        "steps": [
+            "虾仁去虾线，洗净，加料酒、少许盐、白胡椒粉（可选）、淀粉抓匀腌制10分钟。",
+            "西兰花、胡萝卜、玉米粒、豌豆分别焯水至断生（西兰花和胡萝卜可稍久一些），捞出沥干。",
+            "锅中放油烧热，放入蒜末爆香。",
+            "放入腌好的虾仁滑炒至变色卷曲。",
+            "加入焯好水的各种蔬菜丁，快速翻炒均匀。",
+            "调入适量盐（和少许糖提鲜，可选）。",
+            "翻炒均匀，待所有食材熟透入味即可出锅。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "家常菜",
+            "海鲜",
+            "健康"
+        ],
+        "nutritionalInfo": "色彩丰富，营养均衡。",
+        "imageUrl": "http://example.com/zashuchaoxiaren.jpg"
+    },
+    {
+        "id": 1052,
+        "name": "日式咖喱饭 (百科)",
+        "ingredients": [
+            {
+                "name": "鸡肉或牛肉或猪肉",
+                "quantity": "200g (切块)"
+            },
+            {
+                "name": "土豆",
+                "quantity": "1个 (去皮切块)"
+            },
+            {
+                "name": "胡萝卜",
+                "quantity": "1根 (去皮切块)"
+            },
+            {
+                "name": "洋葱",
+                "quantity": "半个 (切块或条)"
+            },
+            {
+                "name": "日式咖喱块",
+                "quantity": "2-3块 (根据包装说明和口味调整)"
+            },
+            {
+                "name": "食用油",
+                "quantity": "适量"
+            },
+            {
+                "name": "清水或高汤",
+                "quantity": "适量"
+            },
+            {
+                "name": "米饭",
+                "quantity": "适量 (搭配食用)"
+            }
+        ],
+        "steps": [
+            "锅中放油烧热，放入洋葱炒香至透明。",
+            "加入切好的肉块，翻炒至表面变色。",
+            "加入土豆块和胡萝卜块，继续翻炒均匀。",
+            "加入足量清水或高汤，没过所有食材，大火烧开后转小火。",
+            "盖上锅盖，炖煮15-20分钟，直到土豆和胡萝卜变软。",
+            "关火（或保持最小火），放入咖喱块，用勺子慢慢搅拌使其完全融化。",
+            "待咖喱块完全融化后，重新开小火，继续煮5-10分钟，期间不时搅拌，直到汤汁变得浓稠。",
+            "将煮好的咖喱浇在米饭上即可食用。"
+        ],
+        "cookingTime": 40,
+        "difficulty": "Easy",
+        "tags": [
+            "日式料理",
+            "主食",
+            "家常"
+        ],
+        "nutritionalInfo": "浓郁可口，简单方便。",
+        "imageUrl": "http://example.com/rishigalifan.jpg"
+    },
+    {
+        "id": 1053,
+        "name": "韩式泡菜炒五花肉 (百科)",
+        "ingredients": [
+            {
+                "name": "五花肉",
+                "quantity": "200g (切薄片)"
+            },
+            {
+                "name": "韩式泡菜",
+                "quantity": "150g (切段)"
+            },
+            {
+                "name": "洋葱",
+                "quantity": "半个 (切丝)"
+            },
+            {
+                "name": "青阳辣椒或普通青椒",
+                "quantity": "1个 (切斜片，可选)"
+            },
+            {
+                "name": "韩式辣酱（Gochujang）",
+                "quantity": "1勺"
+            },
+            {
+                "name": "酱油",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "糖",
+                "quantity": "1茶匙"
+            },
+            {
+                "name": "蒜末",
+                "quantity": "少许"
+            },
+            {
+                "name": "姜末",
+                "quantity": "少许 (可选)"
+            },
+            {
+                "name": "香油",
+                "quantity": "少许"
+            },
+            {
+                "name": "熟白芝麻",
+                "quantity": "少许 (可选)"
+            }
+        ],
+        "steps": [
+            "五花肉片如果太长可以切短一些。",
+            "锅烧热，放入五花肉片煸炒出油，至肉片边缘微焦。",
+            "加入洋葱丝、蒜末、姜末（可选）炒香。",
+            "放入韩式泡菜，翻炒均匀，炒出泡菜的香味。",
+            "加入韩式辣酱、酱油、糖，继续翻炒均匀。",
+            "如果喜欢可以加入青椒片一起翻炒。",
+            "待所有食材熟透入味，汤汁略微收浓时，淋入少许香油。",
+            "出锅前撒上熟白芝麻（可选）即可。"
+        ],
+        "cookingTime": 20,
+        "difficulty": "Easy",
+        "tags": [
+            "韩式料理",
+            "家常菜",
+            "下饭菜"
+        ],
+        "nutritionalInfo": "酸辣开胃，五花肉香而不腻。",
+        "imageUrl": "http://example.com/hanshipaocaiwuhuarou.jpg"
+    }
+]

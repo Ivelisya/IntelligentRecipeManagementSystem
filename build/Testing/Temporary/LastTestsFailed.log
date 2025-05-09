@@ -1,2 +1,5 @@
+1:TestRestaurant
+2:TestRestaurantManager
+3:TestRecipe
 4:TestJsonRecipeRepository
 5:TestRecipeManager

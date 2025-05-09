@@ -19,7 +19,6 @@ void to_json(json &j, const Recipe &recipe) {
     j = json{
         {"id", recipe.getRecipeId()},
         {"name", recipe.getName()},
-        {"cuisine", recipe.getCuisine()},
         {"cookingTime", recipe.getCookingTime()},
         {"difficulty", recipe.getDifficulty()},
         {"tags", recipe.getTags()}  // Add tags serialization
@@ -63,7 +62,6 @@ std::string Recipe::getDisplayDetails() const {
     std::ostringstream oss;
     oss << "Recipe ID: " << recipeId << "\n";
     oss << "Name: " << name << "\n";
-    oss << "Cuisine: " << cuisine << "\n";
 
     oss << "Difficulty: ";
     switch (difficulty) {

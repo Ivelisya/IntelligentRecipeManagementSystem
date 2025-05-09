@@ -52,13 +52,13 @@ endif()
 
 execute_process(
   COMMAND "D:/Git/cmd/git.exe"
-          checkout "release-1.12.1" --
+          checkout "v1.14.0" --
   WORKING_DIRECTORY "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src"
   RESULT_VARIABLE error_code
   ${maybe_show_command}
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to checkout tag: 'release-1.12.1'")
+  message(FATAL_ERROR "Failed to checkout tag: 'v1.14.0'")
 endif()
 
 set(init_submodules TRUE)

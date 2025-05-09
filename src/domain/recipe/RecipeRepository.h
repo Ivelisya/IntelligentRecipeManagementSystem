@@ -26,8 +26,6 @@ class RecipeRepository {
     virtual bool remove(int recipeId) = 0;
     virtual std::vector<RecipeApp::Recipe> findManyByIds(
         const std::vector<int> &ids) const = 0;
-    virtual std::vector<RecipeApp::Recipe> findByCuisine(
-        const std::string &cuisineName) const = 0;
     virtual std::vector<RecipeApp::Recipe> findByTag(
         const std::string &tagName) const = 0;
     virtual std::vector<RecipeApp::Recipe> findByIngredients(

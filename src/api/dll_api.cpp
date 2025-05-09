@@ -5,7 +5,9 @@
 
 #include "../../include/json.hpp"
 #include "../domain/recipe/Recipe.h"
+#include "../logic/encyclopedia/RecipeEncyclopediaManager.h"  // Added for encyclopedia
 #include "../logic/recipe/RecipeManager.h"
+#include "../persistence/JsonRecipeRepository.h"  // Added for JsonRecipeRepository
 
 // --- DLL 导出宏定义 ---
 #ifdef _WIN32
@@ -18,6 +20,24 @@
 using namespace RecipeApp;
 using json = nlohmann::json;
 
+// Helper function to allocate and copy string to char*
+// Ensures the caller can use free_allocated_string or delete[]
+static char *strcpy_to_new_char_buffer(const std::string &s) {
+    if (s.empty()) {  // Handle empty string case to avoid new char[1] if not
+                      // desired
+        char *buffer = new char[1];
+        buffer[0] = '\0';
+        return buffer;
+    }
+    char *buffer = new char[s.length() + 1];
+#ifdef _MSC_VER
+    strcpy_s(buffer, s.length() + 1, s.c_str());
+#else
+    strcpy(buffer, s.c_str());
+#endif
+    return buffer;
+}
+
 // --- DLL 内部静态实例 ---
 static RecipeManager *global_recipe_manager_ptr = nullptr;
 static Domain::Recipe::RecipeRepository *global_recipe_repository_ptr =
@@ -25,6 +45,8 @@ static Domain::Recipe::RecipeRepository *global_recipe_repository_ptr =
 // 如果确定只用Json实现，也可以是 JsonRecipeRepository*
 // static Persistence::JsonRecipeRepository* global_json_recipe_repository_ptr =
 // nullptr;
+static RecipeApp::Logic::Encyclopedia::RecipeEncyclopediaManager
+    *global_encyclopedia_manager_ptr = nullptr;
 
 // --- 导出函数实现 ---
 
@@ -37,16 +59,19 @@ extern "C" {
  */
 DLL_EXPORT void initialize_recipe_system() {
     try {
+        // Define baseDir earlier to be accessible by both manager
+        // initializations
+        std::filesystem::path baseDir =
+            "data";  // DLL 运行时的工作目录下的 data 文件夹
+        if (!std::filesystem::exists(baseDir)) {
+            std::filesystem::create_directories(baseDir);
+        }
+
         if (global_recipe_manager_ptr == nullptr) {
             // 决定仓库类型和路径
             // 为了简单起见，这里硬编码使用 JsonRecipeRepository 和 "data" 目录
             // 在实际应用中，这些路径可能来自配置文件或环境变量
-            std::filesystem::path baseDir =
-                "data";  // DLL 运行时的工作目录下的 data 文件夹
-            // 确保目录存在，如果JsonRecipeRepository的构造函数不处理，这里需要处理
-            if (!std::filesystem::exists(baseDir)) {
-                std::filesystem::create_directories(baseDir);
-            }
+            // baseDir is now defined above this block
 
             // 显式使用 Persistence 命名空间或完全限定名
             auto concrete_repo =
@@ -74,6 +99,28 @@ DLL_EXPORT void initialize_recipe_system() {
                       << std::endl;
         }
 
+        // Initialize Encyclopedia Manager
+        if (global_encyclopedia_manager_ptr == nullptr) {
+            global_encyclopedia_manager_ptr =
+                new RecipeApp::Logic::Encyclopedia::RecipeEncyclopediaManager();
+            std::filesystem::path encyclopediaDataPath =
+                baseDir / "encyclopedia_recipes.json";
+            if (global_encyclopedia_manager_ptr->loadRecipes(
+                    encyclopediaDataPath.string())) {
+                std::cout << "[DLL] Recipe Encyclopedia data loaded."
+                          << std::endl;
+            } else {
+                std::cerr
+                    << "[DLL] Failed to load Recipe Encyclopedia data from "
+                    << encyclopediaDataPath.string() << std::endl;
+                // Decide if this is a fatal error or if the system can run
+                // without encyclopedia
+            }
+        } else {
+            std::cout << "[DLL] RecipeEncyclopediaManager already initialized."
+                      << std::endl;
+        }
+
         std::cout << "[DLL] initialize_recipe_system called. Adding test data "
                      "if manager is valid..."
                   << std::endl;
@@ -81,17 +128,28 @@ DLL_EXPORT void initialize_recipe_system() {
         if (global_recipe_manager_ptr) {
             // --- 添加测试数据 ---
             try {
-                Recipe testRecipe1(
-                    0, "测试菜谱1 - 麻婆豆腐",
-                    {{"豆腐", "1块"}, {"牛肉末", "50g"}, {"豆瓣酱", "1勺"}},
-                    {"步骤1", "步骤2"}, 15, Difficulty::Medium, "川菜");
-                testRecipe1.setNutritionalInfo("一些营养信息");
+                Recipe testRecipe1 =
+                    Recipe::builder(0, "测试菜谱1 - 麻婆豆腐")
+                        .withIngredients({{"豆腐", "1块"},
+                                          {"牛肉末", "50g"},
+                                          {"豆瓣酱", "1勺"}})
+                        .withSteps({"步骤1", "步骤2"})
+                        .withCookingTime(15)
+                        .withDifficulty(Difficulty::Medium)
+                        .withTags({"川菜"})  // Tags should be a vector
+                        .withNutritionalInfo("一些营养信息")
+                        .build();
 
-                Recipe testRecipe2(
-                    0, "测试菜谱2 - 可乐鸡翅",
-                    {{"鸡翅中", "8个"}, {"可乐", "1罐"}, {"姜", "3片"}},
-                    {"鸡翅焯水", "放入可乐姜片焖煮", "大火收汁"}, 30,
-                    Difficulty::Easy, "家常菜");
+                Recipe testRecipe2 =
+                    Recipe::builder(0, "测试菜谱2 - 可乐鸡翅")
+                        .withIngredients(
+                            {{"鸡翅中", "8个"}, {"可乐", "1罐"}, {"姜", "3片"}})
+                        .withSteps({"鸡翅焯水", "放入可乐姜片焖煮", "大火收汁"})
+                        .withCookingTime(30)
+                        .withDifficulty(Difficulty::Easy)
+                        .withTags({"家常菜"})  // Tags should be a vector
+                        // nutritionalInfo and imageUrl are optional
+                        .build();
 
                 if (global_recipe_manager_ptr->addRecipe(testRecipe1) != -1) {
                     std::cout << "[DLL] Added test recipe 1." << std::endl;
@@ -149,7 +207,11 @@ DLL_EXPORT void shutdown_recipe_system() {
             global_recipe_repository_ptr);
         global_recipe_repository_ptr = nullptr;
 
-        std::cout << "[DLL] RecipeManager and Repository shut down."
+        delete global_encyclopedia_manager_ptr;
+        global_encyclopedia_manager_ptr = nullptr;
+
+        std::cout << "[DLL] RecipeManager, Repository, and EncyclopediaManager "
+                     "shut down."
                   << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "[DLL] Exception during shutdown: " << e.what()
@@ -536,4 +598,252 @@ DLL_EXPORT char *get_recipe_by_id_json(int recipe_id) {
     }
 }
 
+DLL_EXPORT char *update_recipe_json(const char *recipe_json_str) {
+    std::cout << "[DLL DEBUG] Entered update_recipe_json." << std::endl;
+    try {
+        if (!global_recipe_manager_ptr) {
+            return strcpy_to_new_char_buffer(json{
+                {"success", false}, {"error", "RecipeManager not initialized."}}
+                                                 .dump());
+        }
+        if (!recipe_json_str) {
+            return strcpy_to_new_char_buffer(
+                json{{"success", false}, {"error", "Null JSON string passed."}}
+                    .dump());
+        }
+
+        json recipe_j = json::parse(recipe_json_str, nullptr, false);
+        if (recipe_j.is_discarded()) {
+            return strcpy_to_new_char_buffer(
+                json{{"success", false}, {"error", "Invalid JSON format."}}
+                    .dump());
+        }
+
+        // Ensure ID is present for update
+        if (!recipe_j.contains("id") ||
+            !recipe_j.at("id").is_number_integer()) {
+            return strcpy_to_new_char_buffer(
+                json{{"success", false},
+                     {"error",
+                      "Recipe ID is missing or invalid in JSON for update."}}
+                    .dump());
+        }
+
+        RecipeApp::Recipe recipe_to_update =
+            recipe_j.get<RecipeApp::Recipe>();  // Corrected type
+
+        bool success =
+            global_recipe_manager_ptr->updateRecipe(recipe_to_update);
+
+        if (success) {
+            std::cout << "[DLL] Recipe with ID "
+                      << recipe_to_update.getRecipeId()
+                      << " updated successfully." << std::endl;
+            return strcpy_to_new_char_buffer(json{
+                {"success", true},
+                {"id",
+                 recipe_to_update.getRecipeId()}}.dump());
+        } else {
+            std::cout << "[DLL] Failed to update recipe with ID "
+                      << recipe_to_update.getRecipeId()
+                      << ". May not exist or data invalid." << std::endl;
+            return strcpy_to_new_char_buffer(
+                json{{"success", false},
+                     {"error",
+                      "Failed to update recipe. It may not exist or data is "
+                      "invalid."}}
+                    .dump());
+        }
+    } catch (const json::exception &je) {
+        return strcpy_to_new_char_buffer(
+            json{{"success", false},
+                 {"error", "JSON exception: " + std::string(je.what())}}
+                .dump());
+    } catch (const std::exception &e) {
+        return strcpy_to_new_char_buffer(
+            json{{"success", false},
+                 {"error", "Standard exception: " + std::string(e.what())}}
+                .dump());
+    } catch (...) {
+        return strcpy_to_new_char_buffer(
+            json{{"success", false},
+                 {"error", "Unknown exception in update_recipe_json."}}
+                .dump());
+    }
+}
+
+DLL_EXPORT char *delete_recipe_json(int recipe_id) {
+    std::cout << "[DLL DEBUG] Entered delete_recipe_json for ID: " << recipe_id
+              << std::endl;
+    try {
+        if (!global_recipe_manager_ptr) {
+            return strcpy_to_new_char_buffer(json{
+                {"success", false}, {"error", "RecipeManager not initialized."}}
+                                                 .dump());
+        }
+
+        bool success = global_recipe_manager_ptr->deleteRecipe(recipe_id);
+
+        if (success) {
+            std::cout << "[DLL] Recipe with ID " << recipe_id
+                      << " deleted successfully." << std::endl;
+            return strcpy_to_new_char_buffer(
+                json{{"success", true}, {"id", recipe_id}}.dump());
+        } else {
+            std::cout << "[DLL] Failed to delete recipe with ID " << recipe_id
+                      << ". May not exist." << std::endl;
+            return strcpy_to_new_char_buffer(
+                json{{"success", false},
+                     {"error", "Failed to delete recipe. It may not exist."}}
+                    .dump());
+        }
+    } catch (const std::exception &e) {
+        return strcpy_to_new_char_buffer(
+            json{{"success", false},
+                 {"error", "Standard exception: " + std::string(e.what())}}
+                .dump());
+    } catch (...) {
+        return strcpy_to_new_char_buffer(
+            json{{"success", false},
+                 {"error", "Unknown exception in delete_recipe_json."}}
+                .dump());
+    }
+}
+
 }  // extern "C"
+
+// --- New functions for Recipe Encyclopedia ---
+
+/**
+ * @brief 获取食谱大全中所有菜谱的 JSON 字符串表示。
+ * @return char* 指向包含 JSON 数组字符串的内存。
+ *         调用者必须稍后使用 free_allocated_string() 释放此内存。
+ *         如果发生错误或未初始化，返回错误信息的 JSON 字符串。
+ */
+DLL_EXPORT char *get_all_encyclopedia_recipes_json_alloc() {
+    std::cout << "[DLL DEBUG] Entered get_all_encyclopedia_recipes_json_alloc."
+              << std::endl;
+    try {
+        if (!global_encyclopedia_manager_ptr) {
+            std::string error_msg =
+                "[DLL] Error: RecipeEncyclopediaManager not initialized.";
+            std::cerr << error_msg << std::endl;
+            json error_json_obj = {{"error", error_msg}};
+            std::string error_json_s = error_json_obj.dump();
+            char *error_buffer = new char[error_json_s.length() + 1];
+            strcpy(error_buffer, error_json_s.c_str());
+            return error_buffer;
+        }
+
+        const auto &recipes_list =
+            global_encyclopedia_manager_ptr->getAllRecipes();
+        json json_array = json::array();
+        for (const auto &recipe : recipes_list) {
+            json_array.push_back(recipe);  // Uses RecipeApp::to_json via ADL
+        }
+
+        std::string json_s = json_array.dump();
+        char *result_buffer = new char[json_s.length() + 1];
+        strcpy(result_buffer, json_s.c_str());
+        std::cout << "[DLL] get_all_encyclopedia_recipes_json_alloc returning "
+                     "JSON data."
+                  << std::endl;
+        return result_buffer;
+
+    } catch (const std::exception &e) {
+        std::string error_msg =
+            "[DLL] Exception in get_all_encyclopedia_recipes_json_alloc: " +
+            std::string(e.what());
+        std::cerr << error_msg << std::endl;
+        json error_json_obj = {{"error", error_msg}};
+        std::string error_json_s = error_json_obj.dump();
+        char *error_buffer = new char[error_json_s.length() + 1];
+        strcpy(error_buffer, error_json_s.c_str());
+        return error_buffer;
+    } catch (...) {
+        std::string error_msg =
+            "[DLL] Unknown exception in "
+            "get_all_encyclopedia_recipes_json_alloc.";
+        std::cerr << error_msg << std::endl;
+        json error_json_obj = {{"error", error_msg}};
+        std::string error_json_s = error_json_obj.dump();
+        char *error_buffer = new char[error_json_s.length() + 1];
+        strcpy(error_buffer, error_json_s.c_str());
+        return error_buffer;
+    }
+}
+
+/**
+ * @brief 在食谱大全中根据关键词搜索菜谱。
+ * @param search_term_str 要搜索的关键词字符串。
+ * @return char* 指向包含匹配菜谱JSON数组或错误信息的JSON字符串的指针。
+ *         调用者必须使用 free_allocated_string() 释放此内存。
+ */
+DLL_EXPORT char *search_encyclopedia_recipes_json_alloc(
+    const char *search_term_str) {
+    std::cout << "[DLL DEBUG] Entered search_encyclopedia_recipes_json_alloc."
+              << std::endl;
+    try {
+        if (!global_encyclopedia_manager_ptr) {
+            std::string error_msg =
+                "[DLL] Error: RecipeEncyclopediaManager not initialized.";
+            std::cerr << error_msg << std::endl;
+            json error_json_obj = {{"error", error_msg}};
+            // No "success" field here, just error, or make it consistent with
+            // add_recipe_json
+            std::string error_json_s = error_json_obj.dump();
+            char *error_buffer = new char[error_json_s.length() + 1];
+            strcpy(error_buffer, error_json_s.c_str());
+            return error_buffer;
+        }
+
+        if (!search_term_str) {
+            std::string error_msg = "[DLL] Error: Null search term provided.";
+            std::cerr << error_msg << std::endl;
+            json error_json_obj = {{"error", error_msg}};
+            std::string error_json_s = error_json_obj.dump();
+            char *error_buffer = new char[error_json_s.length() + 1];
+            strcpy(error_buffer, error_json_s.c_str());
+            return error_buffer;
+        }
+        std::string searchTerm(search_term_str);
+        std::cout << "[DLL DEBUG] Searching encyclopedia for: " << searchTerm
+                  << std::endl;
+
+        const auto &recipes_list =
+            global_encyclopedia_manager_ptr->searchRecipes(searchTerm);
+        json json_array = json::array();
+        for (const auto &recipe : recipes_list) {
+            json_array.push_back(recipe);  // Uses RecipeApp::to_json via ADL
+        }
+
+        std::string json_s = json_array.dump();
+        char *result_buffer = new char[json_s.length() + 1];
+        strcpy(result_buffer, json_s.c_str());
+        std::cout << "[DLL] search_encyclopedia_recipes_json_alloc returning "
+                     "JSON data."
+                  << std::endl;
+        return result_buffer;
+
+    } catch (const std::exception &e) {
+        std::string error_msg =
+            "[DLL] Exception in search_encyclopedia_recipes_json_alloc: " +
+            std::string(e.what());
+        std::cerr << error_msg << std::endl;
+        json error_json_obj = {{"error", error_msg}};
+        std::string error_json_s = error_json_obj.dump();
+        char *error_buffer = new char[error_json_s.length() + 1];
+        strcpy(error_buffer, error_json_s.c_str());
+        return error_buffer;
+    } catch (...) {
+        std::string error_msg =
+            "[DLL] Unknown exception in "
+            "search_encyclopedia_recipes_json_alloc.";
+        std::cerr << error_msg << std::endl;
+        json error_json_obj = {{"error", error_msg}};
+        std::string error_json_s = error_json_obj.dump();
+        char *error_buffer = new char[error_json_s.length() + 1];
+        strcpy(error_buffer, error_json_s.c_str());
+        return error_buffer;
+    }
+}

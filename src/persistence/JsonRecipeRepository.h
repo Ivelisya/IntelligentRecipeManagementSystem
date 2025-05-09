@@ -43,15 +43,14 @@ class JsonRecipeRepository
     bool remove(int recipeId) override;
 
     void setNextId(int nextId) override;
-    int getNextId() const override;
+    int getNextId() const;  // Removed override, as it's not in the
+                            // RecipeRepository interface
 
     // Recipe-specific finders
     std::vector<RecipeApp::Recipe> findByName(
         const std::string &name, bool partialMatch = false) const override;
     std::vector<RecipeApp::Recipe> findManyByIds(
         const std::vector<int> &ids) const override;
-    std::vector<RecipeApp::Recipe> findByCuisine(
-        const std::string &cuisineName) const override;
     std::vector<RecipeApp::Recipe> findByTag(
         const std::string &tagName) const override;
     std::vector<RecipeApp::Recipe> findByIngredients(

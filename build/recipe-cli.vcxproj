@@ -337,6 +337,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\domain\recipe\Recipe.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\logic\restaurant\RestaurantManager.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\domain\restaurant\Restaurant.cpp" />
+    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\logic\encyclopedia\RecipeEncyclopediaManager.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRecipeRepository.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRestaurantRepository.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\CliUtils.cpp" />

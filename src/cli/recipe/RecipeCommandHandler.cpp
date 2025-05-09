@@ -49,34 +49,35 @@ int RecipeCommandHandler::handleAddRecipe(const cxxopts::ParseResult &result) {
     }
     RecipeApp::Difficulty difficulty =
         RecipeApp::CliUtils::getDifficultyFromConsole();
-    std::string cuisine =
-        RecipeApp::CliUtils::getStringFromConsole("请输入菜系: ");
-    if (cuisine.empty()) {
-        std::cerr << "错误：菜系不能为空。" << std::endl;
-        return RecipeApp::Cli::EX_APP_INVALID_INPUT;
-    }
 
-    // Get Tags
-    std::string tags_csv;
-    if (result.count(
-            "tags")) {  // Check if --tags option was provided via command line
-        tags_csv = result["tags"].as<std::string>();
-    } else {  // Otherwise, prompt from console
-        tags_csv = RecipeApp::CliUtils::getStringFromConsole(
-            "请输入食谱标签 (多个用逗号分隔, 可选): ");
-    }
-    std::vector<std::string> tags =
-        RecipeApp::CliUtils::parseCsvStringToVector(tags_csv);
+    // Get Tags (Cuisine is now part of Tags)
+    std::vector<std::string> tags = RecipeApp::CliUtils::getTagsFromConsole();
 
     std::string nutritionalInfo = RecipeApp::CliUtils::getStringFromConsole(
         "请输入营养信息 (可选, 可为空): ");
     std::string imageUrl = RecipeApp::CliUtils::getStringFromConsole(
         "请输入图片链接 (可选, 可为空): ");
 
-    RecipeApp::Recipe newRecipe(0, name, ingredients, steps, cookingTime,
-                                difficulty, cuisine, tags);
-    if (!nutritionalInfo.empty()) newRecipe.setNutritionalInfo(nutritionalInfo);
-    if (!imageUrl.empty()) newRecipe.setImageUrl(imageUrl);
+    // Note: The Recipe constructor no longer takes 'cuisine' directly.
+    // It's assumed to be handled as one of the tags if needed.
+    std::vector<RecipeApp::Ingredient> domain_ingredients;
+    for (const auto &ing_pair : ingredients) {
+        domain_ingredients.push_back({ing_pair.first, ing_pair.second});
+    }
+
+    auto builder = RecipeApp::Recipe::builder(0, name)
+                       .withIngredients(domain_ingredients)
+                       .withSteps(steps)
+                       .withCookingTime(cookingTime)
+                       .withDifficulty(difficulty)
+                       .withTags(tags);
+    if (!nutritionalInfo.empty()) {
+        builder.withNutritionalInfo(nutritionalInfo);
+    }
+    if (!imageUrl.empty()) {
+        builder.withImageUrl(imageUrl);
+    }
+    RecipeApp::Recipe newRecipe = builder.build();
 
     int newRecipeId = recipeManager.addRecipe(newRecipe);
 
@@ -147,68 +148,84 @@ int RecipeCommandHandler::handleSearchRecipes(
     if (result.count("recipe-search") &&
         !result["recipe-search"].as<std::string>().empty()) {
         std::string nameQuery = result["recipe-search"].as<std::string>();
+        // Use the updated RecipeManager method that utilizes indexes
         recipesToDisplay = recipeManager.findRecipeByName(nameQuery, true);
         searchCriteriaDisplay = "名称包含: \"" + nameQuery + "\"";
         nameQueryProvided = true;
-    } else {
-        // If no name query, start with all recipes for tag filtering
-        recipesToDisplay = recipeManager.getAllRecipes();
     }
+    // recipesToDisplay now either contains name-matched recipes or is empty.
 
     // 2. Filter by tags (--tags takes precedence over --tag)
-    std::vector<std::string> tagsToFilterBy;
-    bool matchAllTags = true;  // Default for --tags is usually AND
+    std::vector<std::string> tagsToSearch;
+    bool matchAllSpecifiedTags = true;  // Default for --tags
+    std::string tagCriteriaDisplayPart;
 
     if (result.count("tags")) {
         std::string csv_tags = result["tags"].as<std::string>();
-        tagsToFilterBy = RecipeApp::CliUtils::parseCsvStringToVector(csv_tags);
-        if (!tagsToFilterBy.empty()) {
-            if (nameQueryProvided) searchCriteriaDisplay += " 并且 ";
-            searchCriteriaDisplay += "标签组匹配 (全部): \"" + csv_tags + "\"";
+        tagsToSearch = RecipeApp::CliUtils::parseCsvStringToVector(csv_tags);
+        if (!tagsToSearch.empty()) {
+            tagCriteriaDisplayPart = "标签组匹配 (全部): \"" + csv_tags + "\"";
             tagQueryProvided = true;
         }
     } else if (result.count("tag")) {
-        std::string single_tag = result["tag"].as<std::string>();
-        if (!single_tag.empty()) {
-            tagsToFilterBy.push_back(single_tag);
-            matchAllTags = false;  // Single tag implies OR logic if combined
-                                   // with other types of searches, but here
-                                   // it's the primary tag filter
-            if (nameQueryProvided) searchCriteriaDisplay += " 并且 ";
-            searchCriteriaDisplay += "标签包含: \"" + single_tag + "\"";
+        std::string single_tag_str = result["tag"].as<std::string>();
+        if (!single_tag_str.empty()) {
+            tagsToSearch.push_back(single_tag_str);
+            // For a single --tag, RecipeManager::findRecipesByTags with
+            // matchAll=false or RecipeManager::findRecipesByTag can be used.
+            // Let's assume findRecipesByTags handles single tag with
+            // matchAll=false correctly.
+            matchAllSpecifiedTags = false;
+            tagCriteriaDisplayPart = "标签包含: \"" + single_tag_str + "\"";
             tagQueryProvided = true;
         }
     }
 
-    // Apply tag filtering if tags were specified
-    if (tagQueryProvided && !tagsToFilterBy.empty()) {
-        std::vector<RecipeApp::Recipe> tagFilteredResults;
-        for (const auto &recipe :
-             recipesToDisplay)  // Filter the (potentially name-filtered) list
-        {
-            const auto &recipeTags = recipe.getTags();
-            bool currentRecipeMatch;
-            if (matchAllTags) {
-                currentRecipeMatch = std::all_of(
-                    tagsToFilterBy.begin(), tagsToFilterBy.end(),
-                    [&](const std::string &t) {
-                        return std::find(recipeTags.begin(), recipeTags.end(),
-                                         t) != recipeTags.end();
-                    });
-            } else  // Only for single --tag scenario
-            {
-                currentRecipeMatch = std::any_of(
-                    tagsToFilterBy.begin(), tagsToFilterBy.end(),
-                    [&](const std::string &t) {
-                        return std::find(recipeTags.begin(), recipeTags.end(),
-                                         t) != recipeTags.end();
-                    });
+    if (tagQueryProvided && !tagsToSearch.empty()) {
+        if (nameQueryProvided) {  // Both name and tags are provided
+            searchCriteriaDisplay += " 并且 " + tagCriteriaDisplayPart;
+            if (recipesToDisplay.empty()) {
+                // Name search yielded no results, so combined search will also
+                // be empty.
+            } else {
+                // Get IDs from name search results
+                std::set<int> name_matched_ids;
+                for (const auto &r : recipesToDisplay)
+                    name_matched_ids.insert(r.getRecipeId());
+
+                // Get IDs from tag search results
+                std::vector<RecipeApp::Recipe> tag_only_results =
+                    recipeManager.findRecipesByTags(tagsToSearch,
+                                                    matchAllSpecifiedTags);
+
+                std::set<int> tag_matched_ids;
+                for (const auto &r : tag_only_results)
+                    tag_matched_ids.insert(r.getRecipeId());
+
+                // Intersect the ID sets
+                std::set<int> final_ids;
+                std::set_intersection(
+                    name_matched_ids.begin(), name_matched_ids.end(),
+                    tag_matched_ids.begin(), tag_matched_ids.end(),
+                    std::inserter(final_ids, final_ids.begin()));
+
+                if (final_ids.empty()) {
+                    recipesToDisplay.clear();
+                } else {
+                    std::vector<int> final_ids_vec(final_ids.begin(),
+                                                   final_ids.end());
+                    // Fetch the actual recipe objects for the final IDs
+                    recipesToDisplay =
+                        recipeManager.findRecipesByIds(final_ids_vec);
+                }
             }
-            if (currentRecipeMatch) {
-                tagFilteredResults.push_back(recipe);
-            }
+        } else {  // Only tags are provided (nameQueryProvided is false)
+            searchCriteriaDisplay = tagCriteriaDisplayPart;
+            recipesToDisplay = recipeManager.findRecipesByTags(
+                tagsToSearch, matchAllSpecifiedTags);
         }
-        recipesToDisplay = tagFilteredResults;  // Update the list to display
+    } else if (!nameQueryProvided && !tagQueryProvided) {
+        // Neither name nor tag query provided.
     }
 
     // Check if any search criteria was actually provided
@@ -310,8 +327,14 @@ int RecipeCommandHandler::handleUpdateRecipe(
     std::string changeIngredients =
         RecipeApp::CliUtils::getStringFromConsole("");
     if (changeIngredients == "y" || changeIngredients == "Y") {
-        recipeToUpdate.setIngredients(
-            RecipeApp::CliUtils::getIngredientsFromConsole());
+        std::vector<std::pair<std::string, std::string>> ing_pairs_update =
+            RecipeApp::CliUtils::getIngredientsFromConsole();
+        std::vector<RecipeApp::Ingredient> domain_ingredients_update;
+        for (const auto &ing_pair : ing_pairs_update) {
+            domain_ingredients_update.push_back(
+                {ing_pair.first, ing_pair.second});
+        }
+        recipeToUpdate.setIngredients(domain_ingredients_update);
     }
 
     std::cout << "修改步骤? (y/n, 当前 " << recipeToUpdate.getSteps().size()
@@ -328,29 +351,23 @@ int RecipeCommandHandler::handleUpdateRecipe(
         currentTagsDisplay +=
             currentTags[i] + (i == currentTags.size() - 1 ? "" : ",");
     }
-    std::string new_tags_csv;
-    if (result.count("tags")) {  // Check if --tags option was provided via
-                                 // command line for update
-        new_tags_csv = result["tags"].as<std::string>();
-        // If --tags is provided, we use it directly, otherwise we'd prompt.
-        // For non-interactive update via CLI flags, we assume the flag is the
-        // source of truth.
+    // Use the new interactive way to get tags for update
+    if (result.count("tags")) {
+        // If --tags is provided via command line for update, use it directly.
+        // This maintains consistency for non-interactive updates.
+        std::string new_tags_csv_cmd = result["tags"].as<std::string>();
         recipeToUpdate.setTags(
-            RecipeApp::CliUtils::parseCsvStringToVector(new_tags_csv));
+            RecipeApp::CliUtils::parseCsvStringToVector(new_tags_csv_cmd));
+        std::cout << "标签已通过命令行参数更新。" << std::endl;
     } else {
         // Interactive update for tags
-        std::cout << "修改标签? (y/n, 当前: "
+        std::cout << "要修改标签吗? (当前: "
                   << (currentTagsDisplay.empty() ? "无" : currentTagsDisplay)
-                  << "): ";
-        std::string changeTagsStr =
-            RecipeApp::CliUtils::getStringFromConsole("");
-        if (changeTagsStr == "y" || changeTagsStr == "Y") {
-            new_tags_csv = RecipeApp::CliUtils::getStringFromConsole(
-                "新标签 (多个用逗号分隔, 输入空行以清除所有标签) [" +
-                currentTagsDisplay + "]: ");
-            recipeToUpdate.setTags(
-                RecipeApp::CliUtils::parseCsvStringToVector(new_tags_csv));
-        }
+                  << ")" << std::endl;
+        // We call getTagsFromConsole, passing current tags.
+        // The function itself will ask if user wants to keep/clear/append.
+        recipeToUpdate.setTags(
+            RecipeApp::CliUtils::getTagsFromConsole(recipeToUpdate.getTags()));
     }
 
     std::string newTimeStr = RecipeApp::CliUtils::getStringFromConsole(
@@ -378,9 +395,8 @@ int RecipeCommandHandler::handleUpdateRecipe(
             RecipeApp::CliUtils::getDifficultyFromConsole());
     }
 
-    std::string newCuisine = RecipeApp::CliUtils::getStringFromConsole(
-        "新菜系 [" + recipeToUpdate.getCuisine() + "]: ");
-    if (!newCuisine.empty()) recipeToUpdate.setCuisine(newCuisine);
+    // Cuisine is now part of tags, so direct update of cuisine is removed.
+    // Users should modify tags if they want to change cuisine.
 
     std::string newNutritionalInfo = RecipeApp::CliUtils::getStringFromConsole(
         "新营养信息 [" + recipeToUpdate.getNutritionalInfo().value_or("") +

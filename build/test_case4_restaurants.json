@@ -1,0 +1,15 @@
+{
+  "restaurants": [
+    {
+      "address": "Addr Feat",
+      "contact": "Cont Feat",
+      "featuredRecipeIds": [
+        1,
+        3
+      ],
+      "id": 1,
+      "name": "Featured Food",
+      "openingHours": "Hours Feat"
+    }
+  ]
+}

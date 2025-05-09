@@ -65,7 +65,6 @@ class Recipe {
     std::vector<std::string> steps;
     int cookingTime;
     Difficulty difficulty;
-    std::string cuisine;
     std::optional<std::string> nutritionalInfo;
     std::optional<std::string> imageUrl;
     std::vector<std::string> tags;
@@ -74,8 +73,7 @@ class Recipe {
     Recipe(int id, std::string name,
            std::vector<Ingredient> ingredients,  // Changed
            std::vector<std::string> steps, int cookingTime,
-           Difficulty difficulty, std::string cuisine,
-           std::vector<std::string> tags,
+           Difficulty difficulty, std::vector<std::string> tags,
            std::optional<std::string> nutritionalInfo,
            std::optional<std::string> imageUrl)
         : recipeId(id),
@@ -84,7 +82,6 @@ class Recipe {
           steps(std::move(steps)),
           cookingTime(cookingTime),
           difficulty(difficulty),
-          cuisine(std::move(cuisine)),
           tags(std::move(tags)),
           nutritionalInfo(std::move(nutritionalInfo)),
           imageUrl(std::move(imageUrl)) {}
@@ -106,6 +103,9 @@ class Recipe {
 
     // Getter 方法
     int getRecipeId() const { return recipeId; }
+    int getId() const {
+        return recipeId;
+    }  // Added for JsonRepositoryBase compatibility
     const std::string &getName() const { return name; }
     const std::vector<Ingredient> &getIngredients() const {  // Changed
         return ingredients;
@@ -113,7 +113,6 @@ class Recipe {
     const std::vector<std::string> &getSteps() const { return steps; }
     int getCookingTime() const { return cookingTime; }
     Difficulty getDifficulty() const { return difficulty; }
-    const std::string &getCuisine() const { return cuisine; }
     const std::optional<std::string> &getNutritionalInfo() const {
         return nutritionalInfo;
     }
@@ -142,12 +141,6 @@ class Recipe {
         }
     }
     void setDifficulty(Difficulty newDifficulty) { difficulty = newDifficulty; }
-    void setCuisine(const std::string &newCuisine) {
-        if (newCuisine.empty()) {
-            throw std::invalid_argument("Cuisine cannot be empty.");
-        }
-        cuisine = newCuisine;
-    }
     void setNutritionalInfo(const std::string &info) { nutritionalInfo = info; }
     void setImageUrl(const std::string &url) { imageUrl = url; }
     void setTags(const std::vector<std::string> &newTags) { tags = newTags; }
@@ -185,7 +178,6 @@ class RecipeBuilder {
     std::vector<std::string> m_steps;
     int m_cookingTime = 0;                       // Default value
     Difficulty m_difficulty = Difficulty::Easy;  // Default value
-    std::string m_cuisine;
     std::optional<std::string> m_nutritionalInfo;
     std::optional<std::string> m_imageUrl;
     std::vector<std::string> m_tags;
@@ -216,13 +208,6 @@ class RecipeBuilder {
         return *this;
     }
 
-    RecipeBuilder &withCuisine(const std::string &cuisine) {
-        if (cuisine.empty())
-            throw std::invalid_argument("Cuisine cannot be empty.");
-        m_cuisine = cuisine;
-        return *this;
-    }
-
     RecipeBuilder &withNutritionalInfo(const std::string &info) {
         m_nutritionalInfo = info;
         return *this;
@@ -243,8 +228,6 @@ class RecipeBuilder {
         if (m_name.empty())
             throw std::invalid_argument(
                 "Recipe name cannot be empty for build.");
-        if (m_cuisine.empty())
-            throw std::invalid_argument("Cuisine cannot be empty for build.");
         if (m_cookingTime <= 0 &&
             m_id !=
                 0) {  // Allow 0 for placeholder during creation if ID is also 0
@@ -257,8 +240,7 @@ class RecipeBuilder {
         }
 
         return Recipe(m_id, m_name, m_ingredients, m_steps, m_cookingTime,
-                      m_difficulty, m_cuisine, m_tags, m_nutritionalInfo,
-                      m_imageUrl);
+                      m_difficulty, m_tags, m_nutritionalInfo, m_imageUrl);
     }
 };
 
@@ -267,7 +249,7 @@ class RecipeBuilder {
 // Function declaration for JSON serialization.
 // Needs to be in the same namespace as Recipe for ADL (Argument-Dependent
 // Lookup).
-void to_json(json &j, const Recipe &recipe);
+void to_json(json &j, const RecipeApp::Recipe &recipe);
 
 // void from_json(const json &j, Recipe &recipe); // Will be handled by
 // adl_serializer
@@ -311,13 +293,6 @@ struct adl_serializer<RecipeApp::Recipe> {
         RecipeApp::RecipeBuilder builder =
             RecipeApp::Recipe::builder(recipe_id, name);
 
-        if (j.contains("cuisine") && j.at("cuisine").is_string()) {
-            builder.withCuisine(j.at("cuisine").get<std::string>());
-        } else {
-            throw std::runtime_error(
-                "Recipe cuisine is missing or not a string in JSON.");
-        }
-
         if (j.contains("cookingTime") &&
             j.at("cookingTime").is_number_integer()) {
             int cookingTime = j.at("cookingTime").get<int>();
@@ -347,6 +322,7 @@ struct adl_serializer<RecipeApp::Recipe> {
                     ingredients_vec.push_back(
                         ing_json.get<RecipeApp::Ingredient>());
                 } catch (const json::exception &e) {
+                    (void)e;  // Mark as intentionally unused to suppress C4101
                     // Log error or skip malformed ingredient
                     // std::cerr << "Error parsing ingredient: " << e.what() <<
                     // std::endl;

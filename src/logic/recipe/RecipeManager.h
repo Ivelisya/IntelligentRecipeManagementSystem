@@ -2,7 +2,9 @@
 #define RECIPE_MANAGER_H
 
 #include <optional>  // For handling optional Recipe from repository
+#include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "domain/recipe/Recipe.h"
@@ -22,6 +24,19 @@ class RecipeManager {
    private:
     Domain::Recipe::RecipeRepository
         &recipeRepository_;  ///< Reference to the recipe repository
+
+    // Index structures
+    std::unordered_map<std::string, std::set<int>> m_nameIndex;
+    std::unordered_map<std::string, std::set<int>> m_ingredientIndex;
+    std::unordered_map<std::string, std::set<int>> m_tagIndex;
+
+    // Private helper methods for index management
+    void buildInitialIndexes();
+    void addRecipeToIndex(const Recipe &recipe);
+    void removeRecipeFromIndex(const Recipe &recipe);
+    void updateRecipeInIndex(const Recipe &oldRecipe, const Recipe &newRecipe);
+    std::string normalizeString(
+        const std::string &str) const;  // For consistent indexing/searching
 
    public:
     /**
@@ -61,12 +76,6 @@ class RecipeManager {
 
     /**
      * @brief 根据菜系分类查找菜谱
-     * @param cuisine 菜系名称
-     * @return 匹配菜谱的列表
-     */
-    std::vector<Recipe> findRecipesByCuisine(const std::string &cuisine) const;
-
-    /**
      * @brief 删除菜谱
      * @param recipeId 菜谱ID
      * @return 是否删除成功

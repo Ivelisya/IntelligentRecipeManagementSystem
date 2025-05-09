@@ -51,19 +51,17 @@ std::vector<Recipe> JsonRecipeRepository::findAll() const {
 
 int JsonRecipeRepository::save(const Recipe &recipeToSave) {
     Recipe recipeWithCorrectId = recipeToSave;  // Make a mutable copy
-    bool isNewItem = false;
+    bool isNewItem;                             // Determined based on ID
 
     if (recipeToSave.getRecipeId() <= 0) {
         isNewItem = true;
-        int newId = this->getNextId();  // Get next available ID from base
-
-        // Reconstruct Recipe with the new ID using the builder
+        int newId = this->getNextId();  // Get ID from base
+        // Reconstruct Recipe with the new ID
         auto builder = Recipe::builder(newId, recipeToSave.getName())
                            .withIngredients(recipeToSave.getIngredients())
                            .withSteps(recipeToSave.getSteps())
                            .withCookingTime(recipeToSave.getCookingTime())
                            .withDifficulty(recipeToSave.getDifficulty())
-                           .withCuisine(recipeToSave.getCuisine())
                            .withTags(recipeToSave.getTags());
         if (recipeToSave.getNutritionalInfo().has_value()) {
             builder.withNutritionalInfo(
@@ -73,21 +71,28 @@ int JsonRecipeRepository::save(const Recipe &recipeToSave) {
             builder.withImageUrl(recipeToSave.getImageUrl().value());
         }
         recipeWithCorrectId = builder.build();
+    } else {
+        // ID is positive, check if it's an update or a new item with
+        // pre-assigned ID
+        if (this->findByIdInternal(recipeToSave.getRecipeId()).has_value()) {
+            isNewItem = false;  // Existing ID, so it's an update
+            // recipeWithCorrectId is already recipeToSave (which is a copy of
+            // recipeToSave)
+        } else {
+            isNewItem = true;  // Positive ID but not found, so it's a new item
+                               // with pre-assigned ID
+            // recipeWithCorrectId is already recipeToSave (which is a copy of
+            // recipeToSave), which has the pre-assigned ID
+        }
     }
-    // For updates, recipeToSave (now recipeWithCorrectId) already has the
-    // correct ID.
 
     if (this->updateOrAddItemInMemoryAndPersist(recipeWithCorrectId,
                                                 isNewItem)) {
-        if (isNewItem) {
-            // The m_nextId in base was used, now increment it for the *next*
-            // new item.
-            this->setNextId(recipeWithCorrectId.getId() + 1);
-        }
-        // Ensure m_nextId is always greater than any existing ID, especially
-        // after updates or loading.
+        // After any successful save (add or update), ensure nextId is correct.
+        // ensureNextIdIsCorrect() should recalculate nextId based on max
+        // current ID in m_items.
         this->ensureNextIdIsCorrect();
-        return recipeWithCorrectId.getId();
+        return recipeWithCorrectId.getRecipeId();
     }
     return -1;  // Indicate failure
 }
@@ -154,31 +159,6 @@ std::vector<Recipe> JsonRecipeRepository::findManyByIds(
     for (const auto &recipe : this->m_items) {
         if (std::find(ids.begin(), ids.end(), recipe.getRecipeId()) !=
             ids.end()) {
-            results.push_back(recipe);
-        }
-    }
-    return results;
-}
-
-std::vector<Recipe> JsonRecipeRepository::findByCuisine(
-    const std::string &cuisineName) const {
-    std::vector<Recipe> results;
-    if (cuisineName.empty()) {
-        return results;
-    }
-    std::string lowerCuisineName = cuisineName;
-    std::transform(lowerCuisineName.begin(), lowerCuisineName.end(),
-                   lowerCuisineName.begin(),
-                   [](unsigned char c) { return std::tolower(c); });
-
-    for (const auto &recipe : this->m_items) {
-        std::string currentRecipeCuisine = recipe.getCuisine();
-        std::string lowerCurrentRecipeCuisine = currentRecipeCuisine;
-        std::transform(lowerCurrentRecipeCuisine.begin(),
-                       lowerCurrentRecipeCuisine.end(),
-                       lowerCurrentRecipeCuisine.begin(),
-                       [](unsigned char c) { return std::tolower(c); });
-        if (lowerCurrentRecipeCuisine == lowerCuisineName) {
             results.push_back(recipe);
         }
     }

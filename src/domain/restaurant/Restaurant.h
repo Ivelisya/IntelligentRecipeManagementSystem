@@ -55,6 +55,9 @@ class Restaurant {
 
     // Getter methods
     int getRestaurantId() const { return restaurantId; }
+    int getId() const {
+        return getRestaurantId();
+    }  // Added for JsonRepositoryBase compatibility
     const std::string &getName() const { return name; }
     const std::string &getAddress() const { return address; }
     const std::string &getContact() const { return contact; }

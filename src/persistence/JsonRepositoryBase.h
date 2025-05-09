@@ -66,8 +66,8 @@ class JsonRepositoryBase {
         }
 
         try {
-            json data = json::parse(file);
-            file.close();
+            json data = json::parse(file); // This can throw
+            file.close(); // Close the file as soon as parsing is done
 
             m_items.clear();
             int maxId = 0;
@@ -107,16 +107,27 @@ class JsonRepositoryBase {
             std::cerr << "Error: Failed to parse JSON data for "
                       << m_jsonArrayKey << ": " << e.what() << " at byte "
                       << e.byte << std::endl;
+            if (file.is_open()) { // Ensure file is closed on error
+                file.close();
+            }
             m_items.clear();
             m_nextId = 1;
             return false;
         } catch (const std::exception& e) {
             std::cerr << "Error loading data for " << m_jsonArrayKey << ": "
                       << e.what() << std::endl;
+            if (file.is_open()) { // Ensure file is closed on error
+                file.close();
+            }
             m_items.clear();
             m_nextId = 1;
             return false;
         }
+        // Fallback, though ideally should not be reached if try/catch is exhaustive
+        if (file.is_open()) {
+            file.close();
+        }
+        return false;
     }
 
     bool saveAll() {  // This should be protected or private if only called by
@@ -175,6 +186,18 @@ class JsonRepositoryBase {
         }
 
         try {
+            // Attempt to remove the original file before renaming.
+            // This might help if overwriting is problematic due to locks.
+            if (std::filesystem::exists(filePathObj)) {
+                std::error_code ec_remove_orig;
+                std::filesystem::remove(filePathObj, ec_remove_orig);
+                if (ec_remove_orig) {
+                    std::cerr << "Warning: Could not remove original file '"
+                              << filePathObj.string() << "' before rename: "
+                              << ec_remove_orig.message() << std::endl;
+                    // Proceed to attempt rename anyway, it might still work or provide the original error.
+                }
+            }
             std::filesystem::rename(tempFilePathObj, filePathObj);
             return true;
         } catch (const std::filesystem::filesystem_error& e) {
@@ -286,33 +309,31 @@ class JsonRepositoryBase {
     }
 
     bool removeItemInMemoryAndPersist(int itemId) {
-        T itemToRemove;
-        bool found = false;
+        std::optional<T>
+            itemToRemoveOpt;  // Use optional to avoid default construction
         auto it = std::find_if(
             m_items.begin(), m_items.end(),
             [itemId](const T& item) { return item.getId() == itemId; });
 
         if (it != m_items.end()) {
-            itemToRemove = *it;  // Save for potential rollback
+            itemToRemoveOpt = *it;  // Save for potential rollback
             m_items.erase(it);
-            found = true;
-        }
+            // found = true; // No longer needed, check itemToRemoveOpt
 
-        if (found) {
             if (saveAll()) {
-                // Optional: Recalculate m_nextId if needed, though usually done
-                // after add. If the highest ID was removed, m_nextId might
-                // become too high if not recalculated or if load() isn't called
-                // soon. For simplicity, derived classes can manage m_nextId
-                // more explicitly after calling this.
+                // Optional: Recalculate m_nextId if needed.
+                // ensureNextIdIsCorrect(); // Could be called here by derived
+                // class or if made public
                 return true;
             } else {
                 // Persistence failed, roll back the removal from memory
-                m_items.push_back(
-                    itemToRemove);  // This might mess up order, a better
-                                    // rollback is needed if order matters. Or,
-                                    // only erase from m_items if saveAll()
-                                    // succeeds.
+                if (itemToRemoveOpt.has_value()) {  // Check if we have
+                                                    // something to roll back
+                    m_items.push_back(itemToRemoveOpt.value());
+                    // TODO: Consider re-inserting at original position if order
+                    // matters and is feasible. For now, push_back is simpler.
+                    // Sorting m_items by ID afterwards might be an option.
+                }
                 std::cerr << "Error: Failed to save after removing item ID "
                           << itemId << " from memory. Rollback attempted."
                           << std::endl;

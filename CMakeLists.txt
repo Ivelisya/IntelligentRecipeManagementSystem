@@ -42,6 +42,7 @@ set(EXECUTABLE_SOURCES
     src/domain/recipe/Recipe.cpp
     src/logic/restaurant/RestaurantManager.cpp
     src/domain/restaurant/Restaurant.cpp
+    src/logic/encyclopedia/RecipeEncyclopediaManager.cpp # ADDED for encyclopedia CLI
     src/persistence/JsonRecipeRepository.cpp # Added JsonRecipeRepository
     src/persistence/JsonRestaurantRepository.cpp # Added JsonRestaurantRepository
     src/cli/CliUtils.cpp             # CLI 辅助函数
@@ -87,7 +88,7 @@ enable_testing()
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG    release-1.12.1 # 或者你希望使用的特定版本/标签
+  GIT_TAG    v1.14.0 # 更新到较新的稳定版本以解决 CMake 弃用警告
 )
 
 # 强制 gtest 使用共享 CRT (MD/MDd) 来匹配项目设置
