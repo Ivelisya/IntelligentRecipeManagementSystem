@@ -49,7 +49,6 @@ set(EXECUTABLE_SOURCES
     src/persistence/JsonRecipeRepository.cpp # Added JsonRecipeRepository
     src/persistence/JsonRestaurantRepository.cpp # Added JsonRestaurantRepository
     src/cli/CliUtils.cpp             # CLI 辅助函数
-    src/cli/handlers/UserCommandHandler.cpp # 用户命令处理程序
     src/cli/handlers/RecipeCommandHandler.cpp # 菜谱命令处理程序
     src/cli/handlers/AdminCommandHandler.cpp  # 管理员命令处理程序
     # src/api/dll_api.cpp # DLL 接口文件暂时不包含在 CLI 中

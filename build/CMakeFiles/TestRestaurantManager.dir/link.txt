@@ -1,3 +1,0 @@
-D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -E rm -f CMakeFiles\TestRestaurantManager.dir/objects.a
-D:\mingw64\bin\ar.exe qc CMakeFiles\TestRestaurantManager.dir/objects.a @CMakeFiles\TestRestaurantManager.dir\objects1.rsp
-D:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\TestRestaurantManager.dir/objects.a -Wl,--no-whole-archive -o TestRestaurantManager.exe -Wl,--out-implib,libTestRestaurantManager.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TestRestaurantManager.dir\linkLibs.rsp

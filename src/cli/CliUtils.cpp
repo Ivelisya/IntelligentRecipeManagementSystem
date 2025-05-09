@@ -30,9 +30,7 @@ namespace RecipeApp
             std::string password;
             std::cout << prompt;
             // WARNING: Plain text password input - not secure for production
-            std::cin >> password;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::getline(std::cin, password); // 使用 getline 读取整行，允许空密码
             return password;
         }
 
@@ -54,7 +52,7 @@ namespace RecipeApp
                 std::getline(std::cin, line);
                 if (line.empty())
                 {
-                    std::cout << "Input cannot be empty. Please enter an integer." << std::endl;
+                    std::cout << "输入不能为空，请输入一个整数。" << std::endl;
                     continue;
                 }
                 try
@@ -67,16 +65,16 @@ namespace RecipeApp
                     }
                     else
                     {
-                        std::cout << "Invalid input. Please enter a pure integer." << std::endl;
+                        std::cout << "无效输入，请输入一个纯整数。" << std::endl;
                     }
                 }
                 catch (const std::invalid_argument &ia)
                 {
-                    std::cout << "Invalid input. Please enter an integer." << std::endl;
+                    std::cout << "无效输入，请输入一个整数。" << std::endl;
                 }
                 catch (const std::out_of_range &oor)
                 {
-                    std::cout << "Input number is out of range." << std::endl;
+                    std::cout << "输入数字超出范围。" << std::endl;
                 }
             }
             return value;
@@ -87,13 +85,13 @@ namespace RecipeApp
             int choice = 0;
             while (true)
             {
-                std::cout << "Please select user role:" << std::endl;
-                std::cout << "1. Normal User (Normal)" << std::endl;
-                std::cout << "2. Administrator (Admin)" << std::endl;
-                choice = getIntFromConsole("Enter option (1-2): ");
+                std::cout << "请选择用户角色：" << std::endl;
+                std::cout << "1. 普通用户 (Normal)" << std::endl;
+                std::cout << "2. 管理员 (Admin)" << std::endl;
+                choice = getIntFromConsole("请输入选项 (1-2): ");
                 if (choice == 1 || choice == 2)
                     break;
-                std::cout << "Invalid option. Please re-enter." << std::endl;
+                std::cout << "无效选项，请重新输入。" << std::endl;
             }
             return (choice == 1) ? RecipeApp::UserRole::Normal : RecipeApp::UserRole::Admin;
         }
@@ -101,8 +99,8 @@ namespace RecipeApp
         void displayUserDetailsBrief(const RecipeApp::User &user)
         {
             std::cout << "  ID: " << user.getUserId()
-                      << ", Username: " << user.getUsername()
-                      << ", Role: " << (user.getRole() == RecipeApp::UserRole::Admin ? "Administrator" : "Normal User")
+                      << ", 用户名: " << user.getUsername()
+                      << ", 角色: " << (user.getRole() == RecipeApp::UserRole::Admin ? "管理员" : "普通用户")
                       << std::endl;
         }
 
@@ -111,16 +109,16 @@ namespace RecipeApp
             int choice = 0;
             while (true)
             {
-                std::cout << "Please select difficulty level:" << std::endl;
-                std::cout << "1. Easy" << std::endl;
-                std::cout << "2. Medium" << std::endl;
-                std::cout << "3. Hard" << std::endl;
-                choice = getIntFromConsole("Enter option (1-3): ");
+                std::cout << "请选择难度级别：" << std::endl;
+                std::cout << "1. 简单" << std::endl;
+                std::cout << "2. 中等" << std::endl;
+                std::cout << "3. 困难" << std::endl;
+                choice = getIntFromConsole("请输入选项 (1-3): ");
                 if (choice >= 1 && choice <= 3)
                 {
                     break;
                 }
-                std::cout << "Invalid option. Please re-enter." << std::endl;
+                std::cout << "无效选项，请重新输入。" << std::endl;
             }
             switch (choice)
             {
@@ -132,7 +130,7 @@ namespace RecipeApp
                 return RecipeApp::Difficulty::Hard;
             default:
                 // Should not reach here due to loop condition, but good practice for switch
-                std::cerr << "Warning: getDifficultyFromConsole reached default case." << std::endl;
+                std::cerr << "警告: getDifficultyFromConsole 到达了默认情况。" << std::endl;
                 return RecipeApp::Difficulty::Easy;
             }
         }
@@ -140,17 +138,17 @@ namespace RecipeApp
         std::vector<std::pair<std::string, std::string>> getIngredientsFromConsole()
         {
             std::vector<std::pair<std::string, std::string>> ingredients;
-            std::cout << "Enter ingredients (one per line, format: [Ingredient Name] [Quantity and Unit], e.g., Eggs 2pcs. Type 'done' or empty line to finish):" << std::endl;
+            std::cout << "请输入配料 (每行一个，格式：[配料名称] [数量和单位]，例如：鸡蛋 2个。输入 'done' 或空行结束)：" << std::endl;
             std::string line;
             while (true)
             {
-                std::cout << "Ingredient> ";
+                std::cout << "配料> ";
                 std::getline(std::cin, line);
                 if (line == "done" || line == "DONE" || line.empty())
                 {
                     if (ingredients.empty() && line.empty())
                     {
-                        std::string confirmEnd = getStringFromConsole("No ingredients entered. Are you sure you want to finish? (y/n): ");
+                        std::string confirmEnd = getStringFromConsole("未输入任何配料。确定要完成吗？ (y/n): ");
                         if (confirmEnd != "y" && confirmEnd != "Y")
                             continue;
                     }
@@ -167,7 +165,7 @@ namespace RecipeApp
                 {
                     name = line;
                     quantity = ""; // Default to empty if no quantity part found
-                    std::cout << " (Hint: Ingredient '" << name << "' has no quantity specified. Quantity will be empty)" << std::endl;
+                    std::cout << " (提示: 配料 '" << name << "' 未指定数量。数量将为空)" << std::endl;
                 }
                 ingredients.push_back({name, quantity});
             }
@@ -177,18 +175,18 @@ namespace RecipeApp
         std::vector<std::string> getStepsFromConsole()
         {
             std::vector<std::string> steps;
-            std::cout << "Enter cooking steps (one step per line, type 'done' or empty line to finish):" << std::endl;
+            std::cout << "请输入烹饪步骤 (每行一个步骤，输入 'done' 或空行结束)：" << std::endl;
             std::string step_str;
             int stepNumber = 1;
             while (true)
             {
-                std::cout << "Step " << stepNumber << ": ";
+                std::cout << "步骤 " << stepNumber << ": ";
                 std::getline(std::cin, step_str);
                 if (step_str == "done" || step_str == "DONE" || step_str.empty())
                 {
                     if (steps.empty() && step_str.empty())
                     {
-                        std::string confirmEnd = getStringFromConsole("No steps entered. Are you sure you want to finish? (y/n): ");
+                        std::string confirmEnd = getStringFromConsole("未输入任何步骤。确定要完成吗？ (y/n): ");
                         if (confirmEnd != "y" && confirmEnd != "Y")
                             continue;
                     }
@@ -202,35 +200,35 @@ namespace RecipeApp
 
         void displayRecipeDetailsBrief(const RecipeApp::Recipe &recipe)
         {
-            std::cout << "  ID: " << recipe.getRecipeId() << ", Name: " << recipe.getName() << ", Cuisine: " << recipe.getCuisine() << std::endl;
+            std::cout << "  ID: " << recipe.getRecipeId() << ", 名称: " << recipe.getName() << ", 菜系: " << recipe.getCuisine() << std::endl;
         }
 
         void displayRecipeDetailsFull(const RecipeApp::Recipe &recipe)
         {
             std::cout << "----------------------------------------" << std::endl;
-            std::cout << "Recipe ID: " << recipe.getRecipeId() << std::endl;
-            std::cout << "Name: " << recipe.getName() << std::endl;
-            std::cout << "Cuisine: " << recipe.getCuisine() << std::endl;
-            std::cout << "Cooking Time: " << recipe.getCookingTime() << " minutes" << std::endl;
-            std::cout << "Difficulty: ";
+            std::cout << "菜谱 ID: " << recipe.getRecipeId() << std::endl;
+            std::cout << "名称: " << recipe.getName() << std::endl;
+            std::cout << "菜系: " << recipe.getCuisine() << std::endl;
+            std::cout << "烹饪时长: " << recipe.getCookingTime() << " 分钟" << std::endl;
+            std::cout << "难度: ";
             switch (recipe.getDifficulty())
             {
             case RecipeApp::Difficulty::Easy:
-                std::cout << "Easy";
+                std::cout << "简单";
                 break;
             case RecipeApp::Difficulty::Medium:
-                std::cout << "Medium";
+                std::cout << "中等";
                 break;
             case RecipeApp::Difficulty::Hard:
-                std::cout << "Hard";
+                std::cout << "困难";
                 break;
             }
             std::cout << std::endl;
 
-            std::cout << "Ingredients:" << std::endl;
+            std::cout << "配料:" << std::endl;
             if (recipe.getIngredients().empty())
             {
-                std::cout << "  (No ingredient information)" << std::endl;
+                std::cout << "  (无配料信息)" << std::endl;
             }
             else
             {
@@ -240,10 +238,10 @@ namespace RecipeApp
                 }
             }
 
-            std::cout << "Steps:" << std::endl;
+            std::cout << "步骤:" << std::endl;
             if (recipe.getSteps().empty())
             {
-                std::cout << "  (No step information)" << std::endl;
+                std::cout << "  (无步骤信息)" << std::endl;
             }
             else
             {
@@ -255,11 +253,11 @@ namespace RecipeApp
             }
             if (recipe.getNutritionalInfo().has_value() && !recipe.getNutritionalInfo().value().empty())
             {
-                std::cout << "Nutritional Info: " << recipe.getNutritionalInfo().value() << std::endl;
+                std::cout << "营养信息: " << recipe.getNutritionalInfo().value() << std::endl;
             }
             if (recipe.getImageUrl().has_value() && !recipe.getImageUrl().value().empty())
             {
-                std::cout << "Image URL: " << recipe.getImageUrl().value() << std::endl;
+                std::cout << "图片链接: " << recipe.getImageUrl().value() << std::endl;
             }
             std::cout << "----------------------------------------" << std::endl;
         }

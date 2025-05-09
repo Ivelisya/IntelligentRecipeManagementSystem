@@ -24,7 +24,7 @@ namespace RecipeApp
     {
     private:
         Domain::User::UserRepository &userRepository_; ///< Reference to the user repository
-        const User *currentLoggedInUser;               ///< 指向当前登录用户的指针 (CLI 临时状态)
+        User m_defaultAdminUser;                       ///< 默认的管理员用户对象
 
     public:
         /**
@@ -38,13 +38,7 @@ namespace RecipeApp
          */
         ~UserManager(); // Declaration only, definition will be in .cpp
 
-        /**
-         * @brief 注册新用户
-         * @param username 用户名
-         * @param password 密码
-         * @return 指向新用户的指针，若用户名已存在则返回nullptr
-         */
-        User *registerUser(const std::string &username, const std::string &password);
+        // User *registerUser(const std::string &username, const std::string &password); // Removed
 
         /**
          * @brief 管理员创建新用户（可指定角色）
@@ -56,22 +50,12 @@ namespace RecipeApp
          */
         User *createUserByAdmin(const std::string &username, const std::string &password, UserRole role, const User &adminUser);
 
-        /**
-         * @brief 用户登录
-         * @param username 用户名
-         * @param password 密码
-         * @return 指向登录用户的常量指针，若凭据无效则返回nullptr。同时会更新内部的 currentLoggedInUser 状态。
-         */
-        const User *loginUser(const std::string &username, const std::string &password);
+        // const User *loginUser(const std::string &username, const std::string &password); // Removed
+
+        // void logoutUser(); // Removed
 
         /**
-         * @brief 用户登出
-         * 清除当前登录用户状态。
-         */
-        void logoutUser();
-
-        /**
-         * @brief 获取当前登录的用户
+         * @brief 获取当前登录的用户 (现在总是返回默认管理员)
          * @return 指向当前登录用户的常量指针，如果未登录则返回 nullptr。
          */
         const User *getCurrentUser() const;
@@ -109,9 +93,6 @@ namespace RecipeApp
          * @param nextId The next ID to be used by the repository.
          */
         void setNextUserIdFromPersistence(int nextId);
-
-        // Methods like getAllUsers, addUserDirectly, setNextUserId are removed
-        // as their responsibilities are now handled by the UserRepository.
     };
 
 } // namespace RecipeApp

@@ -1,51 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|win32">
+    <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
-      <Platform>win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|win32">
+    <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
-      <Platform>win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="MinSizeRel|win32">
+    <ProjectConfiguration Include="MinSizeRel|x64">
       <Configuration>MinSizeRel</Configuration>
-      <Platform>win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="RelWithDebInfo|win32">
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
       <Configuration>RelWithDebInfo</Configuration>
-      <Platform>win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{24615662-EA88-38DB-9CBC-8FE22EC3A850}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
-    <Platform>win32</Platform>
+    <Platform>x64</Platform>
     <ProjectName>TestRestaurant</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -59,32 +59,32 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">D:\Github\IntelligentRecipeManagementSystem\build\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">TestRestaurant.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">TestRestaurant</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">true</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|win32'">D:\Github\IntelligentRecipeManagementSystem\build\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|win32'">TestRestaurant.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|win32'">TestRestaurant</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">D:\Github\IntelligentRecipeManagementSystem\build\MinSizeRel\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">TestRestaurant.dir\MinSizeRel\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">TestRestaurant</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">D:\Github\IntelligentRecipeManagementSystem\build\RelWithDebInfo\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">TestRestaurant.dir\RelWithDebInfo\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">TestRestaurant</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">true</LinkIncremental>
-    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\IntelligentRecipeManagementSystem\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TestRestaurant.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TestRestaurant</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\IntelligentRecipeManagementSystem\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TestRestaurant.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TestRestaurant</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github\IntelligentRecipeManagementSystem\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">TestRestaurant.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">TestRestaurant</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github\IntelligentRecipeManagementSystem\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">TestRestaurant.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">TestRestaurant</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
@@ -122,7 +122,7 @@
     <Link>
       <AdditionalDependencies>lib\Debug\gtest_main.lib;lib\Debug\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRestaurant.lib</ImportLibrary>
@@ -133,7 +133,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
@@ -172,7 +172,7 @@
     <Link>
       <AdditionalDependencies>lib\Release\gtest_main.lib;lib\Release\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/Github/IntelligentRecipeManagementSystem/build/Release/TestRestaurant.lib</ImportLibrary>
@@ -183,7 +183,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
@@ -222,7 +222,7 @@
     <Link>
       <AdditionalDependencies>lib\MinSizeRel\gtest_main.lib;lib\MinSizeRel\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/Github/IntelligentRecipeManagementSystem/build/MinSizeRel/TestRestaurant.lib</ImportLibrary>
@@ -233,7 +233,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
@@ -271,7 +271,7 @@
     <Link>
       <AdditionalDependencies>lib\RelWithDebInfo\gtest_main.lib;lib\RelWithDebInfo\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/Github/IntelligentRecipeManagementSystem/build/RelWithDebInfo/TestRestaurant.lib</ImportLibrary>
@@ -285,8 +285,8 @@
   <ItemGroup>
     <CustomBuild Include="D:\Github\IntelligentRecipeManagementSystem\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">setlocal
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -SD:/Github/IntelligentRecipeManagementSystem -BD:/Github/IntelligentRecipeManagementSystem/build --check-stamp-file D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -295,11 +295,11 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|win32'">setlocal
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -SD:/Github/IntelligentRecipeManagementSystem -BD:/Github/IntelligentRecipeManagementSystem/build --check-stamp-file D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -308,11 +308,11 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">setlocal
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
 D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -SD:/Github/IntelligentRecipeManagementSystem -BD:/Github/IntelligentRecipeManagementSystem/build --check-stamp-file D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -321,11 +321,11 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">setlocal
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Github/IntelligentRecipeManagementSystem/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
 D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -SD:/Github/IntelligentRecipeManagementSystem -BD:/Github/IntelligentRecipeManagementSystem/build --check-stamp-file D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -334,9 +334,9 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">false</LinkObjects>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeCXXCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeRCCompiler.cmake;D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\3.31.5\CMakeSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeRCInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Compiler\MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\ExternalProject\shared_internal_commands.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FetchContent\CMakeLists.cmake.in;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindGit.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\FindPackageMessage.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\Windows.cmake;D:\cmake-3.31.5-windows-x86_64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

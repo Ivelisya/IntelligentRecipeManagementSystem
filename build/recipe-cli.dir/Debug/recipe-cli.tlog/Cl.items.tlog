@@ -10,6 +10,5 @@ D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonUserRepository.c
 D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRecipeRepository.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\JsonRecipeRepository.obj
 D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRestaurantRepository.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\JsonRestaurantRepository.obj
 D:\Github\IntelligentRecipeManagementSystem\src\cli\CliUtils.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\CliUtils.obj
-D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\UserCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\UserCommandHandler.obj
 D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\RecipeCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\RecipeCommandHandler.obj
 D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\AdminCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\AdminCommandHandler.obj

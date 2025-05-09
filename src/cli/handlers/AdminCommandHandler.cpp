@@ -19,108 +19,116 @@ namespace RecipeApp
 
         int AdminCommandHandler::handleAdminUserList(const cxxopts::ParseResult &result)
         {
-            const RecipeApp::User *currentUser = userManager.getCurrentUser();
-            if (!currentUser)
-            {
-                std::cerr << "Error: Please login first." << std::endl;
-                return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
-            }
-            if (currentUser->getRole() != RecipeApp::UserRole::Admin)
-            {
-                std::cerr << "Error: Permission denied. Only administrators can view the user list." << std::endl;
-                return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
-            }
+            // const RecipeApp::User *currentUser = userManager.getCurrentUser(); // No longer needed for auth check
+            // if (!currentUser) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Please login first." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
+            // }
+            // if (currentUser->getRole() != RecipeApp::UserRole::Admin) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Permission denied. Only administrators can view the user list." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
+            // }
 
-            std::cout << "--- User List (Admin View) ---" << std::endl;
+            std::cout << "--- User List ---" << std::endl; // Simplified title
             const auto &allUsers = userManager.getAllUsers();
             if (allUsers.empty())
             {
-                std::cout << "No users currently in the system." << std::endl;
+                std::cout << "系统中当前没有用户。" << std::endl;
                 return RecipeApp::Cli::EX_OK; // Not an error
             }
             for (const auto &user : allUsers)
             {
                 RecipeApp::CliUtils::displayUserDetailsBrief(user);
             }
-            std::cout << "Total " << allUsers.size() << " users." << std::endl;
+            std::cout << "共 " << allUsers.size() << " 个用户。" << std::endl;
             return RecipeApp::Cli::EX_OK;
         }
 
         int AdminCommandHandler::handleAdminUserCreate(const cxxopts::ParseResult &result)
         {
-            const RecipeApp::User *currentUser = userManager.getCurrentUser();
-            if (!currentUser)
-            {
-                std::cerr << "Error: Please login first." << std::endl;
-                return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
-            }
-            if (currentUser->getRole() != RecipeApp::UserRole::Admin)
-            {
-                std::cerr << "Error: Permission denied. Only administrators can create users." << std::endl;
-                return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
-            }
+            // const RecipeApp::User *currentUser = userManager.getCurrentUser(); // No longer needed for auth check
+            // if (!currentUser) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Please login first." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
+            // }
+            // if (currentUser->getRole() != RecipeApp::UserRole::Admin) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Permission denied. Only administrators can create users." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
+            // }
 
-            std::cout << "--- Create New User (Admin) ---" << std::endl;
-            std::string username = RecipeApp::CliUtils::getStringFromConsole("Enter new username: ");
+            std::cout << "--- 创建新用户 ---" << std::endl; // Simplified title
+            std::string username = RecipeApp::CliUtils::getStringFromConsole("请输入新用户名: ");
             if (username.empty())
             {
-                std::cerr << "Error: Username cannot be empty." << std::endl;
+                std::cerr << "错误：用户名不能为空。" << std::endl;
                 return RecipeApp::Cli::EX_APP_INVALID_INPUT;
             }
             std::string password;
             std::string confirmPassword;
             while (true)
             {
-                password = RecipeApp::CliUtils::getPasswordFromConsole("Enter new password: ");
+                password = RecipeApp::CliUtils::getPasswordFromConsole("请输入新密码: ");
                 if (password.empty())
                 {
-                    std::cerr << "Error: Password cannot be empty. Please re-enter." << std::endl;
+                    std::cerr << "错误：密码不能为空，请重新输入。" << std::endl;
                     continue;
                 }
-                confirmPassword = RecipeApp::CliUtils::getPasswordFromConsole("Confirm new password: ");
+                confirmPassword = RecipeApp::CliUtils::getPasswordFromConsole("请确认新密码: ");
                 if (password == confirmPassword)
                 {
                     break;
                 }
                 else
                 {
-                    std::cerr << "Error: Passwords do not match. Please re-enter." << std::endl;
+                    std::cerr << "错误：两次输入的密码不匹配，请重新输入。" << std::endl;
                 }
             }
             RecipeApp::UserRole role = RecipeApp::CliUtils::getRoleSelectionFromConsole();
 
-            RecipeApp::User *newUser = userManager.createUserByAdmin(username, password, role, *currentUser);
+            // Pass the default admin user from userManager, or adjust createUserByAdmin signature
+            const RecipeApp::User *adminUser = userManager.getCurrentUser(); // This will be the default admin
+            RecipeApp::User *newUser = userManager.createUserByAdmin(username, password, role, *adminUser);
             if (newUser)
             {
-                std::cout << "User '" << username << "' created successfully (Role: "
-                          << (role == RecipeApp::UserRole::Admin ? "Administrator" : "Normal User") << ")." << std::endl;
+                // Since the created user object by createUserByAdmin is heap allocated and needs deletion by caller
+                // and we don't use it further here, we should delete it.
+                // However, the original design of createUserByAdmin in UserManager might return a pointer
+                // that the UserManager itself doesn't own or that is a copy of what's in the repository.
+                // Given the changes, createUserByAdmin in UserManager now returns a new User* that must be deleted.
+                std::cout << "用户 '" << username << "' 创建成功 (角色: "
+                          << (role == RecipeApp::UserRole::Admin ? "管理员" : "普通用户") << ")。" << std::endl;
+                delete newUser; // Clean up the returned User object as it's not used further here.
                 return RecipeApp::Cli::EX_OK;
             }
             else
             {
-                std::cerr << "Failed to create user. Username may already exist." << std::endl;
+                std::cerr << "创建用户失败。用户名可能已存在。" << std::endl;
                 return RecipeApp::Cli::EX_APP_ALREADY_EXISTS; // Or EX_APP_OPERATION_FAILED
             }
         }
 
         int AdminCommandHandler::handleAdminUserUpdate(const cxxopts::ParseResult &result)
         {
-            const RecipeApp::User *currentUser = userManager.getCurrentUser();
-            if (!currentUser)
-            {
-                std::cerr << "Error: Please login first." << std::endl;
-                return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
-            }
-            if (currentUser->getRole() != RecipeApp::UserRole::Admin)
-            {
-                std::cerr << "Error: Permission denied. Only administrators can update user information." << std::endl;
-                return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
-            }
+            // const RecipeApp::User *currentUser = userManager.getCurrentUser(); // No longer needed for auth check
+            // if (!currentUser) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Please login first." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
+            // }
+            // if (currentUser->getRole() != RecipeApp::UserRole::Admin) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Permission denied. Only administrators can update user information." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
+            // }
 
             if (!result.count("admin-user-update"))
             {
-                std::cerr << "Error: Missing argument (USER_ID) for admin-user-update command." << std::endl;
-                std::cerr << "Usage: recipe-cli --admin-user-update <USER_ID>" << std::endl;
+                std::cerr << "错误：admin-user-update 命令缺少参数 (USER_ID)。" << std::endl;
+                std::cerr << "用法: recipe-cli --admin-user-update <用户ID>" << std::endl;
                 return RecipeApp::Cli::EX_USAGE;
             }
 
@@ -131,7 +139,7 @@ namespace RecipeApp
             }
             catch (const cxxopts::exceptions::exception &e)
             {
-                std::cerr << "Error: Invalid USER_ID '" << result["admin-user-update"].as<std::string>() << "'. Please enter a number." << std::endl;
+                std::cerr << "错误：无效的用户ID '" << result["admin-user-update"].as<std::string>() << "'。请输入一个数字。" << std::endl;
                 return RecipeApp::Cli::EX_DATAERR;
             }
 
@@ -149,20 +157,20 @@ namespace RecipeApp
 
             if (!found)
             {
-                std::cerr << "Error: User with ID " << userIdToUpdate << " not found." << std::endl;
+                std::cerr << "错误：未找到ID为 " << userIdToUpdate << " 的用户。" << std::endl;
                 return RecipeApp::Cli::EX_APP_ITEM_NOT_FOUND;
             }
 
-            std::cout << "--- Update User Information (ID: " << userIdToUpdate << ") ---" << std::endl;
-            std::cout << "Current user information:" << std::endl;
+            std::cout << "--- 更新用户信息 (ID: " << userIdToUpdate << ") ---" << std::endl;
+            std::cout << "当前用户信息：" << std::endl;
             RecipeApp::CliUtils::displayUserDetailsBrief(originalUserCopy);
-            std::cout << "Enter new user information (leave empty to keep current value for a field):" << std::endl;
+            std::cout << "请输入新的用户信息 (留空则表示保留当前值)：" << std::endl;
 
-            std::string newUsername = RecipeApp::CliUtils::getStringFromConsole("New username [" + originalUserCopy.getUsername() + "]: ");
-            std::string newPassword = RecipeApp::CliUtils::getPasswordFromConsole("New password [******] (enter new password to change, leave empty to keep current): ");
+            std::string newUsername = RecipeApp::CliUtils::getStringFromConsole("新用户名 [" + originalUserCopy.getUsername() + "]: ");
+            std::string newPassword = RecipeApp::CliUtils::getPasswordFromConsole("新密码 [******] (输入新密码以更改，留空则保持不变): ");
             RecipeApp::UserRole newRole = originalUserCopy.getRole();
-            std::cout << "Current role: " << (originalUserCopy.getRole() == RecipeApp::UserRole::Admin ? "Administrator" : "Normal User") << std::endl;
-            std::string changeRoleChoice = RecipeApp::CliUtils::getStringFromConsole("Modify role? (y/n): ");
+            std::cout << "当前角色: " << (originalUserCopy.getRole() == RecipeApp::UserRole::Admin ? "管理员" : "普通用户") << std::endl;
+            std::string changeRoleChoice = RecipeApp::CliUtils::getStringFromConsole("修改角色? (y/n): ");
             if (changeRoleChoice == "y" || changeRoleChoice == "Y")
             {
                 newRole = RecipeApp::CliUtils::getRoleSelectionFromConsole();
@@ -175,36 +183,37 @@ namespace RecipeApp
                 userWithUpdates.setPassword(newPassword);
             userWithUpdates.setRole(newRole);
 
-            if (userManager.updateUser(userWithUpdates, *currentUser))
+            const RecipeApp::User *adminUser = userManager.getCurrentUser(); // This will be the default admin
+            if (userManager.updateUser(userWithUpdates, *adminUser))
             {
-                std::cout << "User ID " << userIdToUpdate << " updated successfully!" << std::endl;
+                std::cout << "用户 ID " << userIdToUpdate << " 更新成功！" << std::endl;
                 return RecipeApp::Cli::EX_OK;
             }
             else
             {
-                std::cerr << "Failed to update user. Possible reasons: permission denied, new username conflict, attempt to remove last admin rights, etc." << std::endl;
+                std::cerr << "更新用户失败。可能原因：权限不足、新用户名冲突、试图移除最后一个管理员权限等。" << std::endl;
                 return RecipeApp::Cli::EX_APP_OPERATION_FAILED;
             }
         }
 
         int AdminCommandHandler::handleAdminUserDelete(const cxxopts::ParseResult &result)
         {
-            const RecipeApp::User *currentUser = userManager.getCurrentUser();
-            if (!currentUser)
-            {
-                std::cerr << "Error: Please login first." << std::endl;
-                return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
-            }
-            if (currentUser->getRole() != RecipeApp::UserRole::Admin)
-            {
-                std::cerr << "Error: Permission denied. Only administrators can delete users." << std::endl;
-                return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
-            }
+            // const RecipeApp::User *currentUser = userManager.getCurrentUser(); // No longer needed for auth check
+            // if (!currentUser) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Please login first." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
+            // }
+            // if (currentUser->getRole() != RecipeApp::UserRole::Admin) // This check is no longer needed
+            // {
+            //     std::cerr << "Error: Permission denied. Only administrators can delete users." << std::endl;
+            //     return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
+            // }
 
             if (!result.count("admin-user-delete"))
             {
-                std::cerr << "Error: Missing argument (USER_ID) for admin-user-delete command." << std::endl;
-                std::cerr << "Usage: recipe-cli --admin-user-delete <USER_ID>" << std::endl;
+                std::cerr << "错误：admin-user-delete 命令缺少参数 (USER_ID)。" << std::endl;
+                std::cerr << "用法: recipe-cli --admin-user-delete <用户ID>" << std::endl;
                 return RecipeApp::Cli::EX_USAGE;
             }
 
@@ -215,13 +224,14 @@ namespace RecipeApp
             }
             catch (const cxxopts::exceptions::exception &e)
             {
-                std::cerr << "Error: Invalid USER_ID '" << result["admin-user-delete"].as<std::string>() << "'. Please enter a number." << std::endl;
+                std::cerr << "错误：无效的用户ID '" << result["admin-user-delete"].as<std::string>() << "'。请输入一个数字。" << std::endl;
                 return RecipeApp::Cli::EX_DATAERR;
             }
 
-            if (currentUser->getUserId() == userIdToDelete)
+            const RecipeApp::User *adminUser = userManager.getCurrentUser();     // This will be the default admin
+            if (adminUser->getUserId() == userIdToDelete && userIdToDelete == 0) // Check against default admin's ID (0)
             {
-                std::cerr << "Error: Operation not allowed. Administrator cannot delete themselves." << std::endl;
+                std::cerr << "错误：操作不允许。无法删除默认管理员用户。" << std::endl;
                 return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
             }
 
@@ -239,29 +249,30 @@ namespace RecipeApp
 
             if (!found)
             {
-                std::cerr << "Error: User with ID " << userIdToDelete << " not found." << std::endl;
+                std::cerr << "错误：未找到ID为 " << userIdToDelete << " 的用户。" << std::endl;
                 return RecipeApp::Cli::EX_APP_ITEM_NOT_FOUND;
             }
 
-            std::cout << "Found user: " << usernameToDelete << " (ID: " << userIdToDelete << ")" << std::endl;
-            std::string confirm = RecipeApp::CliUtils::getStringFromConsole("Are you sure you want to delete this user? (y/n): ");
+            std::cout << "找到用户: " << usernameToDelete << " (ID: " << userIdToDelete << ")" << std::endl;
+            std::string confirm = RecipeApp::CliUtils::getStringFromConsole("您确定要删除这个用户吗？ (y/n): ");
 
             if (confirm == "y" || confirm == "Y")
             {
-                if (userManager.deleteUser(userIdToDelete, *currentUser))
+                const RecipeApp::User *adminUserForDelete = userManager.getCurrentUser(); // This will be the default admin
+                if (userManager.deleteUser(userIdToDelete, *adminUserForDelete))
                 {
-                    std::cout << "User ID " << userIdToDelete << " deleted successfully!" << std::endl;
+                    std::cout << "用户 ID " << userIdToDelete << " 删除成功！" << std::endl;
                     return RecipeApp::Cli::EX_OK;
                 }
                 else
                 {
-                    std::cerr << "Failed to delete user." << std::endl;
+                    std::cerr << "删除用户失败。" << std::endl;
                     return RecipeApp::Cli::EX_APP_OPERATION_FAILED;
                 }
             }
             else
             {
-                std::cout << "Delete operation cancelled." << std::endl;
+                std::cout << "删除操作已取消。" << std::endl;
                 return RecipeApp::Cli::EX_OK; // User cancelled, not an error
             }
         }

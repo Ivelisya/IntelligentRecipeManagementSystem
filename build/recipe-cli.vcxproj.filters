@@ -37,9 +37,6 @@
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\CliUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\UserCommandHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\RecipeCommandHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

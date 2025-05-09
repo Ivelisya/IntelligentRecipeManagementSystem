@@ -24,14 +24,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "googletest-populate", "goog
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|win32 = Debug|win32
+		Debug|x64 = Debug|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{883C41F5-1333-3E5D-9E96-E70EAF262E7C}.Debug|win32.ActiveCfg = Debug|win32
-		{AEC27234-24BF-35A4-8225-AD1B3065B34D}.Debug|win32.ActiveCfg = Debug|win32
-		{AEC27234-24BF-35A4-8225-AD1B3065B34D}.Debug|win32.Build.0 = Debug|win32
-		{53BA213C-55D6-3BBF-A5BF-DC52E91E9DD5}.Debug|win32.ActiveCfg = Debug|win32
-		{53BA213C-55D6-3BBF-A5BF-DC52E91E9DD5}.Debug|win32.Build.0 = Debug|win32
+		{883C41F5-1333-3E5D-9E96-E70EAF262E7C}.Debug|x64.ActiveCfg = Debug|x64
+		{AEC27234-24BF-35A4-8225-AD1B3065B34D}.Debug|x64.ActiveCfg = Debug|x64
+		{AEC27234-24BF-35A4-8225-AD1B3065B34D}.Debug|x64.Build.0 = Debug|x64
+		{53BA213C-55D6-3BBF-A5BF-DC52E91E9DD5}.Debug|x64.ActiveCfg = Debug|x64
+		{53BA213C-55D6-3BBF-A5BF-DC52E91E9DD5}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{883C41F5-1333-3E5D-9E96-E70EAF262E7C} = {298FB1F5-3A8E-323E-84A3-EC439807EE4A}

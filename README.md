@@ -13,8 +13,6 @@ IntelligentRecipeManagementSystem (项目代号: RecipeCliApp) 是一个旨在�
 ## 二、主要特性概览
 
 *   **食谱管理**：全面的食谱增、删、改、查功能。
-*   **用户账户系统**：支持用户注册、登录、登出、查看个人信息及修改密码。
-*   **管理员功能**：支持管理员查看用户列表、创建用户、更新用户信息及删除用户。
 *   **命令行界面 (CLI)**：提供简洁高效的命令行操作方式。
 *   **数据持久化**：食谱和用户信息将以 JSON 格式安全存储在本地文件 (`recipes.json`, `users.json`, `restaurants.json`)。
 
@@ -47,68 +45,51 @@ IntelligentRecipeManagementSystem (项目代号: RecipeCliApp) 是一个旨在�
 
 3.  **编译项目**：
     ```bash
-    make
+    cmake --build .
     ```
-    *编译成功后，可执行文件 `recipe-cli` 会生成在 `build` 目录中。*
+    *编译成功后，可执行文件在 `build` 目录内生成。具体路径和名称可能因您的构建系统和配置而异（例如，Linux 下通常是 `build/recipe-cli`，Windows MSVC 下可能是 `build\Debug\recipe-cli.exe` 或 `build\Release\recipe-cli.exe`）。*
 
 4.  **运行程序**：
-    在 `build` 目录下执行：
-    ```bash
-    ./recipe-cli
-    ```
-    或者，从项目根目录执行：
-    ```bash
-    ./build/recipe-cli
-    ```
-    运行 `./recipe-cli --help` 可以查看所有可用命令。
+    建议进入可执行文件所在的目录执行。
+    *   **Linux (在 `build` 目录中):**
+        ```bash
+        ./recipe-cli
+        ```
+    *   **Windows (例如在 `build\Debug` 目录中):**
+        ```bash
+        .\recipe-cli.exe
+        ```
+    或者，您也可以从项目根目录使用相对路径执行，例如：
+    *   Linux: `./build/recipe-cli`
+    *   Windows: `.\build\Debug\recipe-cli.exe`
+
+    运行 `./recipe-cli --help` (或对应平台的命令) 可以查看所有可用命令。
 
 ## 四、快速入门指南
 
-以下示例引导您快速体验核心功能。所有命令均在 `build` 目录下执行，或使用 `./build/recipe-cli` 从根目录执行。
+以下示例引导您快速体验核心功能。请确保您在可执行文件所在的目录执行这些命令，或者使用正确的相对/绝对路径调用可执行文件 (参考上一节“运行程序”的说明)。为简洁起见，以下示例将使用 `./recipe-cli` (Linux) 或 `.\recipe-cli.exe` (Windows) 作为在可执行文件目录中运行的代表。
 
 1.  **启动程序并查看帮助**：
     ```bash
     ./recipe-cli --help
     ```
 
-2.  **注册新用户**:
-    程序会提示您输入用户名和密码。
-    ```bash
-    ./recipe-cli --register
-    ```
-    或者，您可以直接提供用户名：
-    ```bash
-    ./recipe-cli --register alice
-    ```
-    之后程序会提示输入密码和确认密码。
-
-3.  **登录用户**:
-    程序会提示您输入用户名和密码。
-    ```bash
-    ./recipe-cli --login
-    ```
-    或者，您可以直接提供用户名：
-    ```bash
-    ./recipe-cli --login alice
-    ```
-    之后程序会提示输入密码。
-
-4.  **添加一个新食谱** (需要先登录):
+2.  **添加一个新食谱**:
     执行以下命令后，程序会引导您输入食谱的详细信息（名称、食材、步骤、烹饪时间、难度、菜系等）。
     ```bash
     ./recipe-cli --recipe-add
     ```
 
-5.  **查看所有食谱**:
+3.  **查看所有食谱**:
     ```bash
     ./recipe-cli --recipe-list
     ```
+通过以上步骤，您应该已经成功添加并查看了一个食谱。
 
-通过以上步骤，您应该已经成功注册、登录、添加并查看了一个食谱。
 
 ## 五、详细功能使用教程
 
-所有命令均以 `recipe-cli` 开头。
+所有命令均以 `recipe-cli` (Linux) 或 `recipe-cli.exe` (Windows) 开头，并假设您已位于可执行文件所在目录。
 
 ### 1. 通用命令
 
@@ -127,39 +108,9 @@ IntelligentRecipeManagementSystem (项目代号: RecipeCliApp) 是一个旨在�
     recipe-cli --verbose <其他命令和参数>
     ```
 
-### 2. 用户账户管理
+### 2. 食谱管理
 
-*   **注册新用户 (`--register [USERNAME]`)**:
-    *   如果提供了 `USERNAME`，则使用该用户名，后续提示输入密码。
-    *   如果未提供 `USERNAME`，则提示输入用户名和密码。
-    *   示例:
-        ```bash
-        recipe-cli --register bob
-        # (程序提示输入密码和确认密码)
-        ```
-        ```bash
-        recipe-cli --register
-        # (程序提示输入用户名、密码和确认密码)
-        ```
-*   **用户登录 (`--login [USERNAME]`)**:
-    *   如果提供了 `USERNAME`，则使用该用户名，后续提示输入密码。
-    *   如果未提供 `USERNAME`，则提示输入用户名和密码。
-    *   示例:
-        ```bash
-        recipe-cli --login bob
-        # (程序提示输入密码)
-        ```
-*   **用户登出 (`--logout`)**:
-    *   示例: `recipe-cli --logout`
-*   **查看当前用户信息 (`--user-profile`)**: (需要登录)
-    *   示例: `recipe-cli --user-profile`
-*   **更新当前用户密码 (`--update-profile`)**: (需要登录)
-    *   程序会提示输入当前密码进行验证，然后提示输入新密码和确认密码。
-    *   示例: `recipe-cli --update-profile`
-
-### 3. 食谱管理 (大部分操作需要登录)
-
-*   **添加新食谱 (`--recipe-add`)**: (需要登录)
+*   **添加新食谱 (`--recipe-add`)**:
     *   执行命令后，程序会通过一系列提示引导您输入食谱的详细信息：
         *   食谱名称
         *   食材 (名称和用量，可添加多个)
@@ -178,34 +129,18 @@ IntelligentRecipeManagementSystem (项目代号: RecipeCliApp) 是一个旨在�
 *   **按名称搜索食谱 (`--recipe-search <QUERY>`)**:
     *   `QUERY`: 要搜索的食谱名称关键词。
     *   示例: `recipe-cli --recipe-search "番茄炒蛋"`
-*   **更新食谱 (`--recipe-update <RECIPE_ID>`)**: (需要管理员登录)
+*   **更新食谱 (`--recipe-update <RECIPE_ID>`)**:
     *   `RECIPE_ID`: 要更新的食谱的数字 ID。
     *   执行命令后，程序会显示当前食谱信息，并引导您交互式地更新各个字段。
     *   示例: `recipe-cli --recipe-update 101`
-*   **删除食谱 (`--recipe-delete <RECIPE_ID>`)**: (需要管理员登录)
+*   **删除食谱 (`--recipe-delete <RECIPE_ID>`)**:
     *   `RECIPE_ID`: 要删除的食谱的数字 ID。
     *   删除前会有确认提示。
     *   示例: `recipe-cli --recipe-delete 101`
 
-### 4. 管理员功能 (需要管理员登录)
-
-*   **列出所有用户 (`--admin-user-list`)**:
-    *   示例: `recipe-cli --admin-user-list`
-*   **创建新用户 (`--admin-user-create`)**:
-    *   程序会提示输入新用户的用户名和密码。
-    *   示例: `recipe-cli --admin-user-create`
-*   **更新用户信息 (`--admin-user-update <USER_ID>`)**:
-    *   `USER_ID`: 要更新的用户的数字 ID。
-    *   程序会引导进行更新操作 (具体更新字段需参考程序提示)。
-    *   示例: `recipe-cli --admin-user-update 201`
-*   **删除用户 (`--admin-user-delete <USER_ID>`)**:
-    *   `USER_ID`: 要删除的用户的数字 ID。
-    *   删除前会有确认提示。
-    *   示例: `recipe-cli --admin-user-delete 201`
-
 *(请注意：上述命令和参数基于代码分析，建议在程序内运行 `recipe-cli --help` 以获取最准确和完整的命令列表及其用法。)*
 
-### 5. 未来功能展望
+### 3. 未来功能展望
 *   食谱分类与标签管理
 *   批量导入/导出食谱 (例如从 JSON, CSV 文件)
 *   数据备份与恢复机制
@@ -262,11 +197,17 @@ IntelligentRecipeManagementSystem (项目代号: RecipeCliApp) 是一个旨在�
 
 ## 十、版本历史与更新日志
 
+*   **v0.1.1 (2025-05-09)**
+    *   代码清理：移除了未使用的 `UserCommandHandler` 类及其相关引用和代码。
+    *   命令行界面：将 `--help` 输出中的选项描述中文化。
+    *   Bug修复：
+        *   修复了从 `recipes.json` 加载菜谱时因 `cuisine`, `cookingTime`, `preparationTime` 字段名不匹配以及 `difficulty` 字段缺失导致加载失败的问题。
+        *   修复了 `admin-user-update` 命令在更新用户密码时，若密码输入为空（不修改密码）则程序意外退出的问题。
+    *   功能调整：根据用户请求，在帮助信息和程序执行逻辑中注释掉了所有管理员特定命令 (`--admin-user-list`, `--admin-user-create`, `--admin-user-update`, `--admin-user-delete`)。
+    *   文档：全面更新了 README.md，移除了已失效功能（如用户注册登录、管理员命令）的描述和示例，确保文档与程序当前功能一致。
 *   **v0.1.0 (2025-05-09)**
     *   初始版本发布。
-    *   实现基于命令行的用户账户管理 (注册、登录、登出、查看信息、修改密码)。
-    *   实现基于命令行的食谱管理 (交互式添加、列表查看、ID查看、名称搜索、管理员更新、管理员删除)。
-    *   实现基于命令行的管理员用户管理 (列表查看、创建、ID更新、ID删除)。
+    *   实现基于命令行的食谱管理 (交互式添加、列表查看、ID查看、名称搜索、更新、删除)。
     *   数据通过 JSON 文件持久化。
     *   使用 cxxopts进行命令行参数解析。
     *   包含基本的 CMake 构建系统和 Google Test 单元测试框架。
