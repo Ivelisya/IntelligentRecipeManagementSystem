@@ -1,0 +1,3 @@
+D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -E rm -f CMakeFiles\TestPersistenceRestaurant.dir/objects.a
+D:\mingw64\bin\ar.exe qc CMakeFiles\TestPersistenceRestaurant.dir/objects.a @CMakeFiles\TestPersistenceRestaurant.dir\objects1.rsp
+D:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\TestPersistenceRestaurant.dir/objects.a -Wl,--no-whole-archive -o TestPersistenceRestaurant.exe -Wl,--out-implib,libTestPersistenceRestaurant.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TestPersistenceRestaurant.dir\linkLibs.rsp

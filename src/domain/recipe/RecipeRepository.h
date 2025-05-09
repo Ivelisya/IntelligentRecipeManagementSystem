@@ -1,0 +1,40 @@
+#ifndef RECIPE_REPOSITORY_H
+#define RECIPE_REPOSITORY_H
+
+#include "domain/recipe/Recipe.h"
+#include "core/CustomLinkedList.h"
+#include <string>
+#include <optional>
+#include <vector> // For findByName results
+
+namespace RecipeApp
+{
+    namespace Domain
+    {
+        namespace Recipe
+        {
+            class RecipeRepository
+            {
+            public:
+                virtual ~RecipeRepository() = default;
+
+                virtual std::optional<RecipeApp::Recipe> findById(int recipeId) const = 0;
+                // findByName might return multiple recipes if partial match is allowed
+                virtual CustomDataStructures::CustomLinkedList<RecipeApp::Recipe> findByName(const std::string &name, bool partialMatch = false) const = 0;
+                virtual std::vector<RecipeApp::Recipe> findAll() const = 0; // Changed return type
+                virtual int save(const RecipeApp::Recipe &recipe) = 0;      // Changed to const ref, returns new/existing ID or -1
+                virtual bool remove(int recipeId) = 0;
+
+                /**
+                 * @brief Sets the next available ID for a new recipe (for persistence loading).
+                 * @param nextId The next ID to be used.
+                 */
+                virtual void setNextId(int nextId) = 0;
+                // ID generation might be handled here or by the specific implementation (e.g., database sequence)
+                // The save method returning the ID helps manage this.
+            };
+        } // namespace Recipe
+    } // namespace Domain
+} // namespace RecipeApp
+
+#endif // RECIPE_REPOSITORY_H

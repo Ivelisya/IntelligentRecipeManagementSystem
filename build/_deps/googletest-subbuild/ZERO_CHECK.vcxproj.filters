@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-subbuild\CMakeFiles\a616502bd959308cea08bee242a20ba4\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D55981C9-5BBC-37AD-B24B-C5BDF9A11B20}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

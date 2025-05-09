@@ -1,0 +1,8 @@
+TestCustomLinkedList 15 0.000702693
+TestRestaurant 14 0.000429936
+TestRestaurantManager 11 0.00103655
+TestPersistenceRestaurant 9 0.000938989
+TestPersistenceComprehensive 8 0.0012398
+TestRecipe 5 0.00166176
+TestJsonRecipeRepository 5 0.0037802
+---

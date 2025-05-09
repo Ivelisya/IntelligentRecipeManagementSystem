@@ -1,0 +1,17 @@
+# CMake generation dependency list for this directory.
+D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/3.31.5/CMakeCCompiler.cmake
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/CMakeLists.txt
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CMakeCInformation.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CMakeDependentOption.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Compiler/MSVC-C.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Compiler/MSVC.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/GNUInstallDirs.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Platform/Linker/Windows-MSVC-C.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Platform/Linker/Windows-MSVC.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Platform/Windows-MSVC-C.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Platform/Windows-MSVC.cmake

@@ -1,0 +1,3 @@
+D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -E rm -f CMakeFiles\TestPersistenceComprehensive.dir/objects.a
+D:\mingw64\bin\ar.exe qc CMakeFiles\TestPersistenceComprehensive.dir/objects.a @CMakeFiles\TestPersistenceComprehensive.dir\objects1.rsp
+D:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\TestPersistenceComprehensive.dir/objects.a -Wl,--no-whole-archive -o TestPersistenceComprehensive.exe -Wl,--out-implib,libTestPersistenceComprehensive.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TestPersistenceComprehensive.dir\linkLibs.rsp

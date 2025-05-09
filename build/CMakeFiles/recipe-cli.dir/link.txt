@@ -1,0 +1,3 @@
+D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -E rm -f CMakeFiles\recipe-cli.dir/objects.a
+D:\mingw64\bin\ar.exe qc CMakeFiles\recipe-cli.dir/objects.a @CMakeFiles\recipe-cli.dir\objects1.rsp
+D:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\recipe-cli.dir/objects.a -Wl,--no-whole-archive -o recipe-cli.exe -Wl,--out-implib,librecipe-cli.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\recipe-cli.dir\linkLibs.rsp

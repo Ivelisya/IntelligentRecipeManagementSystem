@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Github\IntelligentRecipeManagementSystem\build\CMakeFiles\e11f258539f0a9f35186ceed900d2976\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{592C2D5B-CB2A-3FEB-9FAE-DAF36ED184ED}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

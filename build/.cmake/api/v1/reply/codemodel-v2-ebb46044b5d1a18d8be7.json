@@ -1,0 +1,1180 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"build" : "_deps/googletest-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build-Debug-8b187651187085369010.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "build/_deps/googletest-src",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googlemock",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googlemock-Debug-13e36aba9e0afdfc7b78.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "build/_deps/googletest-src/googlemock",
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googletest-Debug-944c042f6c08746280f5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "build/_deps/googletest-src/googletest",
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RecipeCliApp",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-7cce664205a06a221ded.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@f0697b77e45c2bae8283",
+					"jsonFile" : "target-ALL_BUILD-Debug-e0dd5d826dd6e6d9f133.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-ALL_BUILD-Debug-f858a05a024883a9e3ac.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-ALL_BUILD-Debug-9fa54896336bcf9a26dc.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestCustomLinkedList::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestCustomLinkedList-Debug-a44da32a328ab2b881fe.json",
+					"name" : "TestCustomLinkedList",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestJsonRecipeRepository::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestJsonRecipeRepository-Debug-4a1bceb973b19b0d641b.json",
+					"name" : "TestJsonRecipeRepository",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceComprehensive::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceComprehensive-Debug-9e810291befab244fff3.json",
+					"name" : "TestPersistenceComprehensive",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceRestaurant-Debug-898a85fa919220fefd5d.json",
+					"name" : "TestPersistenceRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRecipe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRecipe-Debug-8d92ea204491f8d7d001.json",
+					"name" : "TestRecipe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurant-Debug-b5fad06661eb0126ce96.json",
+					"name" : "TestRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurantManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurantManager-Debug-76fd13f6016965bfb14e.json",
+					"name" : "TestRestaurantManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-5231dc9247b7dbd37f18.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock-Debug-1d4ca61444d61cf6315c.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_main-Debug-9d8d0b89114935d20185.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest-Debug-36e63cf8d02f2b51404b.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_main-Debug-36a10a78adc975b7bd84.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "recipe-cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-recipe-cli-Debug-f0a482ed2cd6f54d5dda.json",
+					"name" : "recipe-cli",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"build" : "_deps/googletest-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build-Release-8b187651187085369010.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "build/_deps/googletest-src",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googlemock",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googlemock-Release-bd0ceec777949a65ab9a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "build/_deps/googletest-src/googlemock",
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googletest-Release-4aa73bf6bb1c72b70226.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "build/_deps/googletest-src/googletest",
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RecipeCliApp",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-7cce664205a06a221ded.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@f0697b77e45c2bae8283",
+					"jsonFile" : "target-ALL_BUILD-Release-e0dd5d826dd6e6d9f133.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-ALL_BUILD-Release-f858a05a024883a9e3ac.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-ALL_BUILD-Release-9fa54896336bcf9a26dc.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestCustomLinkedList::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestCustomLinkedList-Release-12bfbee03b92fa6d2e4d.json",
+					"name" : "TestCustomLinkedList",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestJsonRecipeRepository::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestJsonRecipeRepository-Release-8bd4dc42bcd814c96325.json",
+					"name" : "TestJsonRecipeRepository",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceComprehensive::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceComprehensive-Release-4a98928833aef8ba16ed.json",
+					"name" : "TestPersistenceComprehensive",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceRestaurant-Release-8bf102669558afc80e4b.json",
+					"name" : "TestPersistenceRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRecipe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRecipe-Release-87a3a58e91fb43423176.json",
+					"name" : "TestRecipe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurant-Release-05bcf517b980107b3c91.json",
+					"name" : "TestRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurantManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurantManager-Release-e8e6e55e8ab97c5d1f50.json",
+					"name" : "TestRestaurantManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-5231dc9247b7dbd37f18.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock-Release-4cfaa240353853f595bc.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_main-Release-c4ada3b47bbcd083c708.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest-Release-682cf1249c7a2d2a6a40.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_main-Release-1ba3bfe3b4a74888f06a.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "recipe-cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-recipe-cli-Release-5b03ee1a61c8750e6292.json",
+					"name" : "recipe-cli",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"build" : "_deps/googletest-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build-MinSizeRel-8b187651187085369010.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "build/_deps/googletest-src",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googlemock",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googlemock-MinSizeRel-b3e9bd562dc3653b0b65.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "build/_deps/googletest-src/googlemock",
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googletest-MinSizeRel-7faa6bbabab1cf0b6c89.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "build/_deps/googletest-src/googletest",
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RecipeCliApp",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-7cce664205a06a221ded.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@f0697b77e45c2bae8283",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-e0dd5d826dd6e6d9f133.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-f858a05a024883a9e3ac.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-9fa54896336bcf9a26dc.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestCustomLinkedList::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestCustomLinkedList-MinSizeRel-945c041d26319aad3a2f.json",
+					"name" : "TestCustomLinkedList",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestJsonRecipeRepository::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestJsonRecipeRepository-MinSizeRel-640f3f3a291ff735e154.json",
+					"name" : "TestJsonRecipeRepository",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceComprehensive::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceComprehensive-MinSizeRel-92f5da1eadb2acb4be84.json",
+					"name" : "TestPersistenceComprehensive",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceRestaurant-MinSizeRel-ca3bbc3ae92c27dddd74.json",
+					"name" : "TestPersistenceRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRecipe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRecipe-MinSizeRel-935ac76b7f2cd48e73a4.json",
+					"name" : "TestRecipe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurant-MinSizeRel-e97f886b195aca9a3ff9.json",
+					"name" : "TestRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurantManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurantManager-MinSizeRel-47a70371df78f71ddec3.json",
+					"name" : "TestRestaurantManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-5231dc9247b7dbd37f18.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock-MinSizeRel-f7082b732bf32ad7d78f.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_main-MinSizeRel-7173da7d3e25bd9c393c.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest-MinSizeRel-6de35345a79dc7884fa7.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_main-MinSizeRel-35c4b9a5465fe27bc807.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "recipe-cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-recipe-cli-MinSizeRel-e3ff6e3af7882f1bde2d.json",
+					"name" : "recipe-cli",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"build" : "_deps/googletest-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build-RelWithDebInfo-8b187651187085369010.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "build/_deps/googletest-src",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googlemock",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googlemock-RelWithDebInfo-aaae303a94ea3778ae7c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "build/_deps/googletest-src/googlemock",
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googletest-RelWithDebInfo-e233e598cbf606e82521.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "build/_deps/googletest-src/googletest",
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RecipeCliApp",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						16
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						12,
+						13
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-7cce664205a06a221ded.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@f0697b77e45c2bae8283",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-e0dd5d826dd6e6d9f133.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-f858a05a024883a9e3ac.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-9fa54896336bcf9a26dc.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestCustomLinkedList::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestCustomLinkedList-RelWithDebInfo-d3b295a9676bccf94e7e.json",
+					"name" : "TestCustomLinkedList",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestJsonRecipeRepository::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestJsonRecipeRepository-RelWithDebInfo-e12125ddc74744ce01f4.json",
+					"name" : "TestJsonRecipeRepository",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceComprehensive::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceComprehensive-RelWithDebInfo-cd5c48ad581f11752ad4.json",
+					"name" : "TestPersistenceComprehensive",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestPersistenceRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestPersistenceRestaurant-RelWithDebInfo-d2aa60580e5cd1ed1d94.json",
+					"name" : "TestPersistenceRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRecipe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRecipe-RelWithDebInfo-7f4ded92351de0ea39b2.json",
+					"name" : "TestRecipe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurant::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurant-RelWithDebInfo-7aad25929ae42b3a9cf0.json",
+					"name" : "TestRestaurant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestRestaurantManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestRestaurantManager-RelWithDebInfo-dfc0b174132ffb40a453.json",
+					"name" : "TestRestaurantManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-5231dc9247b7dbd37f18.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock-RelWithDebInfo-c3662fe211cd063cf0dd.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_main-RelWithDebInfo-12dd832939c2eaad0746.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest-RelWithDebInfo-278d877237d4d113deef.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_main-RelWithDebInfo-e9a2bac5cd9e68b89f15.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "recipe-cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-recipe-cli-RelWithDebInfo-8d69a36b7d9a9db20e2a.json",
+					"name" : "recipe-cli",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Github/IntelligentRecipeManagementSystem/build",
+		"source" : "D:/Github/IntelligentRecipeManagementSystem"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

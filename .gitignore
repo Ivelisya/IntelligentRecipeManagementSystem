@@ -1,0 +1,3 @@
+# Ignore embedded Git repositories
+IntelligentRecipeManagementSystem/
+build/_deps/googletest-src/

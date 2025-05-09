@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googlemock/CMakeLists.txt
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googlemock/cmake/gmock.pc.in
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googlemock/cmake/gmock_main.pc.in
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CheckIncludeFile.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CheckLibraryExists.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/FindPackageMessage.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/FindThreads.cmake
