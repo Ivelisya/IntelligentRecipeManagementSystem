@@ -21,7 +21,9 @@ namespace RecipeApp
             {"name", recipe.getName()},
             {"cuisine", recipe.getCuisine()},
             {"cookingTime", recipe.getCookingTime()},
-            {"difficulty", recipe.getDifficulty()}};
+            {"difficulty", recipe.getDifficulty()},
+            {"tags", recipe.getTags()} // Add tags serialization
+        };
 
         // Serialize ingredients: vector<pair<string, string>>
         json ingredients_array = json::array();
@@ -62,9 +64,9 @@ namespace RecipeApp
     // --- Class Method Implementations ---
 
     Recipe::Recipe(int id, const std::string &name, const std::vector<std::pair<std::string, std::string>> &ingredients,
-                   const std::vector<std::string> &steps, int cookingTime, Difficulty difficulty, const std::string &cuisine)
+                   const std::vector<std::string> &steps, int cookingTime, Difficulty difficulty, const std::string &cuisine, const std::vector<std::string> &tags)
         : recipeId(id), name(name), ingredients(ingredients), steps(steps), cookingTime(cookingTime),
-          difficulty(difficulty), cuisine(cuisine)
+          difficulty(difficulty), cuisine(cuisine), tags(tags) // Initialize tags
     {
         // Consistent with setCookingTime, throw if cookingTime is invalid
         if (this->cookingTime < 0)
@@ -118,7 +120,29 @@ namespace RecipeApp
         {
             oss << "Image URL: " << imageUrl.value() << "\n";
         }
+
+        if (!tags.empty())
+        {
+            oss << "Tags: ";
+            for (size_t i = 0; i < tags.size(); ++i)
+            {
+                oss << tags[i] << (i == tags.size() - 1 ? "" : ", ");
+            }
+            oss << "\n";
+        }
         return oss.str();
+    }
+
+    bool Recipe::hasTag(const std::string &tagToCheck) const
+    {
+        for (const auto &tag : tags)
+        {
+            if (tag == tagToCheck)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 } // namespace RecipeApp

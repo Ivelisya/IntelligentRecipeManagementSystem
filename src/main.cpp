@@ -3,49 +3,87 @@
 #include <vector>
 #include <limits>      // Required for std::numeric_limits
 #include <stdexcept>   // Required for std::exception
+#include <filesystem>  // Required for std::filesystem
 #include "cxxopts.hpp" // 包含 cxxopts 头文件
 
 // Core Logic Managers
-#include "logic/user/UserManager.h"
+// #include "logic/user/UserManager.h" // UserManager removed
 #include "logic/recipe/RecipeManager.h"
 #include "logic/restaurant/RestaurantManager.h" // Keep for now, will need repository later
 
 // Persistence Layer (Repositories)
 // #include "persistence/PersistenceManager.h" // No longer needed by UserCommandHandler
-#include "persistence/JsonUserRepository.h"       // ADDED
+// #include "persistence/JsonUserRepository.h"       // JsonUserRepository removed
 #include "persistence/JsonRecipeRepository.h"     // ADDED
 #include "persistence/JsonRestaurantRepository.h" // ADDED
 
 // Domain Objects (needed for enums, etc.)
 #include "domain/recipe/Recipe.h"
-#include "domain/user/User.h"
+// #include "domain/user/User.h" // User domain object removed
 // #include "domain/restaurant/Restaurant.h" // Will be needed later
 
 // CLI Utilities and Handlers
-#include "core/CustomLinkedList.h"             // For CustomLinkedList type (if still used by handlers)
+// #include "core/CustomLinkedList.h"             // No longer needed
 #include "cli/CliUtils.h"                      // For CLI utility functions
 #include "cli/handlers/RecipeCommandHandler.h" // Include the new Recipe handler
-#include "cli/handlers/AdminCommandHandler.h"  // Include the new Admin handler
-#include "cli/ExitCodes.h"                     // Include ExitCodes
+// #include "cli/handlers/AdminCommandHandler.h"  // AdminCommandHandler removed
+#include "cli/ExitCodes.h" // Include ExitCodes
 
 // 版本号可以定义为常量
 const std::string APP_VERSION = "0.1.0";
 
 int main(int argc, char *argv[])
 {
+    // --- Determine User Configuration Directory ---
+    std::filesystem::path configDirPath;
+#ifdef _WIN32
+    const char *appData = std::getenv("APPDATA");
+    if (appData)
+    {
+        configDirPath = std::filesystem::path(appData) / "IntelligentRecipeManagementSystem";
+    }
+    else
+    {
+        // Fallback or error handling if APPDATA is not set
+        configDirPath = std::filesystem::current_path() / ".IntelligentRecipeManagementSystem_UserConfig"; // Fallback
+        std::cerr << "Warning: APPDATA environment variable not found. Using fallback config directory: " << configDirPath << std::endl;
+    }
+#else // Assuming Linux/macOS
+    const char *homeDir = std::getenv("HOME");
+    if (homeDir)
+    {
+        configDirPath = std::filesystem::path(homeDir) / ".config" / "IntelligentRecipeManagementSystem";
+    }
+    else
+    {
+        // Fallback or error handling if HOME is not set
+        configDirPath = std::filesystem::current_path() / ".IntelligentRecipeManagementSystem_UserConfig"; // Fallback
+        std::cerr << "Warning: HOME environment variable not found. Using fallback config directory: " << configDirPath << std::endl;
+    }
+#endif
+
+    try
+    {
+        if (!std::filesystem::exists(configDirPath))
+        {
+            std::filesystem::create_directories(configDirPath);
+        }
+    }
+    catch (const std::filesystem::filesystem_error &e)
+    {
+        std::cerr << "Error: Could not create configuration directory: " << configDirPath << " - " << e.what() << std::endl;
+        return RecipeApp::Cli::EX_CANTCREAT;
+    }
+
     // --- Dependency Injection Setup ---
 
-    // 1. Instantiate Repositories
-    RecipeApp::Persistence::JsonUserRepository userRepository("users.json");
-    RecipeApp::Persistence::JsonRecipeRepository recipeRepository("recipes.json");
-    RecipeApp::Persistence::JsonRestaurantRepository restaurantRepository("restaurants.json"); // ADDED Instantiation
+    // 1. Instantiate Repositories using the config directory path
+    // RecipeApp::Persistence::JsonUserRepository userRepository("users.json"); // JsonUserRepository removed
+    RecipeApp::Persistence::JsonRecipeRepository recipeRepository(configDirPath, "recipes.json");
+    RecipeApp::Persistence::JsonRestaurantRepository restaurantRepository(configDirPath, "restaurants.json"); // ADDED Instantiation with path
 
     // 2. Load data into repositories
-    if (!userRepository.load())
-    {
-        std::cerr << "错误：无法加载用户数据 (users.json)。程序将退出。" << std::endl;
-        return RecipeApp::Cli::EX_DATAERR;
-    }
+    // User data loading removed
     if (!recipeRepository.load())
     {
         std::cerr << "错误：无法加载菜谱数据 (recipes.json)。程序将退出。" << std::endl;
@@ -59,15 +97,15 @@ int main(int argc, char *argv[])
     std::cout << "数据加载成功。" << std::endl; // Or move this inside handlers if needed
 
     // 3. Instantiate Managers with Repository Dependencies
-    RecipeApp::UserManager userManager(userRepository);                   // Inject UserRepository
+    // RecipeApp::UserManager userManager(userRepository);                   // UserManager removed
     RecipeApp::RecipeManager recipeManager(recipeRepository);             // Inject RecipeRepository
     RecipeApp::RestaurantManager restaurantManager(restaurantRepository); // ADDED Injection
 
     // RecipeApp::PersistenceManager tempPersistenceManager("recipes.json", "users.json", "restaurants.json"); // Removed
 
     // 4. Instantiate Command Handlers with Manager Dependencies
-    RecipeApp::CliHandlers::RecipeCommandHandler recipeCommandHandler(recipeManager, userManager);
-    RecipeApp::CliHandlers::AdminCommandHandler adminCommandHandler(userManager);
+    RecipeApp::CliHandlers::RecipeCommandHandler recipeCommandHandler(recipeManager);
+    // RecipeApp::CliHandlers::AdminCommandHandler adminCommandHandler(userManager); // AdminCommandHandler removed
 
     // --- Old PersistenceManager Loading REMOVED ---
     // RecipeApp::PersistenceManager persistenceManager("recipes.json", "users.json", "restaurants.json");
@@ -84,7 +122,9 @@ int main(int argc, char *argv[])
 
     // options.add_options("User")("login", "User login.\n  Example: recipe-cli --login myuser\n  Example: recipe-cli --login", cxxopts::value<std::string>()->implicit_value(""), "USERNAME")("register", "Register a new user.\n  Example: recipe-cli --register newuser\n  Example: recipe-cli --register", cxxopts::value<std::string>()->implicit_value(""), "USERNAME")("logout", "Logout the current user.\n  Example: recipe-cli --logout")("user-profile", "Display current logged-in user's details. Requires login.\n  Example: recipe-cli --user-profile")("update-profile", "Update current logged-in user's password. Requires login.\n  Example: recipe-cli --update-profile");
     // User commands removed. Help text for "User" group might need removal or rephrasing if group is empty.
-    options.add_options("Recipe")("recipe-add", u8"添加一个新菜谱。\n  例如: recipe-cli --recipe-add")("recipe-list", u8"列出所有可用的菜谱。\n  例如: recipe-cli --recipe-list")("recipe-search", u8"按名称搜索菜谱。\n  例如: recipe-cli --recipe-search \"鸡肉\"", cxxopts::value<std::string>(), u8"查询内容")("recipe-view", u8"按 ID 查看菜谱详情。\n  例如: recipe-cli --recipe-view 101", cxxopts::value<int>(), u8"菜谱ID")("recipe-update", u8"按 ID 更新菜谱。\n  例如: recipe-cli --recipe-update 101", cxxopts::value<int>(), u8"菜谱ID")("recipe-delete", u8"按 ID 删除菜谱。\n  例如: recipe-cli --recipe-delete 101", cxxopts::value<int>(), u8"菜谱ID");
+    options.add_options("Recipe")("recipe-add", u8"添加一个新菜谱。\n  可附加 --tags \"标签1,标签2\" 来指定标签。\n  例如: recipe-cli --recipe-add [--tags \"家常菜,快捷\"]")("recipe-list", u8"列出所有可用的菜谱。\n  例如: recipe-cli --recipe-list")("recipe-search", u8"按名称和/或标签搜索菜谱。\n  名称搜索: --recipe-search \"鸡肉\"\n  单标签搜索: --recipe-search --tag \"素食\"\n  多标签搜索 (AND): --recipe-search --tags \"晚餐,快捷\"\n  组合搜索: --recipe-search \"汤\" --tag \"冬季\"", cxxopts::value<std::string>()->implicit_value(""), u8"查询内容 (可选)")("recipe-view", u8"按 ID 查看菜谱详情。\n  例如: recipe-cli --recipe-view 101", cxxopts::value<int>(), u8"菜谱ID")("recipe-update", u8"按 ID 更新菜谱。\n  可附加 --tags \"新标签1,新标签2\" 来更新标签 (将替换所有旧标签)。\n  例如: recipe-cli --recipe-update 101 [--tags \"健康,午餐\"]", cxxopts::value<int>(), u8"菜谱ID")("recipe-delete", u8"按 ID 删除菜谱。\n  例如: recipe-cli --recipe-delete 101", cxxopts::value<int>(), u8"菜谱ID")
+        // Tag specific options for search and update
+        ("tag", u8"用于 --recipe-search, 按单个标签过滤。", cxxopts::value<std::string>(), u8"标签名")("tags", u8"用于 --recipe-add, --recipe-update (替换) 或 --recipe-search (AND 匹配)。\n  格式: \"标签1,标签2,标签3\"", cxxopts::value<std::string>(), u8"逗号分隔的标签列表");
 
     // options.add_options("Admin")
     // ("admin-user-list", u8"列出系统中的所有用户。\n  例如: recipe-cli --admin-user-list")

@@ -5,7 +5,7 @@
 #include <vector>
 #include <utility>                // For std::pair
 #include "domain/recipe/Recipe.h" // For RecipeApp::Difficulty
-#include "domain/user/User.h"     // For RecipeApp::UserRole
+// #include "domain/user/User.h"     // User domain object removed
 
 namespace RecipeApp
 {
@@ -33,11 +33,14 @@ namespace RecipeApp
         // 从控制台获取制作步骤
         std::vector<std::string> getStepsFromConsole();
 
+        // 解析逗号分隔的字符串到vector
+        std::vector<std::string> parseCsvStringToVector(const std::string &csv_string);
+
         // 从控制台获取用户角色选择
-        RecipeApp::UserRole getRoleSelectionFromConsole();
+        // RecipeApp::UserRole getRoleSelectionFromConsole(); // User related function removed
 
         // 简要显示用户详情
-        void displayUserDetailsBrief(const RecipeApp::User &user);
+        // void displayUserDetailsBrief(const RecipeApp::User &user); // User related function removed
 
         // 简要显示菜谱详情
         void displayRecipeDetailsBrief(const RecipeApp::Recipe &recipe);

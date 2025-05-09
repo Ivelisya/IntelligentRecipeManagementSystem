@@ -3,8 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
-#include <sstream>   // For string stream helpers
-#include <algorithm> // For std::find_if, std::remove_if
+#include <sstream>    // For string stream helpers
+#include <algorithm>  // For std::find_if, std::remove_if
+#include <filesystem> // For path operations and directory creation
 
 namespace RecipeApp
 {
@@ -14,8 +15,34 @@ namespace RecipeApp
         using ::RecipeApp::Restaurant;
 
         // Constructor
-        JsonRestaurantRepository::JsonRestaurantRepository(const std::string &filePath)
-            : m_filePath(filePath), m_nextId(1) {}
+        JsonRestaurantRepository::JsonRestaurantRepository(const std::filesystem::path &baseDirectory, const std::string &fileName)
+            : m_nextId(1)
+        {
+            // Ensure the base directory exists
+            if (!std::filesystem::exists(baseDirectory))
+            {
+                try
+                {
+                    if (std::filesystem::create_directories(baseDirectory))
+                    {
+                        // Optional: Log directory creation
+                        // std::cout << "Info: Created base directory: " << baseDirectory.string() << std::endl;
+                    }
+                }
+                catch (const std::filesystem::filesystem_error &e)
+                {
+                    std::cerr << "Critical Error: Could not create base directory '" << baseDirectory.string() << "': " << e.what() << std::endl;
+                    // Fallback to current directory with just filename, though not ideal for explicit paths.
+                    m_filePath = fileName;
+                    std::cerr << "Warning: Using fallback file path in current directory for restaurants: " << m_filePath << std::endl;
+                    return;
+                }
+            }
+
+            m_filePath = (baseDirectory / fileName).string();
+            // Optional: Log the final path being used
+            // std::cout << "Info: Using restaurant data file: " << m_filePath << std::endl;
+        }
 
         // --- Serialization/Deserialization Helpers ---
 
@@ -50,10 +77,12 @@ namespace RecipeApp
                 }
                 catch (const std::invalid_argument &ia)
                 {
+                    (void)ia; // Mark as intentionally unused
                     std::cerr << "Warning: Invalid integer '" << segment << "' found while deserializing featured recipe ID. Skipped." << std::endl;
                 }
                 catch (const std::out_of_range &oor)
                 {
+                    (void)oor; // Mark as intentionally unused
                     std::cerr << "Warning: Out-of-range integer '" << segment << "' found while deserializing featured recipe ID. Skipped." << std::endl;
                 }
             }
@@ -101,7 +130,7 @@ namespace RecipeApp
             if (!file.is_open())
             {
                 std::cerr << "Warning: Could not open restaurant data file for reading: " << m_filePath << ". Starting with an empty restaurant list." << std::endl;
-                m_restaurants.clearList();
+                m_restaurants.clear();
                 m_nextId = 1;
                 return true; // Okay to start empty
             }
@@ -111,7 +140,7 @@ namespace RecipeApp
                 json data = json::parse(file);
                 file.close();
 
-                m_restaurants.clearList();
+                m_restaurants.clear();
                 int maxId = 0;
 
                 if (data.contains("restaurants") && data["restaurants"].is_array())
@@ -121,7 +150,7 @@ namespace RecipeApp
                         Restaurant restaurant = jsonToRestaurant(restaurantJson);
                         if (restaurant.getRestaurantId() > 0)
                         {
-                            m_restaurants.addBack(restaurant);
+                            m_restaurants.push_back(restaurant);
                             if (restaurant.getRestaurantId() > maxId)
                             {
                                 maxId = restaurant.getRestaurantId();
@@ -139,14 +168,14 @@ namespace RecipeApp
             catch (const json::parse_error &e)
             {
                 std::cerr << "Error: Failed to parse restaurant JSON data: " << e.what() << " at byte " << e.byte << std::endl;
-                m_restaurants.clearList();
+                m_restaurants.clear();
                 m_nextId = 1;
                 return false;
             }
             catch (const std::exception &e)
             {
                 std::cerr << "Error loading restaurant data: " << e.what() << std::endl;
-                m_restaurants.clearList();
+                m_restaurants.clear();
                 m_nextId = 1;
                 return false;
             }
@@ -154,33 +183,79 @@ namespace RecipeApp
 
         bool JsonRestaurantRepository::saveAll()
         {
-            json data;
-            json restaurantsJson = json::array();
+            json dataDoc; // Changed variable name
+            json restaurantsJsonArray = json::array();
 
             for (const auto &restaurant : m_restaurants)
             {
-                restaurantsJson.push_back(restaurantToJson(restaurant));
+                restaurantsJsonArray.push_back(restaurantToJson(restaurant));
             }
-            data["restaurants"] = restaurantsJson;
+            dataDoc["restaurants"] = restaurantsJsonArray;
 
-            std::ofstream file(m_filePath);
-            if (!file.is_open())
+            std::filesystem::path filePathObj(m_filePath);
+            std::filesystem::path tempFilePathObj = filePathObj;
+            tempFilePathObj += ".tmp";
+
+            if (!filePathObj.parent_path().empty() && !std::filesystem::exists(filePathObj.parent_path()))
             {
-                std::cerr << "Error: Could not open restaurant data file for writing: " << m_filePath << std::endl;
+                try
+                {
+                    std::filesystem::create_directories(filePathObj.parent_path());
+                }
+                catch (const std::filesystem::filesystem_error &e)
+                {
+                    std::cerr << "Error: Could not create directory for saving file "
+                              << filePathObj.parent_path().string() << ": " << e.what() << std::endl;
+                    return false;
+                }
+            }
+
+            std::ofstream tempFile(tempFilePathObj.string(), std::ios::out | std::ios::trunc);
+            if (!tempFile.is_open())
+            {
+                std::cerr << "Error: Could not open temporary restaurant data file for writing: " << tempFilePathObj.string() << std::endl;
                 return false;
             }
 
             try
             {
-                file << data.dump(2); // Pretty print
-                file.close();
-                return true;
+                tempFile << dataDoc.dump(2);
+                tempFile.close();
+
+                if (tempFile.fail())
+                {
+                    std::cerr << "Error: Failed to write all data to temporary file: " << tempFilePathObj.string() << std::endl;
+                    std::filesystem::remove(tempFilePathObj);
+                    return false;
+                }
             }
             catch (const std::exception &e)
             {
-                std::cerr << "Error saving restaurant data: " << e.what() << std::endl;
-                if (file.is_open())
-                    file.close();
+                std::cerr << "Error serializing restaurant data to temporary file '" << tempFilePathObj.string() << "': " << e.what() << std::endl;
+                if (tempFile.is_open())
+                    tempFile.close();
+                std::filesystem::remove(tempFilePathObj);
+                return false;
+            }
+
+            try
+            {
+                std::filesystem::rename(tempFilePathObj, filePathObj);
+                return true;
+            }
+            catch (const std::filesystem::filesystem_error &e)
+            {
+                std::cerr << "Error: Failed to replace original file '" << filePathObj.string()
+                          << "' with temporary file '" << tempFilePathObj.string() << "': " << e.what() << std::endl;
+                if (std::filesystem::exists(tempFilePathObj))
+                {
+                    std::error_code ec;
+                    std::filesystem::remove(tempFilePathObj, ec);
+                    if (ec)
+                    {
+                        std::cerr << "Warning: Could not remove temporary file '" << tempFilePathObj.string() << "' after rename failed: " << ec.message() << std::endl;
+                    }
+                }
                 return false;
             }
         }
@@ -231,7 +306,7 @@ namespace RecipeApp
         std::vector<Restaurant> JsonRestaurantRepository::findAll() const
         {
             std::vector<Restaurant> allRestaurants;
-            allRestaurants.reserve(m_restaurants.getSize());
+            allRestaurants.reserve(m_restaurants.size());
             for (const auto &restaurant : m_restaurants)
             {
                 allRestaurants.push_back(restaurant);
@@ -278,7 +353,7 @@ namespace RecipeApp
                 // If idToUse > 0 but not found, it means we are loading from persistence.
                 // We use the idToUse (which is restaurantToSave.getRestaurantId())
                 // and restaurantToAdd is already a correct copy.
-                m_restaurants.addBack(restaurantToAdd);
+                m_restaurants.push_back(restaurantToAdd);
             }
 
             // Ensure m_nextId is always greater than the ID just processed or any existing max ID
@@ -308,25 +383,20 @@ namespace RecipeApp
 
         bool JsonRestaurantRepository::remove(int restaurantId)
         {
-            auto it = m_restaurants.begin();
-            while (it != m_restaurants.end())
+            auto initial_size = m_restaurants.size();
+            m_restaurants.erase(
+                std::remove_if(m_restaurants.begin(), m_restaurants.end(),
+                               [restaurantId](const Restaurant &restaurant)
+                               {
+                                   return restaurant.getRestaurantId() == restaurantId;
+                               }),
+                m_restaurants.end());
+
+            if (m_restaurants.size() < initial_size) // If an element was removed
             {
-                if ((*it).getRestaurantId() == restaurantId)
-                {
-                    bool removed = m_restaurants.removeValue(*it); // Use removeValue based on operator==
-                    if (removed)
-                    {
-                        return saveAll();
-                    }
-                    else
-                    {
-                        std::cerr << "Error: Found restaurant ID " << restaurantId << " but could not remove from list." << std::endl;
-                        return false;
-                    }
-                }
-                ++it;
+                return saveAll();
             }
-            return false; // Restaurant not found
+            return false; // Restaurant not found or not removed
         }
 
         // getNextId() const implementation (optional)

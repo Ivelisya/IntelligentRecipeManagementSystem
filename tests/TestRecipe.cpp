@@ -3,6 +3,7 @@
 #include "json.hpp" // For nlohmann::json for testing serialization
 
 #include <stdexcept> // For std::invalid_argument, std::runtime_error
+#include <algorithm> // For std::find in hasTag
 
 // Convenience alias
 using json = nlohmann::json;
@@ -119,6 +120,8 @@ TEST(RecipeTest, JsonSerializationDeserializationFull)
                           60, Difficulty::Hard, "Bakery");
     originalRecipe.setNutritionalInfo("High Sugar");
     originalRecipe.setImageUrl("http://baking.com/cake.jpg");
+    originalRecipe.addTag("Dessert");
+    originalRecipe.addTag("Cake");
 
     // Serialize
     json recipeJson = originalRecipe; // Uses to_json
@@ -138,6 +141,10 @@ TEST(RecipeTest, JsonSerializationDeserializationFull)
     ASSERT_EQ(recipeJson["steps"][0], "Mix dry ingredients");
     ASSERT_EQ(recipeJson["nutritionalInfo"], "High Sugar");
     ASSERT_EQ(recipeJson["imageUrl"], "http://baking.com/cake.jpg");
+    ASSERT_TRUE(recipeJson["tags"].is_array());
+    ASSERT_EQ(recipeJson["tags"].size(), 2);
+    EXPECT_EQ(recipeJson["tags"][0], "Dessert"); // Assuming order is preserved or test for presence
+    EXPECT_EQ(recipeJson["tags"][1], "Cake");
 
     // Deserialize
     Recipe deserializedRecipe = recipeJson.get<Recipe>(); // Uses from_json
@@ -155,6 +162,9 @@ TEST(RecipeTest, JsonSerializationDeserializationFull)
     EXPECT_EQ(deserializedRecipe.getNutritionalInfo().value(), originalRecipe.getNutritionalInfo().value());
     ASSERT_TRUE(deserializedRecipe.getImageUrl().has_value());
     EXPECT_EQ(deserializedRecipe.getImageUrl().value(), originalRecipe.getImageUrl().value());
+    ASSERT_EQ(deserializedRecipe.getTags().size(), 2);
+    EXPECT_TRUE(deserializedRecipe.hasTag("Dessert"));
+    EXPECT_TRUE(deserializedRecipe.hasTag("Cake"));
 }
 
 TEST(RecipeTest, JsonDeserializationOptionalFieldsMissing)
@@ -167,16 +177,16 @@ TEST(RecipeTest, JsonDeserializationOptionalFieldsMissing)
         {"difficulty", "Easy"},
         {"ingredients", json::array()},
         {"steps", json::array()}
-        // nutritionalInfo and imageUrl are missing
+        // nutritionalInfo, imageUrl, and tags are missing
     };
 
     Recipe recipe = j.get<Recipe>();
-    // ASSERT_NO_THROW is implicitly handled by TEST_F if j.get<Recipe>() throws
 
     EXPECT_EQ(recipe.getRecipeId(), 102);
     EXPECT_EQ(recipe.getName(), "Minimal Recipe");
     EXPECT_FALSE(recipe.getNutritionalInfo().has_value());
     EXPECT_FALSE(recipe.getImageUrl().has_value());
+    EXPECT_TRUE(recipe.getTags().empty()); // Tags should be empty if missing in JSON
 }
 
 TEST(RecipeTest, JsonDeserializationOptionalFieldsNull)
@@ -187,20 +197,20 @@ TEST(RecipeTest, JsonDeserializationOptionalFieldsNull)
         {"cuisine", "Nullable"},
         {"cookingTime", 15},
         {"difficulty", "Medium"},
-        {"ingredients", {{"name", "item"}, {"quantity", "1"}}}, // Corrected ingredient format
-        {"steps", {"step1"}},
+        {"ingredients", json::array()}, // Keep it simple for this test
+        {"steps", json::array()},
         {"nutritionalInfo", nullptr},
-        {"imageUrl", nullptr}};
-    // Corrected ingredient format for nlohmann::json direct conversion
-    j["ingredients"] = json::array();
+        {"imageUrl", nullptr},
+        {"tags", nullptr} // Test tags as null
+    };
     j["ingredients"].push_back({{"name", "item"}, {"quantity", "1"}});
 
     Recipe recipe = j.get<Recipe>();
-    // ASSERT_NO_THROW is implicitly handled by TEST_F if j.get<Recipe>() throws
 
     EXPECT_EQ(recipe.getRecipeId(), 103);
-    EXPECT_FALSE(recipe.getNutritionalInfo().has_value()); // Should be treated as not present by our current from_json
-    EXPECT_FALSE(recipe.getImageUrl().has_value());        // Should be treated as not present
+    EXPECT_FALSE(recipe.getNutritionalInfo().has_value());
+    EXPECT_FALSE(recipe.getImageUrl().has_value());
+    EXPECT_TRUE(recipe.getTags().empty()); // Tags should be empty if null in JSON
 }
 
 TEST(RecipeTest, JsonDeserializationInvalidData)
@@ -272,13 +282,8 @@ TEST(RecipeTest, JsonDeserializationInvalidData)
         {"cookingTime", 10},
         {"difficulty", "SuperHard"} // Not a valid enum string
     };
-    // Assuming nlohmann::json might default to the first enum value or not throw for an unrecognized string
-    // when NLOHMANN_JSON_SERIALIZE_ENUM is used. Let's verify the resulting difficulty.
     Recipe recipe_invalid_diff = j_invalid_difficulty.get<Recipe>();
-    // Depending on nlohmann::json's behavior with the macro, it might default to Easy or another value.
-    // For now, let's assume it defaults to Easy if "SuperHard" is not recognized and doesn't throw.
-    // This assertion might need adjustment based on actual behavior of the JSON library with the enum macro.
-    EXPECT_EQ(recipe_invalid_diff.getDifficulty(), RecipeApp::Difficulty::Easy);
+    EXPECT_EQ(recipe_invalid_diff.getDifficulty(), RecipeApp::Difficulty::Easy); // nlohmann::json defaults to first enum value on parse error
 }
 
 TEST(RecipeTest, EqualityOperator)
@@ -290,6 +295,140 @@ TEST(RecipeTest, EqualityOperator)
     EXPECT_TRUE(recipe1 == recipe2); // Equality is based on ID only
     EXPECT_FALSE(recipe1 == recipe3);
     EXPECT_FALSE(recipe2 == recipe3);
+}
+
+// --- Tag Management Tests ---
+TEST(RecipeTest, AddAndGetTags)
+{
+    Recipe recipe = createValidRecipe(1, "Tag Test Recipe");
+    ASSERT_TRUE(recipe.getTags().empty());
+
+    recipe.addTag("Easy");
+    ASSERT_EQ(recipe.getTags().size(), 1);
+    EXPECT_EQ(recipe.getTags()[0], "Easy");
+    EXPECT_TRUE(recipe.hasTag("Easy"));
+
+    recipe.addTag("Dinner");
+    ASSERT_EQ(recipe.getTags().size(), 2);
+    EXPECT_TRUE(recipe.hasTag("Easy"));
+    EXPECT_TRUE(recipe.hasTag("Dinner"));
+
+    // Adding duplicate tag
+    recipe.addTag("Easy"); // Should ideally not add if already present, or Recipe::addTag handles uniqueness
+                           // Current Recipe::addTag allows duplicates, so size will be 3.
+                           // If addTag is changed to enforce uniqueness, this assertion needs to be 2.
+    // Let's assume current behavior allows duplicates for this test, then check for specific unique tag presence.
+    // To test uniqueness, we'd check size before and after, or use a set-like structure internally in Recipe.
+    // For now, we'll stick to hasTag for verification of presence.
+    size_t easy_count = 0;
+    for (const auto &t : recipe.getTags())
+        if (t == "Easy")
+            easy_count++;
+    EXPECT_GE(easy_count, 1);              // At least one "Easy" tag
+    EXPECT_EQ(recipe.getTags().size(), 3); // If duplicates are allowed by addTag
+
+    // Adding empty tag
+    recipe.addTag("");
+    // Assuming Recipe::addTag ignores empty strings based on its implementation
+    bool foundEmpty = false;
+    for (const auto &tag : recipe.getTags())
+    {
+        if (tag.empty())
+            foundEmpty = true;
+    }
+    EXPECT_FALSE(foundEmpty);
+    EXPECT_EQ(recipe.getTags().size(), 3); // Size should not change if empty tags are ignored
+}
+
+TEST(RecipeTest, RemoveTags)
+{
+    Recipe recipe = createValidRecipe(2, "Tag Removal Test");
+    recipe.addTag("Breakfast");
+    recipe.addTag("Quick");
+    recipe.addTag("Healthy");
+    recipe.addTag("Quick"); // Add a duplicate for removal test
+    ASSERT_EQ(recipe.getTags().size(), 4);
+
+    // Remove existing tag (all instances)
+    recipe.removeTag("Quick");
+    ASSERT_EQ(recipe.getTags().size(), 2);
+    EXPECT_FALSE(recipe.hasTag("Quick"));
+    EXPECT_TRUE(recipe.hasTag("Breakfast"));
+    EXPECT_TRUE(recipe.hasTag("Healthy"));
+
+    // Remove non-existent tag
+    recipe.removeTag("NonExistent");
+    ASSERT_EQ(recipe.getTags().size(), 2);
+
+    // Remove remaining tags
+    recipe.removeTag("Breakfast");
+    recipe.removeTag("Healthy");
+    ASSERT_TRUE(recipe.getTags().empty());
+
+    // Remove from empty
+    recipe.removeTag("Anything");
+    ASSERT_TRUE(recipe.getTags().empty());
+}
+
+TEST(RecipeTest, HasTag)
+{
+    Recipe recipe = createValidRecipe(3, "HasTag Test");
+    EXPECT_FALSE(recipe.hasTag("AnyTag"));
+
+    recipe.addTag("TestTag");
+    EXPECT_TRUE(recipe.hasTag("TestTag"));
+    EXPECT_FALSE(recipe.hasTag("testtag")); // Assuming case-sensitive
+    EXPECT_FALSE(recipe.hasTag("OtherTag"));
+}
+
+TEST(RecipeTest, TagsInJsonSerialization)
+{ // Already existed, ensure it covers tags
+    Recipe originalRecipe(105, "Tags In JSON", {}, {}, 10, Difficulty::Easy, "Test");
+    originalRecipe.addTag("TagA");
+    originalRecipe.addTag("TagB");
+
+    json recipeJson = originalRecipe;
+    ASSERT_TRUE(recipeJson.contains("tags"));
+    ASSERT_TRUE(recipeJson["tags"].is_array());
+    ASSERT_EQ(recipeJson["tags"].size(), 2);
+
+    bool tagAFound = false;
+    bool tagBFound = false;
+    for (const auto &item : recipeJson["tags"])
+    {
+        if (item.get<std::string>() == "TagA")
+            tagAFound = true;
+        if (item.get<std::string>() == "TagB")
+            tagBFound = true;
+    }
+    EXPECT_TRUE(tagAFound);
+    EXPECT_TRUE(tagBFound);
+
+    Recipe deserializedRecipe = recipeJson.get<Recipe>();
+    ASSERT_EQ(deserializedRecipe.getTags().size(), 2);
+    EXPECT_TRUE(deserializedRecipe.hasTag("TagA"));
+    EXPECT_TRUE(deserializedRecipe.hasTag("TagB"));
+}
+
+TEST(RecipeTest, TagsInJsonDeserialization_EmptyAndNull)
+{ // Already existed, ensure it covers tags
+    // Tags field missing
+    json j_no_tags = {
+        {"id", 106}, {"name", "No Tags Field"}, {"cuisine", "Test"}, {"cookingTime", 5}, {"difficulty", "Easy"}, {"ingredients", json::array()}, {"steps", json::array()}};
+    Recipe recipe_no_tags = j_no_tags.get<Recipe>();
+    EXPECT_TRUE(recipe_no_tags.getTags().empty());
+
+    // Tags field is null
+    json j_null_tags = {
+        {"id", 107}, {"name", "Null Tags Field"}, {"cuisine", "Test"}, {"cookingTime", 5}, {"difficulty", "Easy"}, {"ingredients", json::array()}, {"steps", json::array()}, {"tags", nullptr}};
+    Recipe recipe_null_tags = j_null_tags.get<Recipe>();
+    EXPECT_TRUE(recipe_null_tags.getTags().empty());
+
+    // Tags field is empty array
+    json j_empty_array_tags = {
+        {"id", 108}, {"name", "Empty Array Tags"}, {"cuisine", "Test"}, {"cookingTime", 5}, {"difficulty", "Easy"}, {"ingredients", json::array()}, {"steps", json::array()}, {"tags", json::array()}};
+    Recipe recipe_empty_array_tags = j_empty_array_tags.get<Recipe>();
+    EXPECT_TRUE(recipe_empty_array_tags.getTags().empty());
 }
 
 // It might be beneficial to add tests for ingredient/step parsing if that logic was complex,

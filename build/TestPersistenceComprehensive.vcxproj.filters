@@ -4,18 +4,6 @@
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\tests\TestPersistenceComprehensive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\PersistenceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\logic\user\UserManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\domain\user\User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonUserRepository.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\logic\recipe\RecipeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

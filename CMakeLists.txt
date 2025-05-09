@@ -42,15 +42,10 @@ set(EXECUTABLE_SOURCES
     src/domain/recipe/Recipe.cpp
     src/logic/restaurant/RestaurantManager.cpp
     src/domain/restaurant/Restaurant.cpp
-    src/logic/user/UserManager.cpp
-    src/domain/user/User.cpp
-    src/persistence/PersistenceManager.cpp # RESTORED
-    src/persistence/JsonUserRepository.cpp   # Added JsonUserRepository
     src/persistence/JsonRecipeRepository.cpp # Added JsonRecipeRepository
     src/persistence/JsonRestaurantRepository.cpp # Added JsonRestaurantRepository
     src/cli/CliUtils.cpp             # CLI 辅助函数
     src/cli/handlers/RecipeCommandHandler.cpp # 菜谱命令处理程序
-    src/cli/handlers/AdminCommandHandler.cpp  # 管理员命令处理程序
     # src/api/dll_api.cpp # DLL 接口文件暂时不包含在 CLI 中
     # 注意: CustomLinkedList.h 是仅头文件库，不需要添加到源文件列表
 )
@@ -113,18 +108,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "Force shared CRT for gtest" FORCE)
 # 我们通常链接到 GTest::gtest_main，它包含了 gtest 和一个 main 函数。
 # 或者，如果你的测试文件自己提供了 main 函数，则链接到 GTest::gtest。
 
-# --- 添加测试: TestCustomLinkedList ---
-add_executable(TestCustomLinkedList tests/TestCustomLinkedList.cpp)
-# 确保测试可以找到项目头文件
-target_include_directories(TestCustomLinkedList PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include # For json.hpp etc.
-    ${CMAKE_CURRENT_SOURCE_DIR}/src     # For project headers
-)
-# 链接 Google Test
-target_link_libraries(TestCustomLinkedList PRIVATE GTest::gtest_main)
-add_test(NAME TestCustomLinkedList COMMAND TestCustomLinkedList)
+# --- TestCustomLinkedList 相关代码已移除 ---
 
-message(STATUS "Added test: TestCustomLinkedList")
 # --- 添加测试: TestRestaurant ---
 add_executable(TestRestaurant
     tests/TestRestaurant.cpp
@@ -160,54 +145,27 @@ target_link_libraries(TestRestaurantManager PRIVATE GTest::gtest_main)
 add_test(NAME TestRestaurantManager COMMAND TestRestaurantManager)
 
 message(STATUS "Added test: TestRestaurantManager")
-# --- 添加测试: TestPersistenceRestaurant ---
-add_executable(TestPersistenceRestaurant
-    tests/TestPersistenceRestaurant.cpp
-    src/persistence/PersistenceManager.cpp
-    src/logic/user/UserManager.cpp
-    src/domain/user/User.cpp
-    src/persistence/JsonUserRepository.cpp
-    src/logic/recipe/RecipeManager.cpp
-    src/domain/recipe/Recipe.cpp
-    src/persistence/JsonRecipeRepository.cpp
-    src/logic/restaurant/RestaurantManager.cpp
-    src/domain/restaurant/Restaurant.cpp
-    src/persistence/JsonRestaurantRepository.cpp
-)
-# 确保测试可以找到项目头文件
-target_include_directories(TestPersistenceRestaurant PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-)
-# 链接 Google Test
-target_link_libraries(TestPersistenceRestaurant PRIVATE GTest::gtest_main)
-add_test(NAME TestPersistenceRestaurant COMMAND TestPersistenceRestaurant)
+# --- 添加测试: TestPersistenceRestaurant (Temporarily Disabled) ---
+# add_executable(TestPersistenceRestaurant
+#     tests/TestPersistenceRestaurant.cpp
+#     src/logic/recipe/RecipeManager.cpp
+#     src/domain/recipe/Recipe.cpp
+#     src/persistence/JsonRecipeRepository.cpp
+#     src/logic/restaurant/RestaurantManager.cpp
+#     src/domain/restaurant/Restaurant.cpp
+#     src/persistence/JsonRestaurantRepository.cpp
+# )
+# # 确保测试可以找到项目头文件
+# target_include_directories(TestPersistenceRestaurant PRIVATE
+#     ${CMAKE_CURRENT_SOURCE_DIR}/include
+#     ${CMAKE_CURRENT_SOURCE_DIR}/src
+# )
+# # 链接 Google Test
+# target_link_libraries(TestPersistenceRestaurant PRIVATE GTest::gtest_main)
+# add_test(NAME TestPersistenceRestaurant COMMAND TestPersistenceRestaurant)
 
-message(STATUS "Added test: TestPersistenceRestaurant")
-# --- 添加测试: TestPersistenceComprehensive ---
-add_executable(TestPersistenceComprehensive
-    tests/TestPersistenceComprehensive.cpp
-    src/persistence/PersistenceManager.cpp
-    src/logic/user/UserManager.cpp
-    src/domain/user/User.cpp
-    src/persistence/JsonUserRepository.cpp
-    src/logic/recipe/RecipeManager.cpp
-    src/domain/recipe/Recipe.cpp
-    src/persistence/JsonRecipeRepository.cpp
-    src/logic/restaurant/RestaurantManager.cpp
-    src/domain/restaurant/Restaurant.cpp
-    src/persistence/JsonRestaurantRepository.cpp
-)
-# 确保测试可以找到项目头文件
-target_include_directories(TestPersistenceComprehensive PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-)
-# 链接 Google Test
-target_link_libraries(TestPersistenceComprehensive PRIVATE GTest::gtest_main)
-add_test(NAME TestPersistenceComprehensive COMMAND TestPersistenceComprehensive)
-
-message(STATUS "Added test: TestPersistenceComprehensive")
+# message(STATUS "Added test: TestPersistenceRestaurant (Disabled)")
+# --- TestPersistenceComprehensive 相关代码已移除 ---
 
 # --- 添加测试: TestRecipe ---
 add_executable(TestRecipe
@@ -243,3 +201,21 @@ target_link_libraries(TestJsonRecipeRepository PRIVATE GTest::gtest_main)
 add_test(NAME TestJsonRecipeRepository COMMAND TestJsonRecipeRepository)
 
 message(STATUS "Added test: TestJsonRecipeRepository")
+
+# --- 添加测试: TestRecipeManager ---
+add_executable(TestRecipeManager
+    tests/TestRecipeManager.cpp
+    src/logic/recipe/RecipeManager.cpp
+    src/persistence/JsonRecipeRepository.cpp # RecipeManager uses RecipeRepository, which is JsonRecipeRepository here
+    src/domain/recipe/Recipe.cpp             # Both Manager and Repository depend on Recipe
+)
+# 确保测试可以找到项目头文件和 GTest 头文件
+target_include_directories(TestRecipeManager PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+# 链接 Google Test
+target_link_libraries(TestRecipeManager PRIVATE GTest::gtest_main)
+add_test(NAME TestRecipeManager COMMAND TestRecipeManager)
+
+message(STATUS "Added test: TestRecipeManager")

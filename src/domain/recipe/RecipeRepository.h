@@ -2,7 +2,6 @@
 #define RECIPE_REPOSITORY_H
 
 #include "domain/recipe/Recipe.h"
-#include "core/CustomLinkedList.h"
 #include <string>
 #include <optional>
 #include <vector> // For findByName results
@@ -20,7 +19,7 @@ namespace RecipeApp
 
                 virtual std::optional<RecipeApp::Recipe> findById(int recipeId) const = 0;
                 // findByName might return multiple recipes if partial match is allowed
-                virtual CustomDataStructures::CustomLinkedList<RecipeApp::Recipe> findByName(const std::string &name, bool partialMatch = false) const = 0;
+                virtual std::vector<RecipeApp::Recipe> findByName(const std::string &name, bool partialMatch = false) const = 0;
                 virtual std::vector<RecipeApp::Recipe> findAll() const = 0; // Changed return type
                 virtual int save(const RecipeApp::Recipe &recipe) = 0;      // Changed to const ref, returns new/existing ID or -1
                 virtual bool remove(int recipeId) = 0;

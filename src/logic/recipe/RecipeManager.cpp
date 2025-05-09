@@ -7,7 +7,7 @@
 #include <iostream> // For potential logging
 
 // Using declarations for convenience
-using CustomDataStructures::CustomLinkedList; // Still needed for findByName return type
+// using CustomDataStructures::CustomLinkedList; // No longer needed
 using RecipeApp::Recipe;
 using RecipeApp::Domain::Recipe::RecipeRepository;
 
@@ -23,7 +23,7 @@ namespace RecipeApp
     {
         // 1. Check for name conflict using the repository
         // Assuming findByName returns a list/vector. If it's empty, no conflict.
-        if (!recipeRepository_.findByName(recipe_param.getName(), false).isEmpty())
+        if (!recipeRepository_.findByName(recipe_param.getName(), false).empty())
         {
             // std::cerr << "RecipeManager: Recipe name '" << recipe_param.getName() << "' already exists." << std::endl;
             return -1; // Name conflict
@@ -37,7 +37,8 @@ namespace RecipeApp
             recipe_param.getSteps(),
             recipe_param.getCookingTime(),
             recipe_param.getDifficulty(),
-            recipe_param.getCuisine());
+            recipe_param.getCuisine(),
+            recipe_param.getTags()); // Add tags to constructor call
 
         // Copy optional fields
         if (recipe_param.getNutritionalInfo().has_value())
@@ -54,7 +55,7 @@ namespace RecipeApp
     }
 
     // findRecipeByName now directly uses the repository method
-    CustomLinkedList<Recipe> RecipeManager::findRecipeByName(const std::string &name, bool partialMatch) const
+    std::vector<Recipe> RecipeManager::findRecipeByName(const std::string &name, bool partialMatch) const
     {
         return recipeRepository_.findByName(name, partialMatch);
     }
@@ -79,7 +80,7 @@ namespace RecipeApp
         if (existingRecipe.getName() != updated_recipe_param.getName())
         {
             // Check if the new name exists for any *other* recipe
-            CustomLinkedList<Recipe> potentialConflicts = recipeRepository_.findByName(updated_recipe_param.getName(), false);
+            std::vector<Recipe> potentialConflicts = recipeRepository_.findByName(updated_recipe_param.getName(), false);
             for (const auto &conflict : potentialConflicts)
             {
                 if (conflict.getRecipeId() != updated_recipe_param.getRecipeId())
@@ -162,15 +163,78 @@ namespace RecipeApp
 
     // addRecipeDirectly and setNextRecipeId are removed as they are repository concerns.
 
+    void RecipeManager::addRecipeFromPersistence(const Recipe &recipe)
+    {
+        recipeRepository_.save(recipe); // Assuming save handles both new and existing if ID is set
+    }
+
+    void RecipeManager::setNextRecipeIdFromPersistence(int nextId)
+    {
+        recipeRepository_.setNextId(nextId);
+    }
+
+    // --- New Tag-related Method Implementations ---
+
+    std::vector<Recipe> RecipeManager::findRecipesByTag(const std::string &tag) const
+    {
+        std::vector<Recipe> results;
+        if (tag.empty())
+        {
+            return results;
+        }
+
+        std::vector<Recipe> allRecipes = recipeRepository_.findAll();
+        for (const auto &recipe : allRecipes)
+        {
+            const auto &recipeTags = recipe.getTags();
+            if (std::find(recipeTags.begin(), recipeTags.end(), tag) != recipeTags.end())
+            {
+                results.push_back(recipe);
+            }
+        }
+        return results;
+    }
+
+    std::vector<Recipe> RecipeManager::findRecipesByTags(const std::vector<std::string> &tagsToFind, bool matchAll) const
+    {
+        std::vector<Recipe> results;
+        if (tagsToFind.empty())
+        {
+            return results;
+        }
+
+        std::vector<Recipe> allRecipes = recipeRepository_.findAll();
+        for (const auto &recipe : allRecipes)
+        {
+            const auto &recipeTags = recipe.getTags();
+            bool found;
+
+            if (matchAll)
+            {
+                // Check if all tagsToFind are present in recipeTags
+                found = std::all_of(tagsToFind.begin(), tagsToFind.end(),
+                                    [&](const std::string &t)
+                                    {
+                                        return std::find(recipeTags.begin(), recipeTags.end(), t) != recipeTags.end();
+                                    });
+            }
+            else
+            {
+                // Check if any of tagsToFind are present in recipeTags
+                found = std::any_of(tagsToFind.begin(), tagsToFind.end(),
+                                    [&](const std::string &t)
+                                    {
+                                        return std::find(recipeTags.begin(), recipeTags.end(), t) != recipeTags.end();
+                                    });
+            }
+
+            if (found)
+            {
+                results.push_back(recipe);
+            }
+        }
+        return results;
+    }
+
 } // namespace RecipeApp
 // Add new method implementations at the end of the file, before the closing namespace brace.
-
-void RecipeApp::RecipeManager::addRecipeFromPersistence(const Recipe &recipe)
-{
-    recipeRepository_.save(recipe); // Assuming save handles both new and existing if ID is set
-}
-
-void RecipeApp::RecipeManager::setNextRecipeIdFromPersistence(int nextId)
-{
-    recipeRepository_.setNextId(nextId);
-}

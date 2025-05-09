@@ -1,0 +1,10 @@
+^D:\GITHUB\INTELLIGENTRECIPEMANAGEMENTSYSTEM\BUILD\CMAKEFILES\E11F258539F0A9F35186CEED900D2976\GENERATE.STAMP.RULE
+setlocal
+D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -SD:/Github/IntelligentRecipeManagementSystem -BD:/Github/IntelligentRecipeManagementSystem/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Github/IntelligentRecipeManagementSystem/build/RecipeCliApp.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

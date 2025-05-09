@@ -3,12 +3,13 @@
 
 #include "domain/restaurant/RestaurantRepository.h"
 #include "domain/restaurant/Restaurant.h" // Use correct path
-#include "core/CustomLinkedList.h"        // Keep if needed for internal storage, though vector might be better
-#include "json.hpp"                       // nlohmann::json
+// #include "core/CustomLinkedList.h"        // Replaced with std::vector
+#include "json.hpp" // nlohmann::json
 #include <string>
 #include <vector>
 #include <optional>
 #include <fstream>
+#include <filesystem> // Required for std::filesystem::path
 
 namespace RecipeApp
 {
@@ -22,7 +23,7 @@ namespace RecipeApp
         class JsonRestaurantRepository : public RestaurantRepository
         {
         public:
-            explicit JsonRestaurantRepository(const std::string &filePath);
+            explicit JsonRestaurantRepository(const std::filesystem::path &baseDirectory, const std::string &fileName = "restaurants.json");
 
             // Load/Save operations
             bool load();
@@ -40,8 +41,8 @@ namespace RecipeApp
         private:
             std::string m_filePath;
             // Consider using std::vector instead of CustomLinkedList for easier management
-            CustomDataStructures::CustomLinkedList<::RecipeApp::Restaurant> m_restaurants;
-            int m_nextId = 1; // Simple counter for new IDs
+            std::vector<::RecipeApp::Restaurant> m_restaurants; // Replaced CustomLinkedList
+            int m_nextId = 1;                                   // Simple counter for new IDs
 
             // JSON serialization/deserialization helpers specific to Restaurant
             json restaurantToJson(const ::RecipeApp::Restaurant &restaurant) const;

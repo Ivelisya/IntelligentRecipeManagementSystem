@@ -45,6 +45,7 @@ namespace RecipeApp
         std::string cuisine;                                          ///< 菜系
         std::optional<std::string> nutritionalInfo;                   ///< 营养信息（可选）
         std::optional<std::string> imageUrl;                          ///< 图片URL（可选）
+        std::vector<std::string> tags;                                ///< 食谱标签
 
     public:
         /**
@@ -56,9 +57,10 @@ namespace RecipeApp
          * @param cookingTime 烹饪时间（分钟）
          * @param difficulty 难度级别
          * @param cuisine 菜系
+         * @param tags 食谱标签
          */
         Recipe(int id, const std::string &name, const std::vector<std::pair<std::string, std::string>> &ingredients,
-               const std::vector<std::string> &steps, int cookingTime, Difficulty difficulty, const std::string &cuisine);
+               const std::vector<std::string> &steps, int cookingTime, Difficulty difficulty, const std::string &cuisine, const std::vector<std::string> &tags = {});
 
         /**
          * @brief 默认析构函数
@@ -81,6 +83,7 @@ namespace RecipeApp
         const std::string &getCuisine() const { return cuisine; }
         const std::optional<std::string> &getNutritionalInfo() const { return nutritionalInfo; }
         const std::optional<std::string> &getImageUrl() const { return imageUrl; }
+        const std::vector<std::string> &getTags() const { return tags; }
 
         // Setter 方法
         void setName(const std::string &newName)
@@ -115,6 +118,27 @@ namespace RecipeApp
         }
         void setNutritionalInfo(const std::string &info) { nutritionalInfo = info; }
         void setImageUrl(const std::string &url) { imageUrl = url; }
+        void setTags(const std::vector<std::string> &newTags) { tags = newTags; }
+        void addTag(const std::string &tag)
+        {
+            if (!tag.empty())
+            {
+                // Avoid adding duplicate tags if needed, or allow them
+                // For now, let's allow duplicates as std::vector doesn't enforce uniqueness
+                tags.push_back(tag);
+            }
+        }
+        void removeTag(const std::string &tagToRemove)
+        {
+            tags.erase(std::remove(tags.begin(), tags.end(), tagToRemove), tags.end());
+        }
+
+        /**
+         * @brief 检查食谱是否包含指定的标签
+         * @param tag 要检查的标签
+         * @return 如果包含则返回 true，否则返回 false
+         */
+        bool hasTag(const std::string &tag) const;
 
         // Overload operator== for CustomLinkedList operations
         bool operator==(const Recipe &other) const
@@ -243,7 +267,19 @@ namespace nlohmann
                 }
             }
 
-            RecipeApp::Recipe recipe(recipe_id, name, ingredients, steps, cookingTime, difficulty, cuisine);
+            std::vector<std::string> tags;
+            if (j.contains("tags") && j.at("tags").is_array())
+            {
+                for (const auto &tag_json : j.at("tags"))
+                {
+                    if (tag_json.is_string())
+                    {
+                        tags.push_back(tag_json.get<std::string>());
+                    }
+                }
+            }
+
+            RecipeApp::Recipe recipe(recipe_id, name, ingredients, steps, cookingTime, difficulty, cuisine, tags);
 
             if (j.contains("nutritionalInfo") && !j.at("nutritionalInfo").is_null())
             {

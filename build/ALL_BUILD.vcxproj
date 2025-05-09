@@ -174,25 +174,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestCustomLinkedList.vcxproj">
-      <Project>{7388CC3A-A1CE-38F4-A350-15633485F641}</Project>
-      <Name>TestCustomLinkedList</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestJsonRecipeRepository.vcxproj">
       <Project>{1B1C7F36-69D5-3905-B168-EF58320CAFCC}</Project>
       <Name>TestJsonRecipeRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestPersistenceComprehensive.vcxproj">
-      <Project>{FBEF8CD6-51CF-3CDE-B5D9-3A04965EB523}</Project>
-      <Name>TestPersistenceComprehensive</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestPersistenceRestaurant.vcxproj">
-      <Project>{6399A1FB-730D-352D-A3F7-B234A976F8A2}</Project>
-      <Name>TestPersistenceRestaurant</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestRecipe.vcxproj">
       <Project>{E02C4D5D-36E1-35F1-940B-2236434925EB}</Project>
       <Name>TestRecipe</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeManager.vcxproj">
+      <Project>{42D0D884-8E37-3406-9A03-272543073353}</Project>
+      <Name>TestRecipeManager</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestRestaurant.vcxproj">
       <Project>{24615662-EA88-38DB-9CBC-8FE22EC3A850}</Project>

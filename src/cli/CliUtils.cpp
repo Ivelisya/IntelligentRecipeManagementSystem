@@ -4,7 +4,9 @@
 #include <stdexcept> // Required for std::exception
 #include <vector>
 #include <string>
-#include <utility> // For std::pair
+#include <utility>   // For std::pair
+#include <sstream>   // Required for std::stringstream (used for parsing tags)
+#include <algorithm> // Required for std::all_of, std::find (used in search by parseCsvStringToVector, though not directly here)
 
 // Note: domain/recipe/Recipe.h and domain/user/User.h are already included via CliUtils.h
 
@@ -70,39 +72,41 @@ namespace RecipeApp
                 }
                 catch (const std::invalid_argument &ia)
                 {
+                    (void)ia; // Mark as intentionally unused
                     std::cout << "无效输入，请输入一个整数。" << std::endl;
                 }
                 catch (const std::out_of_range &oor)
                 {
+                    (void)oor; // Mark as intentionally unused
                     std::cout << "输入数字超出范围。" << std::endl;
                 }
             }
             return value;
         }
 
-        RecipeApp::UserRole getRoleSelectionFromConsole()
-        {
-            int choice = 0;
-            while (true)
-            {
-                std::cout << "请选择用户角色：" << std::endl;
-                std::cout << "1. 普通用户 (Normal)" << std::endl;
-                std::cout << "2. 管理员 (Admin)" << std::endl;
-                choice = getIntFromConsole("请输入选项 (1-2): ");
-                if (choice == 1 || choice == 2)
-                    break;
-                std::cout << "无效选项，请重新输入。" << std::endl;
-            }
-            return (choice == 1) ? RecipeApp::UserRole::Normal : RecipeApp::UserRole::Admin;
-        }
+        // RecipeApp::UserRole getRoleSelectionFromConsole()
+        // {
+        //     int choice = 0;
+        //     while (true)
+        //     {
+        //         std::cout << "请选择用户角色：" << std::endl;
+        //         std::cout << "1. 普通用户 (Normal)" << std::endl;
+        //         std::cout << "2. 管理员 (Admin)" << std::endl;
+        //         choice = getIntFromConsole("请输入选项 (1-2): ");
+        //         if (choice == 1 || choice == 2)
+        //             break;
+        //         std::cout << "无效选项，请重新输入。" << std::endl;
+        //     }
+        //     return (choice == 1) ? RecipeApp::UserRole::Normal : RecipeApp::UserRole::Admin;
+        // }
 
-        void displayUserDetailsBrief(const RecipeApp::User &user)
-        {
-            std::cout << "  ID: " << user.getUserId()
-                      << ", 用户名: " << user.getUsername()
-                      << ", 角色: " << (user.getRole() == RecipeApp::UserRole::Admin ? "管理员" : "普通用户")
-                      << std::endl;
-        }
+        // void displayUserDetailsBrief(const RecipeApp::User &user)
+        // {
+        //     std::cout << "  ID: " << user.getUserId()
+        //               << ", 用户名: " << user.getUsername()
+        //               << ", 角色: " << (user.getRole() == RecipeApp::UserRole::Admin ? "管理员" : "普通用户")
+        //               << std::endl;
+        // }
 
         RecipeApp::Difficulty getDifficultyFromConsole()
         {
@@ -196,6 +200,33 @@ namespace RecipeApp
                 stepNumber++;
             }
             return steps;
+        }
+
+        std::vector<std::string> parseCsvStringToVector(const std::string &csv_string)
+        {
+            std::vector<std::string> result;
+            if (csv_string.empty())
+            { // Handle empty input string gracefully
+                return result;
+            }
+            std::stringstream ss(csv_string);
+            std::string item;
+            while (std::getline(ss, item, ','))
+            {
+                // Basic trim: remove leading and trailing whitespace
+                size_t first = item.find_first_not_of(" \t\n\r\f\v");
+                if (std::string::npos == first)
+                { // String is all whitespace
+                    continue;
+                }
+                size_t last = item.find_last_not_of(" \t\n\r\f\v");
+                item = item.substr(first, (last - first + 1));
+                if (!item.empty())
+                {
+                    result.push_back(item);
+                }
+            }
+            return result;
         }
 
         void displayRecipeDetailsBrief(const RecipeApp::Recipe &recipe)

@@ -1,0 +1,40 @@
+{
+  "recipes": [
+    {
+      "cookingTime": 0,
+      "cuisine": "",
+      "difficulty": "Easy",
+      "id": 1,
+      "imageUrl": null,
+      "ingredients": [],
+      "name": "Cheeseburger",
+      "nutritionalInfo": null,
+      "steps": [],
+      "tags": []
+    },
+    {
+      "cookingTime": 0,
+      "cuisine": "",
+      "difficulty": "Easy",
+      "id": 2,
+      "imageUrl": null,
+      "ingredients": [],
+      "name": "Fries",
+      "nutritionalInfo": null,
+      "steps": [],
+      "tags": []
+    },
+    {
+      "cookingTime": 0,
+      "cuisine": "",
+      "difficulty": "Easy",
+      "id": 3,
+      "imageUrl": null,
+      "ingredients": [],
+      "name": "Milkshake",
+      "nutritionalInfo": null,
+      "steps": [],
+      "tags": []
+    }
+  ]
+}

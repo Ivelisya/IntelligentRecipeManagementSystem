@@ -1,0 +1,12 @@
+{
+  "restaurants": [
+    {
+      "address": "Addr Find",
+      "contact": "Cont Find",
+      "featuredRecipeIds": "",
+      "id": 1,
+      "name": "FindMe",
+      "openingHours": "Hours Find"
+    }
+  ]
+}

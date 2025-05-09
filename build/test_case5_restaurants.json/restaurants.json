@@ -1,0 +1,20 @@
+{
+  "restaurants": [
+    {
+      "address": "Addr Del1",
+      "contact": "Cont Del1",
+      "featuredRecipeIds": "",
+      "id": 1,
+      "name": "ToDelete1",
+      "openingHours": "Hours Del1"
+    },
+    {
+      "address": "Addr Keep",
+      "contact": "Cont Keep",
+      "featuredRecipeIds": "",
+      "id": 2,
+      "name": "ToKeep",
+      "openingHours": "Hours Keep"
+    }
+  ]
+}

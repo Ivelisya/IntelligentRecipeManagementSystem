@@ -1,32 +1,29 @@
-#include "cli/handlers/RecipeCommandHandler.h"
-#include "cli/CliUtils.h"
-#include "cli/ExitCodes.h"         // For standardized exit codes
-#include "domain/recipe/Recipe.h"  // For RecipeApp::Difficulty
-#include "domain/user/User.h"      // For RecipeApp::UserRole
-#include "core/CustomLinkedList.h" // For CustomLinkedList type
+#include "RecipeCommandHandler.h"       // Changed to relative path
+#include "../CliUtils.h"                // Changed to relative path
+#include "../ExitCodes.h"               // Changed to relative path
+#include "../../domain/recipe/Recipe.h" // Changed to relative path
+// #include "domain/user/User.h"     // User domain object removed
+// #include "core/CustomLinkedList.h" // No longer needed
 #include <iostream>
 #include <string>
 #include <vector>
 #include <limits>    // Required for std::numeric_limits
 #include <stdexcept> // Required for std::exception
+// #include <sstream>   // No longer needed here, moved to CliUtils.cpp
+#include <algorithm> // Required for std::all_of, std::find (used in search)
 
 namespace RecipeApp
 {
     namespace CliHandlers
     {
 
-        RecipeCommandHandler::RecipeCommandHandler(RecipeApp::RecipeManager &rm, RecipeApp::UserManager &um)
-            : recipeManager(rm), userManager(um) {}
+        // parseCsvStringToVector moved to CliUtils
+
+        RecipeCommandHandler::RecipeCommandHandler(RecipeApp::RecipeManager &rm)
+            : recipeManager(rm) {}
 
         int RecipeCommandHandler::handleAddRecipe(const cxxopts::ParseResult &result)
         {
-            // const RecipeApp::User *currentUser = userManager.getCurrentUser(); // No longer needed for auth check
-            // if (!currentUser) // This check is no longer needed as user is always admin
-            // {
-            //     std::cerr << "Error: Please login first to add a recipe." << std::endl;
-            //     return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
-            // }
-
             std::cout << "--- 添加新菜谱 ---" << std::endl;
             std::string name = RecipeApp::CliUtils::getStringFromConsole("请输入菜谱名称: ");
             if (name.empty())
@@ -35,8 +32,8 @@ namespace RecipeApp
                 return RecipeApp::Cli::EX_APP_INVALID_INPUT;
             }
 
-            CustomDataStructures::CustomLinkedList<RecipeApp::Recipe> existingRecipes = recipeManager.findRecipeByName(name, false);
-            if (!existingRecipes.isEmpty())
+            std::vector<RecipeApp::Recipe> existingRecipes = recipeManager.findRecipeByName(name, false);
+            if (!existingRecipes.empty())
             {
                 std::cerr << "错误：菜谱名称 '" << name << "' 已存在，请使用不同的名称。" << std::endl;
                 return RecipeApp::Cli::EX_APP_ALREADY_EXISTS;
@@ -57,10 +54,23 @@ namespace RecipeApp
                 std::cerr << "错误：菜系不能为空。" << std::endl;
                 return RecipeApp::Cli::EX_APP_INVALID_INPUT;
             }
+
+            // Get Tags
+            std::string tags_csv;
+            if (result.count("tags"))
+            { // Check if --tags option was provided via command line
+                tags_csv = result["tags"].as<std::string>();
+            }
+            else
+            { // Otherwise, prompt from console
+                tags_csv = RecipeApp::CliUtils::getStringFromConsole("请输入食谱标签 (多个用逗号分隔, 可选): ");
+            }
+            std::vector<std::string> tags = RecipeApp::CliUtils::parseCsvStringToVector(tags_csv);
+
             std::string nutritionalInfo = RecipeApp::CliUtils::getStringFromConsole("请输入营养信息 (可选, 可为空): ");
             std::string imageUrl = RecipeApp::CliUtils::getStringFromConsole("请输入图片链接 (可选, 可为空): ");
 
-            RecipeApp::Recipe newRecipe(0, name, ingredients, steps, cookingTime, difficulty, cuisine);
+            RecipeApp::Recipe newRecipe(0, name, ingredients, steps, cookingTime, difficulty, cuisine, tags);
             if (!nutritionalInfo.empty())
                 newRecipe.setNutritionalInfo(nutritionalInfo);
             if (!imageUrl.empty())
@@ -113,6 +123,7 @@ namespace RecipeApp
             }
             catch (const cxxopts::exceptions::exception &e)
             {
+                (void)e; // Mark as intentionally unused
                 std::cerr << "错误：无效的菜谱ID '" << result["recipe-view"].as<std::string>() << "'。请输入一个数字。" << std::endl;
                 return RecipeApp::Cli::EX_DATAERR;
             }
@@ -132,52 +143,127 @@ namespace RecipeApp
 
         int RecipeCommandHandler::handleSearchRecipes(const cxxopts::ParseResult &result)
         {
-            if (!result.count("recipe-search"))
-            {
-                std::cerr << "错误：recipe-search 命令缺少参数 (QUERY)。" << std::endl;
-                std::cerr << "用法: recipe-cli --recipe-search <查询词>" << std::endl;
-                return RecipeApp::Cli::EX_USAGE;
-            }
-            std::string query = result["recipe-search"].as<std::string>();
-            if (query.empty())
-            {
-                std::cerr << "错误：搜索查询词不能为空。" << std::endl;
-                return RecipeApp::Cli::EX_APP_INVALID_INPUT;
-            }
-            std::cout << "--- 菜谱搜索结果 (名称包含: \"" << query << "\") ---" << std::endl;
+            std::vector<RecipeApp::Recipe> recipesToDisplay;
+            std::string searchCriteriaDisplay;
+            bool nameQueryProvided = false;
+            bool tagQueryProvided = false;
 
-            CustomDataStructures::CustomLinkedList<RecipeApp::Recipe> searchResults = recipeManager.findRecipeByName(query, true);
-
-            if (searchResults.isEmpty())
+            // 1. Filter by name if --recipe-search <query> is provided
+            if (result.count("recipe-search") && !result["recipe-search"].as<std::string>().empty())
             {
-                std::cout << "未找到名称包含 \"" << query << "\" 的菜谱。" << std::endl;
+                std::string nameQuery = result["recipe-search"].as<std::string>();
+                recipesToDisplay = recipeManager.findRecipeByName(nameQuery, true);
+                searchCriteriaDisplay = "名称包含: \"" + nameQuery + "\"";
+                nameQueryProvided = true;
             }
             else
             {
-                for (const auto &recipe : searchResults)
+                // If no name query, start with all recipes for tag filtering
+                recipesToDisplay = recipeManager.getAllRecipes();
+            }
+
+            // 2. Filter by tags (--tags takes precedence over --tag)
+            std::vector<std::string> tagsToFilterBy;
+            bool matchAllTags = true; // Default for --tags is usually AND
+
+            if (result.count("tags"))
+            {
+                std::string csv_tags = result["tags"].as<std::string>();
+                tagsToFilterBy = RecipeApp::CliUtils::parseCsvStringToVector(csv_tags);
+                if (!tagsToFilterBy.empty())
+                {
+                    if (nameQueryProvided)
+                        searchCriteriaDisplay += " 并且 ";
+                    searchCriteriaDisplay += "标签组匹配 (全部): \"" + csv_tags + "\"";
+                    tagQueryProvided = true;
+                }
+            }
+            else if (result.count("tag"))
+            {
+                std::string single_tag = result["tag"].as<std::string>();
+                if (!single_tag.empty())
+                {
+                    tagsToFilterBy.push_back(single_tag);
+                    matchAllTags = false; // Single tag implies OR logic if combined with other types of searches, but here it's the primary tag filter
+                    if (nameQueryProvided)
+                        searchCriteriaDisplay += " 并且 ";
+                    searchCriteriaDisplay += "标签包含: \"" + single_tag + "\"";
+                    tagQueryProvided = true;
+                }
+            }
+
+            // Apply tag filtering if tags were specified
+            if (tagQueryProvided && !tagsToFilterBy.empty())
+            {
+                std::vector<RecipeApp::Recipe> tagFilteredResults;
+                for (const auto &recipe : recipesToDisplay) // Filter the (potentially name-filtered) list
+                {
+                    const auto &recipeTags = recipe.getTags();
+                    bool currentRecipeMatch;
+                    if (matchAllTags)
+                    {
+                        currentRecipeMatch = std::all_of(tagsToFilterBy.begin(), tagsToFilterBy.end(),
+                                                         [&](const std::string &t)
+                                                         {
+                                                             return std::find(recipeTags.begin(), recipeTags.end(), t) != recipeTags.end();
+                                                         });
+                    }
+                    else // Only for single --tag scenario
+                    {
+                        currentRecipeMatch = std::any_of(tagsToFilterBy.begin(), tagsToFilterBy.end(),
+                                                         [&](const std::string &t)
+                                                         {
+                                                             return std::find(recipeTags.begin(), recipeTags.end(), t) != recipeTags.end();
+                                                         });
+                    }
+                    if (currentRecipeMatch)
+                    {
+                        tagFilteredResults.push_back(recipe);
+                    }
+                }
+                recipesToDisplay = tagFilteredResults; // Update the list to display
+            }
+
+            // Check if any search criteria was actually provided
+            if (!nameQueryProvided && !tagQueryProvided)
+            {
+                // This means --recipe-search was called without a query, and no --tag or --tags.
+                // Or just --recipe-search with an empty string.
+                // The main.cpp option definition should ideally prevent --recipe-search without any value.
+                // If it's allowed, it implies "list all", but that's `recipe-list`.
+                // For a "search" command, some criteria should be present.
+                if (result.count("recipe-search"))
+                { // Check if the command itself was recipe-search
+                    std::cerr << "错误：请为搜索提供查询词或标签。" << std::endl;
+                    std::cerr << "用法: recipe-cli --recipe-search [查询词] [--tag <标签>] [--tags <标签1,标签2>]" << std::endl;
+                    return RecipeApp::Cli::EX_USAGE;
+                }
+                // If not even --recipe-search command, this handler shouldn't be called.
+                // But if it is, and no criteria, it's an issue.
+                // For safety, if searchCriteriaDisplay is empty, list all.
+                if (searchCriteriaDisplay.empty())
+                    searchCriteriaDisplay = "所有菜谱 (无有效过滤器)";
+            }
+
+            std::cout << "--- 菜谱搜索结果 (" << searchCriteriaDisplay << ") ---" << std::endl;
+
+            if (recipesToDisplay.empty())
+            {
+                std::cout << "未找到匹配的菜谱。" << std::endl;
+            }
+            else
+            {
+                for (const auto &recipe : recipesToDisplay)
                 {
                     RecipeApp::CliUtils::displayRecipeDetailsBrief(recipe);
                 }
-                std::cout << "找到 " << searchResults.getSize() << " 个匹配的菜谱。" << std::endl;
+                std::cout << "找到 " << recipesToDisplay.size() << " 个匹配的菜谱。" << std::endl;
             }
-            return RecipeApp::Cli::EX_OK; // Search itself is successful even if no results
+            return RecipeApp::Cli::EX_OK;
         }
 
         int RecipeCommandHandler::handleUpdateRecipe(const cxxopts::ParseResult &result)
         {
-            // const RecipeApp::User *currentUser = userManager.getCurrentUser(); // No longer needed for auth check
-            // if (!currentUser) // This check is no longer needed
-            // {
-            //     std::cerr << "Error: Please login first to update a recipe." << std::endl;
-            //     return RecipeApp::Cli::EX_APP_NOT_LOGGED_IN;
-            // }
-
-            // if (currentUser->getRole() != RecipeApp::UserRole::Admin) // This check is no longer needed
-            // {
-            //     std::cerr << "Error: Permission denied. Only administrators can update recipes." << std::endl;
-            //     return RecipeApp::Cli::EX_APP_PERMISSION_DENIED;
-            // }
-
             if (!result.count("recipe-update"))
             {
                 std::cerr << "错误：recipe-update 命令缺少参数 (RECIPE_ID)。" << std::endl;
@@ -192,6 +278,7 @@ namespace RecipeApp
             }
             catch (const cxxopts::exceptions::exception &e)
             {
+                (void)e;
                 std::cerr << "错误：无效的菜谱ID '" << result["recipe-update"].as<std::string>() << "'。请输入一个数字。" << std::endl;
                 return RecipeApp::Cli::EX_DATAERR;
             }
@@ -202,7 +289,7 @@ namespace RecipeApp
                 std::cerr << "错误：未找到ID为 " << recipeId << " 的菜谱。" << std::endl;
                 return RecipeApp::Cli::EX_APP_ITEM_NOT_FOUND;
             }
-            RecipeApp::Recipe recipeToUpdate = recipeToUpdateOpt.value(); // Work with a mutable copy
+            RecipeApp::Recipe recipeToUpdate = recipeToUpdateOpt.value();
 
             std::cout << "--- 更新菜谱 (ID: " << recipeId << ") ---" << std::endl;
             std::cout << "当前菜谱信息：" << std::endl;
@@ -214,7 +301,7 @@ namespace RecipeApp
             {
                 if (newName != recipeToUpdate.getName())
                 {
-                    CustomDataStructures::CustomLinkedList<RecipeApp::Recipe> existing = recipeManager.findRecipeByName(newName, false);
+                    std::vector<RecipeApp::Recipe> existing = recipeManager.findRecipeByName(newName, false);
                     bool conflict = false;
                     for (const auto &r : existing)
                     {
@@ -247,6 +334,33 @@ namespace RecipeApp
                 recipeToUpdate.setSteps(RecipeApp::CliUtils::getStepsFromConsole());
             }
 
+            // Update Tags
+            std::string currentTagsDisplay;
+            const auto &currentTags = recipeToUpdate.getTags();
+            for (size_t i = 0; i < currentTags.size(); ++i)
+            {
+                currentTagsDisplay += currentTags[i] + (i == currentTags.size() - 1 ? "" : ",");
+            }
+            std::string new_tags_csv;
+            if (result.count("tags"))
+            { // Check if --tags option was provided via command line for update
+                new_tags_csv = result["tags"].as<std::string>();
+                // If --tags is provided, we use it directly, otherwise we'd prompt.
+                // For non-interactive update via CLI flags, we assume the flag is the source of truth.
+                recipeToUpdate.setTags(RecipeApp::CliUtils::parseCsvStringToVector(new_tags_csv));
+            }
+            else
+            {
+                // Interactive update for tags
+                std::cout << "修改标签? (y/n, 当前: " << (currentTagsDisplay.empty() ? "无" : currentTagsDisplay) << "): ";
+                std::string changeTagsStr = RecipeApp::CliUtils::getStringFromConsole("");
+                if (changeTagsStr == "y" || changeTagsStr == "Y")
+                {
+                    new_tags_csv = RecipeApp::CliUtils::getStringFromConsole("新标签 (多个用逗号分隔, 输入空行以清除所有标签) [" + currentTagsDisplay + "]: ");
+                    recipeToUpdate.setTags(RecipeApp::CliUtils::parseCsvStringToVector(new_tags_csv));
+                }
+            }
+
             std::string newTimeStr = RecipeApp::CliUtils::getStringFromConsole("新烹饪时长 (分钟) [" + std::to_string(recipeToUpdate.getCookingTime()) + "]: ");
             if (!newTimeStr.empty())
             {
@@ -260,6 +374,7 @@ namespace RecipeApp
                 }
                 catch (const std::exception &e)
                 {
+                    (void)e;
                     std::cout << "输入的烹饪时长不是有效数字。值将保持不变。" << std::endl;
                 }
             }
@@ -336,6 +451,7 @@ namespace RecipeApp
             }
             catch (const cxxopts::exceptions::exception &e)
             {
+                (void)e; // Mark as intentionally unused
                 std::cerr << "错误：无效的菜谱ID '" << result["recipe-delete"].as<std::string>() << "'。请输入一个数字。" << std::endl;
                 return RecipeApp::Cli::EX_DATAERR;
             }

@@ -48,7 +48,7 @@ namespace RecipeApp
          * @param partialMatch 是否部分匹配 (默认为 false)
          * @return 匹配菜谱的列表 (CustomLinkedList for now, might change to vector)
          */
-        CustomDataStructures::CustomLinkedList<Recipe> findRecipeByName(const std::string &name, bool partialMatch = false) const;
+        std::vector<Recipe> findRecipeByName(const std::string &name, bool partialMatch = false) const;
 
         /**
          * @brief 根据食材组合查找菜谱（包含所有，精确匹配）
@@ -104,6 +104,21 @@ namespace RecipeApp
          * @param nextId The next ID to be used by the repository.
          */
         void setNextRecipeIdFromPersistence(int nextId);
+
+        /**
+         * @brief 根据单个标签查找食谱
+         * @param tag 要搜索的标签
+         * @return 包含该标签的食谱列表
+         */
+        std::vector<Recipe> findRecipesByTag(const std::string &tag) const;
+
+        /**
+         * @brief 根据多个标签查找食谱
+         * @param tags 要搜索的标签列表
+         * @param matchAll 如果为 true，则食谱必须包含所有指定标签；如果为 false，则食谱包含任何一个指定标签即可
+         * @return 匹配的食谱列表
+         */
+        std::vector<Recipe> findRecipesByTags(const std::vector<std::string> &tags, bool matchAll = true) const;
 
         // Methods like addRecipeDirectly, setNextRecipeId are removed
         // as their responsibilities are now handled by the RecipeRepository.

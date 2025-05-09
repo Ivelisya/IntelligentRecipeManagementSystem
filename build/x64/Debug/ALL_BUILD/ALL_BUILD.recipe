@@ -5,19 +5,13 @@
       <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestCustomLinkedList.exe</FullPath>
-    </ProjectOutput>
-    <ProjectOutput>
       <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestJsonRecipeRepository.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestPersistenceComprehensive.exe</FullPath>
-    </ProjectOutput>
-    <ProjectOutput>
-      <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestPersistenceRestaurant.exe</FullPath>
-    </ProjectOutput>
-    <ProjectOutput>
       <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestRecipe.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestRecipeManager.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
       <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Debug\TestRestaurant.exe</FullPath>

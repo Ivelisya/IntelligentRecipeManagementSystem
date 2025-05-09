@@ -16,18 +16,6 @@
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\domain\restaurant\Restaurant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\logic\user\UserManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\domain\user\User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\PersistenceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonUserRepository.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRecipeRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +26,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\RecipeCommandHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\AdminCommandHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

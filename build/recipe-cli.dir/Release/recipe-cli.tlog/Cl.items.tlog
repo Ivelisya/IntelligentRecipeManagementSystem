@@ -1,0 +1,9 @@
+D:\Github\IntelligentRecipeManagementSystem\src\main.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\main.obj
+D:\Github\IntelligentRecipeManagementSystem\src\logic\recipe\RecipeManager.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\RecipeManager.obj
+D:\Github\IntelligentRecipeManagementSystem\src\domain\recipe\Recipe.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\Recipe.obj
+D:\Github\IntelligentRecipeManagementSystem\src\logic\restaurant\RestaurantManager.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\RestaurantManager.obj
+D:\Github\IntelligentRecipeManagementSystem\src\domain\restaurant\Restaurant.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\Restaurant.obj
+D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRecipeRepository.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\JsonRecipeRepository.obj
+D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRestaurantRepository.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\JsonRestaurantRepository.obj
+D:\Github\IntelligentRecipeManagementSystem\src\cli\CliUtils.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\CliUtils.obj
+D:\Github\IntelligentRecipeManagementSystem\src\cli\handlers\RecipeCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Release\RecipeCommandHandler.obj

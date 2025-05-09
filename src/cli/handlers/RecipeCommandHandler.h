@@ -3,7 +3,7 @@
 
 #include "cxxopts.hpp"
 #include "logic/recipe/RecipeManager.h"
-#include "logic/user/UserManager.h"
+// #include "logic/user/UserManager.h" // UserManager dependency removed
 
 namespace RecipeApp
 {
@@ -12,18 +12,18 @@ namespace RecipeApp
         class RecipeCommandHandler
         {
         public:
-            RecipeCommandHandler(RecipeApp::RecipeManager &recipeManager, RecipeApp::UserManager &userManager);
+            explicit RecipeCommandHandler(RecipeApp::RecipeManager &recipeManager);
 
-            int handleAddRecipe(const cxxopts::ParseResult &result);
+            int handleAddRecipe(const cxxopts::ParseResult &result); // Will be updated to support --tags
             int handleListRecipes(const cxxopts::ParseResult &result);
             int handleViewRecipe(const cxxopts::ParseResult &result);
-            int handleSearchRecipes(const cxxopts::ParseResult &result);
-            int handleUpdateRecipe(const cxxopts::ParseResult &result);
+            int handleSearchRecipes(const cxxopts::ParseResult &result); // Will be updated to support --tag or --tags
+            int handleUpdateRecipe(const cxxopts::ParseResult &result);  // Will be updated to support --tags
             int handleDeleteRecipe(const cxxopts::ParseResult &result);
 
         private:
             RecipeApp::RecipeManager &recipeManager;
-            RecipeApp::UserManager &userManager;
+            // RecipeApp::UserManager &userManager; // UserManager dependency removed
         };
     } // namespace CliHandlers
 } // namespace RecipeApp

@@ -3,12 +3,12 @@
 
 #include "domain/recipe/RecipeRepository.h"
 #include "domain/recipe/Recipe.h"
-#include "core/CustomLinkedList.h"
 #include "json.hpp" // nlohmann::json
 #include <string>
 #include <fstream>
 #include <vector>
 #include <optional>
+#include <filesystem> // Required for std::filesystem::path
 
 namespace RecipeApp
 {
@@ -16,7 +16,6 @@ namespace RecipeApp
     {
 
         using json = nlohmann::json;
-        using CustomDataStructures::CustomLinkedList;
         // Corrected using declarations: Recipe and Difficulty are in RecipeApp namespace directly
         using RecipeApp::Difficulty;
         using RecipeApp::Recipe;
@@ -25,7 +24,8 @@ namespace RecipeApp
         class JsonRecipeRepository : public RecipeRepository
         {
         public:
-            explicit JsonRecipeRepository(const std::string &filePath);
+            // Constructor now takes a base directory path and an optional file name
+            explicit JsonRecipeRepository(const std::filesystem::path &baseDirectory, const std::string &fileName = "recipes.json");
 
             // Load/Save operations
             bool load();
@@ -33,7 +33,7 @@ namespace RecipeApp
 
             // Implementation of RecipeRepository interface
             std::optional<Recipe> findById(int recipeId) const override;
-            CustomLinkedList<Recipe> findByName(const std::string &name, bool partialMatch = false) const override;
+            std::vector<Recipe> findByName(const std::string &name, bool partialMatch = false) const override;
             std::vector<Recipe> findAll() const override; // Changed to match interface
             int save(const Recipe &recipe) override;      // Changed to const ref, matches interface
             bool remove(int recipeId) override;
@@ -44,8 +44,8 @@ namespace RecipeApp
 
         private:
             std::string m_filePath;
-            CustomLinkedList<Recipe> m_recipes; // In-memory storage
-            int m_nextId = 1;                   // Simple counter for new IDs
+            std::vector<Recipe> m_recipes; // In-memory storage
+            int m_nextId = 1;              // Simple counter for new IDs
         };
 
     } // namespace Persistence
