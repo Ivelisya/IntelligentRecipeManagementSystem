@@ -1,0 +1,10 @@
+^D:\GITHUB\INTELLIGENTRECIPEMANAGEMENTSYSTEM\BUILD\_DEPS\SPDLOG-SUBBUILD\CMAKEFILES\6F17726FD417A242AC3E6056D1DEF600\GENERATE.STAMP.RULE
+setlocal
+D:\cmake-3.31.5-windows-x86_64\bin\cmake.exe -SD:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild -BD:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/spdlog-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -370,5 +370,59 @@ void displayRecipeDetailsFull(const RecipeApp::Recipe &recipe) {
     std::cout << "----------------------------------------" << std::endl;
 }
 
+std::vector<int> parseCsvStringToIntVector(const std::string &csv_string) {
+    std::vector<int> result;
+    if (csv_string.empty()) {
+        return result;
+    }
+    std::stringstream ss(csv_string);
+    std::string item_str;
+    int item_int;
+    size_t processed_chars;
+
+    while (std::getline(ss, item_str, ',')) {
+        // Basic trim
+        size_t first = item_str.find_first_not_of(" \t\n\r\f\v");
+        if (std::string::npos == first) {
+            continue; // Skip empty or all-whitespace segments
+        }
+        size_t last = item_str.find_last_not_of(" \t\n\r\f\v");
+        item_str = item_str.substr(first, (last - first + 1));
+
+        if (!item_str.empty()) {
+            try {
+                item_int = std::stoi(item_str, &processed_chars);
+                // Check if the entire string was consumed by stoi
+                if (processed_chars != item_str.length()) {
+                    throw std::invalid_argument("CSV segment '" + item_str + "' contains non-numeric characters after number.");
+                }
+                result.push_back(item_int);
+            } catch (const std::invalid_argument &ia) {
+                // Re-throw with more context. The caller (CommandHandler) can catch this.
+                throw std::invalid_argument("无法将CSV片段 '" + item_str + "' 解析为整数: " + ia.what());
+            } catch (const std::out_of_range &oor) {
+                // Re-throw with more context.
+                throw std::out_of_range("CSV片段 '" + item_str + "' 中的数字超出范围: " + oor.what());
+            }
+        }
+    }
+    return result;
+}
+
+std::string difficultyToString(RecipeApp::Difficulty difficulty) {
+    switch (difficulty) {
+        case RecipeApp::Difficulty::Easy:
+            return "简单";
+        case RecipeApp::Difficulty::Medium:
+            return "中等";
+        case RecipeApp::Difficulty::Hard:
+            return "困难";
+        default:
+            // It's good practice to log this unexpected case if spdlog is available here
+            // spdlog::warn("Unknown RecipeApp::Difficulty value encountered: {}", static_cast<int>(difficulty));
+            return "未知";
+    }
+}
+
 }  // namespace CliUtils
 }  // namespace RecipeApp

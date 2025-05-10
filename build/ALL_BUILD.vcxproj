@@ -222,6 +222,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{91C09AE9-62E4-321A-A286-30FD5B9D5BB6}</Project>
       <Name>recipe-cli</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-build\spdlog.vcxproj">
+      <Project>{0D432E70-705C-3AB8-A16C-E2CBA7F58DB6}</Project>
+      <Name>spdlog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

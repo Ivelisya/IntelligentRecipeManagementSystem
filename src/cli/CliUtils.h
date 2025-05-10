@@ -39,6 +39,10 @@ std::vector<std::string> getTagsFromConsole(
 // 解析逗号分隔的字符串到vector
 std::vector<std::string> parseCsvStringToVector(const std::string &csv_string);
 
+// 解析逗号分隔的字符串到int vector (用于ID列表等)
+// 会在转换失败时抛出 std::invalid_argument 或 std::out_of_range
+std::vector<int> parseCsvStringToIntVector(const std::string &csv_string);
+
 // 从控制台获取用户角色选择
 // RecipeApp::UserRole getRoleSelectionFromConsole(); // User related function
 // removed
@@ -52,6 +56,9 @@ void displayRecipeDetailsBrief(const RecipeApp::Recipe &recipe);
 
 // 完整显示菜谱详情
 void displayRecipeDetailsFull(const RecipeApp::Recipe &recipe);
+
+// 将 RecipeApp::Difficulty 枚举转换为字符串
+std::string difficultyToString(RecipeApp::Difficulty difficulty);
 
 }  // namespace CliUtils
 }  // namespace RecipeApp

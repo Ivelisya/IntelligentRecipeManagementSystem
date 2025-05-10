@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/6f17726fd417a242ac3e6056d1def600/spdlog-populate.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/fac6f79c0060dad8b94017d1bb73a2f8/spdlog-populate-complete.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-build.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-configure.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-download.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-install.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-patch.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-test.rule"
+		},
+		{
+			"file" : "D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-subbuild/CMakeFiles/a946245874586da9a9b998cc187dab06/spdlog-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"spdlog-populate"
+		],
+		"name" : "spdlog-populate"
+	}
+}

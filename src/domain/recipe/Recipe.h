@@ -146,10 +146,18 @@ class Recipe {
     void setTags(const std::vector<std::string> &newTags) { tags = newTags; }
     void addTag(const std::string &tag) {
         if (!tag.empty()) {
-            // Avoid adding duplicate tags if needed, or allow them
-            // For now, let's allow duplicates as std::vector doesn't enforce
-            // uniqueness
-            tags.push_back(tag);
+            // Check if the tag already exists
+            bool found = false;
+            for (const auto& existingTag : tags) {
+                if (existingTag == tag) {
+                    found = true;
+                    break;
+                }
+            }
+            // Only add the tag if it's not already present
+            if (!found) {
+                tags.push_back(tag);
+            }
         }
     }
     void removeTag(const std::string &tagToRemove) {

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-subbuild\CMakeFiles\6f17726fd417a242ac3e6056d1def600\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{BA7C1E7A-8EBE-3877-AC3B-776365D074B5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

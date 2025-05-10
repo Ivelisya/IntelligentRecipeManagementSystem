@@ -5,6 +5,9 @@
 #include <stdexcept>  // Required for std::exception
 #include <string>
 #include <vector>
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+// #include "spdlog/sinks/basic_file_sink.h" // For potential file logging later
 
 #include "cxxopts.hpp"  // 包含 cxxopts 头文件
 
@@ -30,15 +33,29 @@
 #include "cli/CliUtils.h"                     // For CLI utility functions
 #include "cli/recipe/RecipeCommandHandler.h"  // Include the new Recipe handler
 #include "cli/restaurant/RestaurantCommandHandler.h"
-#include "cli/user/UserCommandHandler.h"
+// #include "cli/user/UserCommandHandler.h" // Removed as part of P1.7
 #include "cli/encyclopedia/RecipeEncyclopediaCommandHandler.h" // ADDED: New encyclopedia handler
 // #include "cli/handlers/AdminCommandHandler.h"  // AdminCommandHandler removed
 #include "cli/ExitCodes.h"  // Include ExitCodes
+#include "common/exceptions/ValidationException.h"
+#include "common/exceptions/PersistenceException.h"
+#include "common/exceptions/BusinessLogicException.h"
+#include "common/exceptions/ConfigurationException.h"
+// BaseException.h is transitively included
 
 // 版本号可以定义为常量
-const std::string APP_VERSION = "0.1.0";
+const std::string APP_VERSION = "3.2.0";
 
 int main(int argc, char *argv[]) {
+    // --- Early basic logging setup (before full config, in case of early errors) ---
+    // This can be a very simple console logger initially.
+    // We will set up a more sophisticated one after config path is determined.
+    auto preliminary_console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    preliminary_console_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] %v");
+    auto preliminary_logger = std::make_shared<spdlog::logger>("prelim_console", preliminary_console_sink);
+    spdlog::set_default_logger(preliminary_logger);
+    spdlog::set_level(spdlog::level::info); // Default to info for pre-config phase
+
     // --- Determine User Configuration Directory ---
     std::filesystem::path configDirPath;
 #ifdef _WIN32
@@ -51,9 +68,7 @@ int main(int argc, char *argv[]) {
         configDirPath =
             std::filesystem::current_path() /
             ".IntelligentRecipeManagementSystem_UserConfig";  // Fallback
-        std::cerr << "Warning: APPDATA environment variable not found. Using "
-                     "fallback config directory: "
-                  << configDirPath << std::endl;
+        spdlog::warn("APPDATA environment variable not found. Using fallback config directory: {}", configDirPath.string());
     }
 #else  // Assuming Linux/macOS
     const char *homeDir = std::getenv("HOME");
@@ -65,21 +80,59 @@ int main(int argc, char *argv[]) {
         configDirPath =
             std::filesystem::current_path() /
             ".IntelligentRecipeManagementSystem_UserConfig";  // Fallback
-        std::cerr << "Warning: HOME environment variable not found. Using "
-                     "fallback config directory: "
-                  << configDirPath << std::endl;
+        spdlog::warn("HOME environment variable not found. Using fallback config directory: {}", configDirPath.string());
     }
 #endif
 
     try {
         if (!std::filesystem::exists(configDirPath)) {
-            std::filesystem::create_directories(configDirPath);
+            if (std::filesystem::create_directories(configDirPath)) {
+                // Use spdlog if available, otherwise fallback for this specific early message
+                if (spdlog::default_logger()) {
+                    spdlog::info("Configuration directory created: {}", configDirPath.string());
+                } else {
+                    std::cout << "Info: Configuration directory created: " << configDirPath.string() << std::endl;
+                }
+            }
         }
     } catch (const std::filesystem::filesystem_error &e) {
-        std::cerr << "Error: Could not create configuration directory: "
-                  << configDirPath << " - " << e.what() << std::endl;
+        // Use spdlog if available, otherwise fallback for this specific early message
+        if (spdlog::default_logger()) {
+            spdlog::error("Could not create configuration directory: {} - {}", configDirPath.string(), e.what());
+        } else {
+            std::cerr << "Error: Could not create configuration directory: "
+                      << configDirPath.string() << " - " << e.what() << std::endl;
+        }
         return RecipeApp::Cli::EX_CANTCREAT;
     }
+
+    // --- Initialize Main Logging System ---
+    // Now that configDirPath is known, we could set up file logging if desired.
+    // For now, we'll stick to a console logger but re-initialize to ensure it's the primary.
+    try {
+        auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+        console_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] %v"); // Standard pattern
+        // Example for file sink (can be enabled later via config or verbose flag)
+        // std::filesystem::path logFilePath = configDirPath / "recipe-cli.log";
+        // auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(logFilePath.string(), true);
+        // file_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%n] [%l] [%t] %v");
+
+        // std::vector<spdlog::sink_ptr> sinks{console_sink}; //, file_sink};
+        // auto main_logger = std::make_shared<spdlog::logger>("recipe_cli_logger", sinks.begin(), sinks.end());
+        auto main_logger = std::make_shared<spdlog::logger>("console", console_sink);
+
+        spdlog::set_default_logger(main_logger);
+        spdlog::set_level(spdlog::level::info); // Default level, overridden by --verbose later
+        spdlog::flush_on(spdlog::level::info); // Flush on info and above
+
+        spdlog::info("Main logging system initialized. Config directory: {}", configDirPath.string());
+
+    } catch (const spdlog::spdlog_ex& ex) {
+        // Fallback to cerr if logger setup fails
+        // This std::cerr is acceptable here as it's a fallback for logger failure itself.
+        std::cerr << "Main log system initialization failed: " << ex.what() << std::endl;
+    }
+
 
     // --- Dependency Injection Setup ---
 
@@ -94,17 +147,16 @@ int main(int argc, char *argv[]) {
     // 2. Load data into repositories
     // User data loading removed
     if (!recipeRepository.load()) {
-        std::cerr << "错误：无法加载菜谱数据 (recipes.json)。程序将退出。"
-                  << std::endl;
+        spdlog::error("无法加载菜谱数据 (recipes.json)。程序将退出。");
         return RecipeApp::Cli::EX_DATAERR;
     }
+    spdlog::info("菜谱数据 (recipes.json) 加载成功。");
+
     if (!restaurantRepository.load()) {  // ADDED Loading
-        std::cerr << "错误：无法加载餐厅数据 (restaurants.json)。程序将退出。"
-                  << std::endl;
+        spdlog::error("无法加载餐厅数据 (restaurants.json)。程序将退出。");
         return RecipeApp::Cli::EX_DATAERR;
     }
-    std::cout << "数据加载成功。"
-              << std::endl;  // Or move this inside handlers if needed
+    spdlog::info("餐厅数据 (restaurants.json) 加载成功。");
 
     // 3. Instantiate Managers with Repository Dependencies
     // RecipeApp::UserManager userManager(userRepository);                   //
@@ -117,39 +169,70 @@ int main(int argc, char *argv[]) {
     // Instantiate RecipeEncyclopediaManager
     RecipeApp::Logic::Encyclopedia::RecipeEncyclopediaManager encyclopediaManager;
 
-    // Determine the path to encyclopedia_recipes.json relative to the executable
-    std::filesystem::path executablePath(argv[0]); // Path to the executable
-    std::filesystem::path projectRootPath = executablePath.parent_path().parent_path(); // Assuming executable is in build/Debug or build/Release
-    if (executablePath.filename() == "recipe-cli" || executablePath.filename() == "recipe-cli.exe") {
-         // If directly in 'build' (e.g. from 'cmake --build build' then 'cd build && Debug\recipe-cli.exe')
-         // or if it's in a subdirectory of build like 'build/Debug'
-        if (executablePath.parent_path().filename() == "Debug" || executablePath.parent_path().filename() == "Release") {
-            projectRootPath = executablePath.parent_path().parent_path().parent_path(); // build/Debug/exe -> build/Debug -> build -> project_root
-        } else {
-             projectRootPath = executablePath.parent_path().parent_path(); // build/exe -> build -> project_root
+    // --- Determine the path to encyclopedia_recipes.json (Improved Logic P1.5) ---
+    std::string encyclopediaDataPath;
+    std::filesystem::path execPath;
+    try {
+        execPath = std::filesystem::absolute(std::filesystem::path(argv[0]));
+    } catch (const std::exception& e) {
+        spdlog::error("无法获取可执行文件的绝对路径: {}", e.what());
+        // Fallback or decide how to handle, for now, let it proceed to try other paths
+        execPath = std::filesystem::path(argv[0]); // Use as is
+    }
+    std::filesystem::path execDir = execPath.parent_path();
+
+    std::vector<std::filesystem::path> potentialPaths;
+    // 1. Relative to executable: ./data/encyclopedia_recipes.json (e.g. deployed alongside data dir)
+    potentialPaths.push_back(execDir / "data" / "encyclopedia_recipes.json");
+    // 2. Relative to executable: ../data/encyclopedia_recipes.json (common for build/config/exe)
+    potentialPaths.push_back(execDir / ".." / "data" / "encyclopedia_recipes.json");
+    // 3. Relative to executable: ../../data/encyclopedia_recipes.json (common for build/config/sub/exe)
+    potentialPaths.push_back(execDir / ".." / ".." / "data" / "encyclopedia_recipes.json");
+    // 4. Project root relative to common build structures (e.g. build/Debug/exe -> project_root/data)
+    if (execDir.has_parent_path() && execDir.parent_path().has_parent_path()) { // execDir/../.. (project_root)
+        potentialPaths.push_back(execDir.parent_path().parent_path() / "data" / "encyclopedia_recipes.json");
+        if (execDir.parent_path().parent_path().has_parent_path()){ // execDir/../../.. (e.g. if build is in a sub-sub-dir)
+             potentialPaths.push_back(execDir.parent_path().parent_path().parent_path() / "data" / "encyclopedia_recipes.json");
         }
-    } else {
-        // Fallback or if structure is different, assume current_path might be project root
-        // This part might need adjustment based on actual deployment/execution scenarios
-        projectRootPath = std::filesystem::current_path();
-        std::cerr << "Warning: Could not reliably determine project root from executable path. Assuming current_path is project root for encyclopedia data." << std::endl;
+    }
+    // 5. In user config directory (less common for encyclopedia, but a fallback)
+    potentialPaths.push_back(configDirPath / "encyclopedia_recipes.json");
+    // 6. In current working directory: ./data/encyclopedia_recipes.json
+    potentialPaths.push_back(std::filesystem::current_path() / "data" / "encyclopedia_recipes.json");
+    // 7. Directly in current working directory (if file is just encyclopedia_recipes.json)
+    potentialPaths.push_back(std::filesystem::current_path() / "encyclopedia_recipes.json");
+     // 8. Directly relative to executable (if file is just encyclopedia_recipes.json)
+    potentialPaths.push_back(execDir / "encyclopedia_recipes.json");
+
+
+    spdlog::debug("开始查找食谱大全数据文件 (encyclopedia_recipes.json)。可执行文件路径: {}", execPath.string());
+    for (const auto& p : potentialPaths) {
+        std::filesystem::path canonical_path;
+        try {
+            // weakly_canonical to resolve ., .. without requiring the file to exist initially for all parts of the path
+            canonical_path = std::filesystem::weakly_canonical(p);
+        } catch (const std::filesystem::filesystem_error& fs_err) {
+            spdlog::debug("  - 检查路径时发生错误 (路径: '{}'): {}", p.string(), fs_err.what());
+            canonical_path = p; // Use original path if canonicalization fails
+        }
+        spdlog::debug("  - 正在检查规范化路径: {}", canonical_path.string());
+        if (std::filesystem::exists(canonical_path) && std::filesystem::is_regular_file(canonical_path)) {
+            encyclopediaDataPath = canonical_path.string();
+            spdlog::info("食谱大全数据文件找到于: {}", encyclopediaDataPath);
+            break;
+        }
     }
 
-    std::filesystem::path encyclopediaDataPathFs = projectRootPath / "data" / "encyclopedia_recipes.json";
-    std::string encyclopediaDataPath = encyclopediaDataPathFs.string();
-
-    if (RecipeApp::CliUtils::isVerbose()) {
-        std::cout << "[调试] 尝试从以下路径加载食谱大全: " << encyclopediaDataPath << std::endl;
-        std::cout << "[调试] 可执行文件路径: " << executablePath.string() << std::endl;
-        std::cout << "[调试] 推断的项目根目录: " << projectRootPath.string() << std::endl;
+    if (encyclopediaDataPath.empty()) {
+        spdlog::warn("无法在任何预期位置找到食谱大全数据文件 (encyclopedia_recipes.json)。食谱大全功能可能不可用。");
+        // encyclopediaManager.loadRecipes will handle an empty path if necessary
     }
 
-    if (!encyclopediaManager.loadRecipes(encyclopediaDataPath)) {
-        std::cerr << "警告：无法加载食谱大全数据 (" << encyclopediaDataPath
-                  << ")。食谱大全功能可能不可用。" << std::endl;
+    if (!encyclopediaManager.loadRecipes(encyclopediaDataPath)) { // loadRecipes should handle empty path gracefully
+        spdlog::warn("无法加载食谱大全数据 ({}). 食谱大全功能可能不可用。", encyclopediaDataPath);
     } else {
-        if (RecipeApp::CliUtils::isVerbose()) {
-             std::cout << "[调试] 食谱大全数据从 " << encyclopediaDataPath << " 加载成功。" << std::endl;
+        if (RecipeApp::CliUtils::isVerbose()) { // This check is fine
+             spdlog::debug("食谱大全数据从 {} 加载成功。", encyclopediaDataPath);
         }
     }
 
@@ -157,8 +240,8 @@ int main(int argc, char *argv[]) {
     RecipeApp::CliHandlers::RecipeCommandHandler recipeCommandHandler(
         recipeManager);
     RecipeApp::CliHandlers::RestaurantCommandHandler restaurantCommandHandler(
-        restaurantManager);
-    RecipeApp::CliHandlers::UserCommandHandler userCommandHandler;
+        restaurantManager, recipeManager); // Added recipeManager
+    // RecipeApp::CliHandlers::UserCommandHandler userCommandHandler; // Removed as part of P1.7
     RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler encyclopediaCommandHandler(encyclopediaManager); // ADDED: Instantiate new handler
     // RecipeApp::CliHandlers::AdminCommandHandler
     // adminCommandHandler(userManager); // AdminCommandHandler removed
@@ -199,9 +282,9 @@ int main(int argc, char *argv[]) {
         "recipe-list",
         u8"列出所有可用的菜谱。\n  例如: recipe-cli --recipe-list")(
         "recipe-search",
-        u8"按名称和/或标签搜索菜谱。\n  名称搜索: --recipe-search \"鸡肉\"\n  "
-        u8"单标签搜索: --recipe-search --tag \"素食\"\n  多标签搜索 (AND): "
-        u8"--recipe-search --tags \"晚餐,快捷\"\n  组合搜索: --recipe-search "
+        u8"按名称和/或标签搜索菜谱。\n  名称搜索: recipe-cli --recipe-search \"鸡肉\"\n  "
+        u8"单标签搜索: recipe-cli --recipe-search --tag \"素食\"\n  多标签搜索 (AND): "
+        u8"recipe-cli --recipe-search --tags \"晚餐,快捷\"\n  组合搜索: recipe-cli --recipe-search "
         u8"\"汤\" --tag \"冬季\"",
         cxxopts::value<std::string>()->implicit_value(""), u8"查询内容 (可选)")(
         "recipe-view",
@@ -225,11 +308,25 @@ int main(int argc, char *argv[]) {
 
     options.add_options("Encyclopedia")(
         "enc-list", u8"列出食谱大全中的所有菜谱。\n  例如: recipe-cli --enc-list")
-        ("enc-search", u8"在食谱大全中按关键词 (名称、食材、标签) 搜索菜谱。\n  例如: recipe-cli encyclopedia search --keywords \"鸡肉 汤\"", // Updated description
+        ("enc-search", u8"在食谱大全中按关键词 (名称、食材、标签) 搜索菜谱。\n  例如: recipe-cli --enc-search --keywords \"鸡肉 汤\"", // Updated description
          cxxopts::value<std::string>(), u8"搜索关键词 (必需)") // Made keywords mandatory for the handler
-        ("enc-view", u8"按 ID 查看食谱大全中特定菜谱的详细信息。\n  例如: recipe-cli encyclopedia view --id 123", // Added new option
+        ("enc-view", u8"按 ID 查看食谱大全中特定菜谱的详细信息。\n  例如: recipe-cli --enc-view --id 123", // Added new option
          cxxopts::value<int>(), u8"菜谱ID (必需)");
 
+    options.add_options("Restaurant")(
+        "restaurant-add",
+        u8"添加一个新餐馆。\n  例如: recipe-cli --restaurant-add")(
+        "restaurant-list",
+        u8"列出所有已保存的餐馆。\n  例如: recipe-cli --restaurant-list")(
+        "restaurant-view",
+        u8"按 ID 查看餐馆详情。\n  例如: recipe-cli --restaurant-view <ID>",
+        cxxopts::value<int>(), u8"餐馆ID")(
+        "restaurant-update",
+        u8"按 ID 更新餐馆信息。\n  例如: recipe-cli --restaurant-update <ID>",
+        cxxopts::value<int>(), u8"餐馆ID")(
+        "restaurant-delete",
+        u8"按 ID 删除餐馆。\n  例如: recipe-cli --restaurant-delete <ID>",
+        cxxopts::value<int>(), u8"餐馆ID");
     // options.add_options("Admin")
     // ("admin-user-list", u8"列出系统中的所有用户。\n  例如: recipe-cli
     // --admin-user-list")
@@ -244,7 +341,9 @@ int main(int argc, char *argv[]) {
         auto result = options.parse(argc, argv);
 
         if (result.count("help")) {
-            std::cout << options.help({"", "Recipe", "Encyclopedia"}) // Added Encyclopedia to help
+            // 隐藏餐馆指令 可以自己添加
+            
+            std::cout << options.help({"", "Recipe", "Encyclopedia"})
                       << std::endl;
             return RecipeApp::Cli::EX_OK;
         }
@@ -255,9 +354,9 @@ int main(int argc, char *argv[]) {
 
         if (result.count("verbose")) {
             RecipeApp::CliUtils::setVerbose(true);
-            if (RecipeApp::CliUtils::isVerbose()) {
-                std::cout << "[调试] 详细输出模式已启用。" << std::endl;
-            }
+            spdlog::set_level(spdlog::level::debug); // Set spdlog level to debug
+            spdlog::debug("Verbose output enabled via command line.");
+            // The old std::cout for this is no longer needed.
         }
 
         // --- Command Dispatching ---
@@ -323,6 +422,23 @@ int main(int argc, char *argv[]) {
             exit_code = encyclopediaCommandHandler.handleViewEncyclopediaRecipe(result);
             command_handled = true;
         }
+        // Restaurant Commands
+        else if (result.count("restaurant-add")) {
+            exit_code = restaurantCommandHandler.handleAddRestaurant(result);
+            command_handled = true;
+        } else if (result.count("restaurant-list")) {
+            exit_code = restaurantCommandHandler.handleListRestaurants(result);
+            command_handled = true;
+        } else if (result.count("restaurant-view")) {
+            exit_code = restaurantCommandHandler.handleViewRestaurant(result);
+            command_handled = true;
+        } else if (result.count("restaurant-update")) {
+            exit_code = restaurantCommandHandler.handleUpdateRestaurant(result);
+            command_handled = true;
+        } else if (result.count("restaurant-delete")) {
+            exit_code = restaurantCommandHandler.handleDeleteRestaurant(result);
+            command_handled = true;
+        }
         // Admin Commands (Commented out)
         // else if (result.count("admin-user-list"))
         // {
@@ -358,7 +474,8 @@ int main(int argc, char *argv[]) {
                 for (const auto &cmd_opt : { // Added new encyclopedia commands to this check
                          "recipe-add", "recipe-list", "recipe-search",
                          "recipe-view", "recipe-update", "recipe-delete",
-                         "enc-list", "enc-search", "enc-view" // Added enc-view to check
+                         "enc-list", "enc-search", "enc-view", // Added enc-view to check
+                         "restaurant-add", "restaurant-list", "restaurant-view", "restaurant-update", "restaurant-delete" // Added restaurant commands
                          // "admin-user-update" // Temporarily add back for
                          // testing "admin-user-list", "admin-user-create",
                          // "admin-user-delete" // Commented out
@@ -379,16 +496,13 @@ int main(int argc, char *argv[]) {
                 } else if (!only_global_options_without_command) {
                     // A command flag was likely present but didn't match the
                     // dispatch logic (shouldn't happen ideally)
-                    std::cerr << "错误：无法识别的命令。请检查命令拼写。"
-                              << std::endl;
+                    spdlog::error("无法识别的命令。请检查命令拼写。");
                     exit_code = RecipeApp::Cli::EX_USAGE;
                     command_handled = true;
                 } else {
                     // Arguments were present but didn't match any known option
                     // or command
-                    std::cerr
-                        << "错误：无效参数。使用 'recipe-cli --help' 获取帮助。"
-                        << std::endl;
+                    spdlog::error("无效参数。使用 'recipe-cli --help' 获取帮助。");
                     exit_code = RecipeApp::Cli::EX_USAGE;
                     command_handled = true;
                 }
@@ -396,18 +510,37 @@ int main(int argc, char *argv[]) {
         }
 
         if (RecipeApp::CliUtils::isVerbose() && command_handled) {
-            std::cout << "[调试] 命令已处理，退出码: " << exit_code
-                      << std::endl;
+            spdlog::debug("命令已处理，退出码: {}", exit_code);
         }
         return exit_code;
     } catch (const cxxopts::exceptions::exception &e) {
-        std::cerr << "错误：解析命令行参数失败: " << e.what() << std::endl;
-        std::cerr << "使用 'recipe-cli --help' 获取帮助。" << std::endl;
+        spdlog::error("解析命令行参数失败: {}", e.what());
+        spdlog::info("使用 'recipe-cli --help' 获取帮助。");
         return RecipeApp::Cli::EX_USAGE;
+    } catch (const RecipeApp::Common::Exceptions::ValidationException &e) {
+        spdlog::error("输入校验失败: {}", e.what());
+        spdlog::info("请检查您的输入并重试。使用 '--help' 获取命令用法。");
+        return RecipeApp::Cli::EX_USAGE;
+    } catch (const RecipeApp::Common::Exceptions::PersistenceException &e) {
+        spdlog::error("数据持久化错误: {}", e.what());
+        spdlog::info("请检查文件权限或数据文件是否损坏。");
+        return RecipeApp::Cli::EX_DATAERR;
+    } catch (const RecipeApp::Common::Exceptions::BusinessLogicException &e) {
+        spdlog::error("业务逻辑错误: {}", e.what());
+        spdlog::info("操作无法完成。");
+        return RecipeApp::Cli::EX_SOFTWARE;
+    } catch (const RecipeApp::Common::Exceptions::ConfigurationException &e) {
+        spdlog::error("配置错误: {}", e.what());
+        spdlog::info("请检查应用程序配置。");
+        return RecipeApp::Cli::EX_CONFIG;
+    } catch (const RecipeApp::Common::Exceptions::RecipeCliBaseException &e) {
+        // Catch-all for any other custom exceptions deriving from our base
+        spdlog::error("应用程序特定错误: {}", e.what());
+        return RecipeApp::Cli::EX_SOFTWARE;
     } catch (const std::exception &e) {
-        std::cerr << "发生意外的内部错误: " << e.what() << std::endl;
+        spdlog::critical("发生未预料的内部标准库错误: {}", e.what());
         if (RecipeApp::CliUtils::isVerbose()) {
-            std::cerr << "[调试] 异常类型: " << typeid(e).name() << std::endl;
+            spdlog::debug("异常类型: {}", typeid(e).name());
         }
         return RecipeApp::Cli::EX_SOFTWARE;
     }

@@ -128,23 +128,70 @@ std::vector<Recipe> RestaurantManager::getFeaturedRecipes(
 // Removed persistence-specific methods: setNextRestaurantId,
 // getNextRestaurantId, addRestaurantDirectly
 
-}  // namespace RecipeApp
 // Add new method implementation at the end of the file, before the closing
 // namespace brace.
 
-int RecipeApp::RestaurantManager::getNextRestaurantId() const {
+int RestaurantManager::getNextRestaurantId() const {
     return restaurantRepository_.getNextId();
 }
 // Add new method implementations at the end of the file, before the closing
 // namespace brace.
 
-void RecipeApp::RestaurantManager::addRestaurantFromPersistence(
+void RestaurantManager::addRestaurantFromPersistence(
     const Restaurant &restaurant) {
     restaurantRepository_.save(restaurant);  // Assuming save handles both new
                                              // and existing if ID is set
 }
 
-void RecipeApp::RestaurantManager::setNextRestaurantIdFromPersistence(
+void RestaurantManager::setNextRestaurantIdFromPersistence(
     int nextId) {
     restaurantRepository_.setNextId(nextId);
 }
+std::vector<Restaurant> RestaurantManager::findRestaurantsByCuisine(
+    const std::string &cuisineTag, const RecipeManager &recipeManager) const {
+    std::vector<Restaurant> matchingRestaurants;
+    std::vector<Restaurant> allRestaurants = this->getAllRestaurants(); // Uses repository via manager method
+
+    if (cuisineTag.empty()) {
+        // spdlog::warn("findRestaurantsByCuisine called with empty cuisineTag.");
+        return matchingRestaurants; // Or return allRestaurants? For now, empty.
+    }
+
+    std::string lowerCuisineTag = cuisineTag;
+    std::transform(lowerCuisineTag.begin(), lowerCuisineTag.end(), lowerCuisineTag.begin(),
+                   [](unsigned char c){ return std::tolower(c); });
+
+    for (const auto &restaurant : allRestaurants) {
+        std::vector<Recipe> featuredRecipes = this->getFeaturedRecipes(restaurant.getRestaurantId(), recipeManager); // Corrected getId to getRestaurantId
+        bool foundMatchInRestaurant = false;
+        for (const auto &recipe : featuredRecipes) {
+            const auto &recipeTags = recipe.getTags();
+            for (const auto &tag : recipeTags) {
+                std::string lowerTag = tag;
+                std::transform(lowerTag.begin(), lowerTag.end(), lowerTag.begin(),
+                               [](unsigned char c){ return std::tolower(c); });
+                if (lowerTag == lowerCuisineTag) {
+                    // Check if restaurant is already added to avoid duplicates if multiple recipes match
+                    bool alreadyAdded = false;
+                    for(const auto& addedRest : matchingRestaurants) {
+                        if(addedRest.getRestaurantId() == restaurant.getRestaurantId()) { // Corrected getId to getRestaurantId
+                            alreadyAdded = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyAdded) {
+                        matchingRestaurants.push_back(restaurant);
+                    }
+                    foundMatchInRestaurant = true;
+                    break; // Found matching tag in this recipe, move to next recipe or restaurant
+                }
+            }
+            if (foundMatchInRestaurant) {
+                break; // Found matching recipe in this restaurant, move to next restaurant
+            }
+        }
+    }
+    return matchingRestaurants;
+}
+
+}  // namespace RecipeApp

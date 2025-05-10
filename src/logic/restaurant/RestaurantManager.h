@@ -98,6 +98,14 @@ namespace RecipeApp
          */
         void setNextRestaurantIdFromPersistence(int nextId);
 
+        /**
+         * @brief Find restaurants by cuisine type, inferred from their featured recipes' tags.
+         * @param cuisineTag The cuisine tag to search for (e.g., "Italian", "Chinese").
+         * @param recipeManager Reference to RecipeManager to fetch recipe details (including tags).
+         * @return std::vector of matching Restaurants.
+         */
+        std::vector<Restaurant> findRestaurantsByCuisine(const std::string &cuisineTag, const RecipeManager &recipeManager) const;
+
         // Removed persistence-specific methods: setNextRestaurantId, getNextRestaurantId, addRestaurantDirectly
     };
 

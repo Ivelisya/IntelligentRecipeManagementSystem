@@ -48,7 +48,7 @@ set(EXECUTABLE_SOURCES
     src/cli/CliUtils.cpp             # CLI 辅助函数
     src/cli/recipe/RecipeCommandHandler.cpp # 菜谱命令处理程序
     src/cli/restaurant/RestaurantCommandHandler.cpp
-    src/cli/user/UserCommandHandler.cpp
+    # src/cli/user/UserCommandHandler.cpp # Removed as part of P1.7
     src/cli/encyclopedia/RecipeEncyclopediaCommandHandler.cpp # ADDED: 食谱大全命令处理程序
     # src/api/dll_api.cpp # DLL 接口文件暂时不包含在 CLI 中
     # 注意: CustomLinkedList.h 是仅头文件库，不需要添加到源文件列表
@@ -75,6 +75,7 @@ message(STATUS "Target include paths for recipe-cli added.")
 
 # --- (可选) 链接依赖库 ---
 # 如果您的代码依赖其他库，在此处链接
+target_link_libraries(recipe-cli PRIVATE spdlog::spdlog)
 # target_link_libraries(recipe-cli PRIVATE SomeOtherLib::SomeOtherLib)
 
 # --- (可选) 安装规则 ---
@@ -92,6 +93,13 @@ FetchContent_Declare(
   GIT_TAG    v1.14.0 # 更新到较新的稳定版本以解决 CMake 弃用警告
 )
 
+# --- 使用 FetchContent 获取 spdlog ---
+FetchContent_Declare(
+  spdlog
+  GIT_REPOSITORY https://github.com/gabime/spdlog.git
+  GIT_TAG    v1.14.0 # 使用一个较新的稳定版本
+)
+
 # 强制 gtest 使用共享 CRT (MD/MDd) 来匹配项目设置
 set(gtest_force_shared_crt ON CACHE BOOL "Force shared CRT for gtest" FORCE)
 # 对于 googletest，我们需要显式地将其标记为非独占，以避免在多个目录中获取它时出现问题
@@ -99,6 +107,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "Force shared CRT for gtest" FORCE)
 # if(NOT googletest_POPULATED) # 只有在尚未填充时才填充
   FetchContent_MakeAvailable(googletest)
 # endif()
+FetchContent_MakeAvailable(spdlog) # 使 spdlog 可用
 
 # FetchContent_MakeAvailable(googletest) 将会:
 # 1. 下载 googletest (如果尚未下载)
@@ -124,8 +133,8 @@ target_include_directories(TestRestaurant PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-# 链接 Google Test
-target_link_libraries(TestRestaurant PRIVATE GTest::gtest_main)
+# 链接 Google Test 和 spdlog
+target_link_libraries(TestRestaurant PRIVATE GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestRestaurant COMMAND TestRestaurant)
 
 message(STATUS "Added test: TestRestaurant")
@@ -144,8 +153,8 @@ target_include_directories(TestRestaurantManager PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-# 链接 Google Test
-target_link_libraries(TestRestaurantManager PRIVATE GTest::gtest_main)
+# 链接 Google Test 和 spdlog
+target_link_libraries(TestRestaurantManager PRIVATE GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestRestaurantManager COMMAND TestRestaurantManager)
 
 message(STATUS "Added test: TestRestaurantManager")
@@ -182,8 +191,8 @@ target_include_directories(TestRecipe PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     # ${GTEST_INCLUDE_DIRS} # 不再需要，GTest::gtest_main 会处理包含目录
 )
-# 链接 Google Test
-target_link_libraries(TestRecipe PRIVATE GTest::gtest_main)
+# 链接 Google Test 和 spdlog
+target_link_libraries(TestRecipe PRIVATE GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestRecipe COMMAND TestRecipe)
 
 message(STATUS "Added test: TestRecipe")
@@ -200,8 +209,9 @@ target_include_directories(TestJsonRecipeRepository PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     # ${GTEST_INCLUDE_DIRS} # 不再需要，GTest::gtest_main 会处理包含目录
 )
-# 链接 Google Test
-target_link_libraries(TestJsonRecipeRepository PRIVATE GTest::gtest_main)
+# 链接 Google Test 和 spdlog
+target_link_libraries(TestRestaurantManager PRIVATE GTest::gtest GTest::gmock)
+target_link_libraries(TestJsonRecipeRepository PRIVATE GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestJsonRecipeRepository COMMAND TestJsonRecipeRepository)
 
 message(STATUS "Added test: TestJsonRecipeRepository")
@@ -218,8 +228,8 @@ target_include_directories(TestRecipeManager PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-# 链接 Google Test
-target_link_libraries(TestRecipeManager PRIVATE GTest::gtest_main)
+# 链接 Google Test 和 spdlog
+target_link_libraries(TestRecipeManager PRIVATE GTest::gmock GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestRecipeManager COMMAND TestRecipeManager)
 
 message(STATUS "Added test: TestRecipeManager")
@@ -235,7 +245,7 @@ target_include_directories(TestRecipeEncyclopediaManager PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-target_link_libraries(TestRecipeEncyclopediaManager PRIVATE GTest::gtest_main)
+target_link_libraries(TestRecipeEncyclopediaManager PRIVATE GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestRecipeEncyclopediaManager COMMAND TestRecipeEncyclopediaManager)
 message(STATUS "Added test: TestRecipeEncyclopediaManager")
 
@@ -253,6 +263,6 @@ target_include_directories(TestRecipeEncyclopediaCommandHandler PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 # For GMock, if used more extensively, link GTest::gmock_main or GTest::gmock and GTest::gtest_main
-target_link_libraries(TestRecipeEncyclopediaCommandHandler PRIVATE GTest::gmock GTest::gtest_main)
+target_link_libraries(TestRecipeEncyclopediaCommandHandler PRIVATE GTest::gmock GTest::gtest_main spdlog::spdlog)
 add_test(NAME TestRecipeEncyclopediaCommandHandler COMMAND TestRecipeEncyclopediaCommandHandler)
 message(STATUS "Added test: TestRecipeEncyclopediaCommandHandler")

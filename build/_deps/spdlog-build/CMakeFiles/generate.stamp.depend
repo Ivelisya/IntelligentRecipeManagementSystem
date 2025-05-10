@@ -1,0 +1,12 @@
+# CMake generation dependency list for this directory.
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-src/CMakeLists.txt
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-src/cmake/ide.cmake
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-src/cmake/utils.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CheckCXXSourceCompiles.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CheckIncludeFileCXX.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/CheckLibraryExists.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/FindPackageMessage.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/FindThreads.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/GNUInstallDirs.cmake
+D:/cmake-3.31.5-windows-x86_64/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake

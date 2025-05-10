@@ -11,6 +11,12 @@
       <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Release\TestRecipe.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Release\TestRecipeEncyclopediaCommandHandler.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Release\TestRecipeEncyclopediaManager.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>D:\Github\IntelligentRecipeManagementSystem\build\Release\TestRecipeManager.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>

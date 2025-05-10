@@ -1,8 +1,13 @@
 #include "RecipeManager.h"
 
 #include <algorithm>  // For std::all_of, std::any_of, std::transform
-#include <iostream>   // For potential logging
+#include <iostream>   // For std::cerr in constructor fallback (will be removed later if possible)
 #include <locale>     // For std::tolower
+#include "spdlog/spdlog.h"
+#include "common/exceptions/ValidationException.h"
+#include "common/exceptions/PersistenceException.h"
+// Note: Cli::InvalidRecipeDataException and Cli::PersistenceException seem to be ad-hoc or undefined.
+// They will be fully replaced by the new exception types.
 #include <optional>
 #include <set>  // Required for index value type
 #include <vector>
@@ -100,16 +105,15 @@ void RecipeManager::updateRecipeInIndex(const Recipe &oldRecipe,
 }
 
 int RecipeManager::addRecipe(const Recipe &recipe_param) {
-    std::cout << "[INFO] Adding recipe: " << recipe_param.getName()
-              << std::endl;
-    // 1. Check for name conflict using the repository
-    // Assuming findByName returns a list/vector. If it's empty, no conflict.
-    if (!recipeRepository_.findByName(recipe_param.getName(), false).empty()) {
-        std::cerr << "[ERROR] Recipe name '" << recipe_param.getName()
-                  << "' already exists." << std::endl;
-        throw Cli::InvalidRecipeDataException(
-            "Recipe name '" + recipe_param.getName() + "' already exists.");
-        return -1;  // Name conflict
+    spdlog::info("尝试添加菜谱: {}", recipe_param.getName());
+
+    // 1. Check for name conflict using the m_nameIndex
+    std::string normalized_name = normalizeString(recipe_param.getName());
+    if (m_nameIndex.count(normalized_name) && !m_nameIndex.at(normalized_name).empty()) {
+        spdlog::warn("尝试添加的菜谱 '{}' (规范化名称: '{}') 与现有菜谱名称冲突。", recipe_param.getName(), normalized_name);
+        throw RecipeApp::Common::Exceptions::ValidationException(
+            "菜谱名称 '" + recipe_param.getName() + "' 已存在。");
+        // return -1; // Unreachable due to throw
     }
 
     // 2. Create a new Recipe object using the builder
@@ -151,18 +155,19 @@ int RecipeManager::addRecipe(const Recipe &recipe_param) {
                 addRecipeToIndex(savedRecipeOpt.value());
             } else {
                 // This case should ideally not happen if save was successful
-                std::cerr << "[ERROR] Recipe saved with ID " << newRecipeId
-                          << " but could not be retrieved for indexing."
-                          << std::endl;
+                spdlog::error("菜谱已保存，ID: {}, 但无法从仓库检索以更新索引。", newRecipeId);
             }
         }
-        std::cout << "[INFO] Recipe added successfully with ID: " << newRecipeId
-                  << std::endl;
+        spdlog::info("菜谱 '{}' 添加成功，ID: {}", recipe_param.getName(), newRecipeId);
         return newRecipeId;
-    } catch (const std::exception &e) {
-        std::cerr << "[ERROR] Failed to save recipe: " << e.what() << std::endl;
-        throw Cli::PersistenceException("Failed to save recipe: " +
-                                        std::string(e.what()));
+    } catch (const RecipeApp::Common::Exceptions::PersistenceException& pe) { // Catch our own first
+        spdlog::error("保存菜谱 '{}' 时发生持久化错误: {}", recipe_param.getName(), pe.what());
+        throw; // Re-throw
+    } catch (const std::exception &e) { // Catch other std::exceptions
+        spdlog::error("保存菜谱 '{}' 时发生未知错误: {}", recipe_param.getName(), e.what());
+        // Wrap generic std::exception into our PersistenceException for consistent API
+        throw RecipeApp::Common::Exceptions::PersistenceException(
+            "保存菜谱 '" + recipe_param.getName() + "' 失败: " + std::string(e.what()));
     }
 }
 
@@ -210,23 +215,25 @@ bool RecipeManager::updateRecipe(const Recipe &updated_recipe_param) {
     std::optional<Recipe> existingRecipeOpt =
         recipeRepository_.findById(updated_recipe_param.getRecipeId());
     if (!existingRecipeOpt.has_value()) {
-        // std::cerr << "RecipeManager: Recipe to update (ID: " <<
-        // updated_recipe_param.getRecipeId() << ") not found." << std::endl;
+        spdlog::warn("尝试更新的菜谱 ID: {} 未找到。", updated_recipe_param.getRecipeId());
         return false;  // Recipe not found
     }
     Recipe existingRecipe = existingRecipeOpt.value();
 
     // 2. Check for name conflict if the name has changed
-    if (existingRecipe.getName() != updated_recipe_param.getName()) {
-        // Check if the new name exists for any *other* recipe
-        std::vector<Recipe> potentialConflicts =
-            recipeRepository_.findByName(updated_recipe_param.getName(), false);
-        for (const auto &conflict : potentialConflicts) {
-            if (conflict.getRecipeId() != updated_recipe_param.getRecipeId()) {
-                // std::cerr << "RecipeManager: Updated recipe name '" <<
-                // updated_recipe_param.getName() << "' conflicts with existing
-                // recipe (ID: " << conflict.getRecipeId() << ")." << std::endl;
-                return false;  // Name conflict with another recipe
+    if (normalizeString(existingRecipe.getName()) != normalizeString(updated_recipe_param.getName())) {
+        std::string normalized_new_name = normalizeString(updated_recipe_param.getName());
+        if (m_nameIndex.count(normalized_new_name)) {
+            // Check if the conflicting IDs are different from the current recipe's ID
+            for (int conflicting_id : m_nameIndex.at(normalized_new_name)) {
+                if (conflicting_id != updated_recipe_param.getRecipeId()) {
+                    spdlog::warn("更新菜谱 ID: {} 时，新名称 '{}' (规范化: '{}') 与现有菜谱 ID: {} 冲突。",
+                                 updated_recipe_param.getRecipeId(), updated_recipe_param.getName(), normalized_new_name, conflicting_id);
+                    // Consider throwing ValidationException here if preferred for consistency
+                    // throw RecipeApp::Common::Exceptions::ValidationException(
+                    //     "更新后的菜谱名称 '" + updated_recipe_param.getName() + "' 与其他菜谱冲突。");
+                    return false; // Name conflict with another recipe
+                }
             }
         }
     }
@@ -279,32 +286,41 @@ std::set<T> union_sets(const std::vector<std::set<T>> &sets_to_union) {
 }
 
 std::vector<Recipe> RecipeManager::findRecipesByIngredients(
-    const std::vector<std::string> &requiredIngredients) const {
-    if (requiredIngredients.empty()) {
+    const std::vector<std::string> &ingredientsToFind, bool matchAll) const {
+    if (ingredientsToFind.empty()) {
         return {};
     }
 
     std::vector<std::set<int>> id_sets;
-    for (const auto &ing_name : requiredIngredients) {
+    for (const auto &ing_name : ingredientsToFind) {
         std::string normalized_ing = normalizeString(ing_name);
         auto it = m_ingredientIndex.find(normalized_ing);
-        if (it != m_ingredientIndex.end()) {
+        if (it != m_ingredientIndex.end() && !it->second.empty()) {
             id_sets.push_back(it->second);
         } else {
-            // If one ingredient is not found, and we need to match all (which
-            // is implied by current method's intent)
-            return {};  // No recipe can match if one required ingredient is
-                        // missing from all recipes.
+            if (matchAll) {
+                // If one ingredient is not found in any recipe, and we need to match all,
+                // then no recipe can possibly match.
+                return {};
+            }
+            // If not matchAll, we simply ignore this ingredient as it yields no recipes.
+            // Or, if it's the very first ingredient and matchAll is false, and it's not found,
+            // we still need to continue to see if other ingredients yield results.
+            // If id_sets remains empty after checking all ingredients (for matchAll=false),
+            // then the result is empty.
         }
     }
 
-    if (id_sets.empty()) {  // This case implies requiredIngredients was not
-                            // empty, but no ingredient yielded any recipe IDs.
+    if (id_sets.empty()) {  // No recipes found for any of the specified ingredients
         return {};
     }
 
-    // This method implies matching ALL ingredients, so we intersect.
-    std::set<int> final_ids = intersect_sets(id_sets);
+    std::set<int> final_ids;
+    if (matchAll) {
+        final_ids = intersect_sets(id_sets);
+    } else {
+        final_ids = union_sets(id_sets);
+    }
 
     if (final_ids.empty()) {
         return {};
@@ -352,7 +368,7 @@ std::vector<Recipe> RecipeManager::findRecipesByTags(
     }
 
     std::vector<std::set<int>> id_sets;
-    bool first_set_added = false;
+    // bool first_set_added = false; // Unused variable
 
     for (const auto &tag_name : tagsToFind) {
         std::string normalized_tag = normalizeString(tag_name);
@@ -360,7 +376,7 @@ std::vector<Recipe> RecipeManager::findRecipesByTags(
 
         if (it != m_tagIndex.end() && !it->second.empty()) {
             id_sets.push_back(it->second);
-            first_set_added = true;
+            // first_set_added = true; // Unused variable
         } else {
             if (matchAll) {
                 // If a tag is not found in any recipe, and we need to match

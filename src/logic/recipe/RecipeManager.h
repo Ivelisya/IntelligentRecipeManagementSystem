@@ -70,9 +70,10 @@ class RecipeManager {
      * @brief 根据食材组合查找菜谱（包含所有，精确匹配）
      * @param ingredients 食材名称列表
      * @return 匹配菜谱的列表
+     * @param matchAll 如果为 true，则食谱必须包含所有指定食材；如果为 false，则食谱包含任何一个指定食材即可
      */
     std::vector<Recipe> findRecipesByIngredients(
-        const std::vector<std::string> &ingredients) const;
+        const std::vector<std::string> &ingredients, bool matchAll = true) const;
 
     /**
      * @brief 根据菜系分类查找菜谱

@@ -23,3 +23,7 @@ D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-build/googlet
 D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-build/googletest/CMakeFiles/RUN_TESTS.dir
 D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-build/googletest/CMakeFiles/INSTALL.dir
 D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-build/googletest/CMakeFiles/ALL_BUILD.dir
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-build/CMakeFiles/spdlog.dir
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-build/CMakeFiles/RUN_TESTS.dir
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-build/CMakeFiles/INSTALL.dir
+D:/Github/IntelligentRecipeManagementSystem/build/_deps/spdlog-build/CMakeFiles/ALL_BUILD.dir

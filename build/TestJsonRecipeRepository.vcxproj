@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -103,16 +103,16 @@
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;SPDLOG_COMPILED_LIB;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;SPDLOG_COMPILED_LIB;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -120,7 +120,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>lib\Debug\gtest_main.lib;lib\Debug\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>lib\Debug\gtest_main.lib;_deps\spdlog-build\Debug\spdlogd.lib;lib\Debug\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -135,7 +135,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -151,18 +151,18 @@
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -170,7 +170,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>lib\Release\gtest_main.lib;lib\Release\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>lib\Release\gtest_main.lib;_deps\spdlog-build\Release\spdlog.lib;lib\Release\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -185,7 +185,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -201,18 +201,18 @@
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -220,7 +220,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>lib\MinSizeRel\gtest_main.lib;lib\MinSizeRel\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>lib\MinSizeRel\gtest_main.lib;_deps\spdlog-build\MinSizeRel\spdlog.lib;lib\MinSizeRel\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -235,7 +235,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest/include" /external:I "D:/Github/IntelligentRecipeManagementSystem/build/_deps/googletest-src/googletest"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -252,16 +252,16 @@
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Github\IntelligentRecipeManagementSystem\include;D:\Github\IntelligentRecipeManagementSystem\src;D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-src\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\include;D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -269,7 +269,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>lib\RelWithDebInfo\gtest_main.lib;lib\RelWithDebInfo\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>lib\RelWithDebInfo\gtest_main.lib;_deps\spdlog-build\RelWithDebInfo\spdlog.lib;lib\RelWithDebInfo\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -359,6 +359,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-build\googletest\gtest_main.vcxproj">
       <Project>{94E57D20-7703-35EF-9E58-8F682BA99B8F}</Project>
       <Name>gtest_main</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\_deps\spdlog-build\spdlog.vcxproj">
+      <Project>{0D432E70-705C-3AB8-A16C-E2CBA7F58DB6}</Project>
+      <Name>spdlog</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

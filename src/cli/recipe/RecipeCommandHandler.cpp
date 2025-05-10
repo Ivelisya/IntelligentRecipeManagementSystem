@@ -1,16 +1,17 @@
-#include "RecipeCommandHandler.h"  // Changed to relative path
+#include "RecipeCommandHandler.h"
+#include "spdlog/spdlog.h" // For logging
+#include "../../common/exceptions/ValidationException.h" // For custom exceptions
 
-#include <iostream>
+#include <iostream> // For std::cout, std::cerr (will be phased out for logging where appropriate)
 #include <limits>     // Required for std::numeric_limits
 #include <stdexcept>  // Required for std::exception
 #include <string>
 #include <vector>
 
-#include "../../domain/recipe/Recipe.h"  // Changed to relative path
-#include "../CliUtils.h"                 // Changed to relative path
-#include "../ExitCodes.h"                // Changed to relative path
-// #include <sstream>   // No longer needed here, moved to CliUtils.cpp
-#include <algorithm>  // Required for std::all_of, std::find (used in search)
+#include "../../domain/recipe/Recipe.h"
+#include "../CliUtils.h"
+#include "../ExitCodes.h"
+#include <algorithm>
 
 namespace RecipeApp {
 namespace CliHandlers {
@@ -25,27 +26,44 @@ int RecipeCommandHandler::handleAddRecipe(const cxxopts::ParseResult &result) {
     std::string name =
         RecipeApp::CliUtils::getStringFromConsole("请输入菜谱名称: ");
     if (name.empty()) {
-        std::cerr << "错误：菜谱名称不能为空。" << std::endl;
-        return RecipeApp::Cli::EX_APP_INVALID_INPUT;
+        spdlog::error("菜谱名称不能为空。");
+        throw Common::Exceptions::ValidationException("菜谱名称不能为空。");
     }
 
-    std::vector<RecipeApp::Recipe> existingRecipes =
-        recipeManager.findRecipeByName(name, false);
-    if (!existingRecipes.empty()) {
-        std::cerr << "错误：菜谱名称 '" << name
-                  << "' 已存在，请使用不同的名称。" << std::endl;
-        return RecipeApp::Cli::EX_APP_ALREADY_EXISTS;
-    }
+    // Name conflict check is now handled by recipeManager.addRecipe and will throw ValidationException
+    // std::vector<RecipeApp::Recipe> existingRecipes =
+    //     recipeManager.findRecipeByName(name, false);
+    // if (!existingRecipes.empty()) {
+    //     spdlog::error("菜谱名称 '{}' 已存在，请使用不同的名称。", name);
+    //     throw Common::Exceptions::ValidationException("菜谱名称 '" + name + "' 已存在。");
+    // }
 
     std::vector<std::pair<std::string, std::string>> ingredients =
         RecipeApp::CliUtils::getIngredientsFromConsole();
+    if (ingredients.empty()) {
+        // Consider if ingredients can be empty. For now, let's assume they can't for a new recipe.
+        // spdlog::warn("菜谱至少需要一种配料。");
+        // throw Common::Exceptions::ValidationException("菜谱至少需要一种配料。");
+    }
     std::vector<std::string> steps = RecipeApp::CliUtils::getStepsFromConsole();
-    int cookingTime = RecipeApp::CliUtils::getIntFromConsole(
-        "请输入烹饪时长 (分钟, 正整数): ");
-    while (cookingTime <= 0) {
-        std::cerr << "错误：烹饪时长必须为正整数。" << std::endl;
+    if (steps.empty()) {
+        // Consider if steps can be empty.
+        // spdlog::warn("菜谱至少需要一个步骤。");
+        // throw Common::Exceptions::ValidationException("菜谱至少需要一个步骤。");
+    }
+
+    int cookingTime = 0;
+    bool validTime = false;
+    while(!validTime) {
         cookingTime = RecipeApp::CliUtils::getIntFromConsole(
-            "请重新输入烹饪时长 (分钟, 正整数): ");
+            "请输入烹饪时长 (分钟, 正整数): ");
+        if (cookingTime <= 0) {
+            spdlog::error("烹饪时长必须为正整数。");
+            // Optionally, re-prompt or throw. For now, re-prompt is handled by loop.
+            // To throw: throw Common::Exceptions::ValidationException("烹饪时长必须为正整数。");
+        } else {
+            validTime = true;
+        }
     }
     RecipeApp::Difficulty difficulty =
         RecipeApp::CliUtils::getDifficultyFromConsole();
@@ -86,8 +104,9 @@ int RecipeCommandHandler::handleAddRecipe(const cxxopts::ParseResult &result) {
                   << ")" << std::endl;
         return RecipeApp::Cli::EX_OK;
     } else {
-        std::cerr << "添加菜谱失败。名称可能冲突或发生内部错误。" << std::endl;
-        return RecipeApp::Cli::EX_APP_OPERATION_FAILED;
+        // Error already logged by RecipeManager or caught as specific exception
+        // spdlog::error("添加菜谱失败。"); // This is too generic here
+        return RecipeApp::Cli::EX_APP_OPERATION_FAILED; // Or rely on exceptions from manager
     }
 }
 
@@ -108,31 +127,33 @@ int RecipeCommandHandler::handleListRecipes(
 
 int RecipeCommandHandler::handleViewRecipe(const cxxopts::ParseResult &result) {
     if (!result.count("recipe-view")) {
-        std::cerr << "错误：recipe-view 命令缺少参数 (RECIPE_ID)。"
-                  << std::endl;
-        std::cerr << "用法: recipe-cli --recipe-view <菜谱ID>" << std::endl;
-        return RecipeApp::Cli::EX_USAGE;
+        spdlog::error("查看菜谱命令 (--recipe-view) 需要一个菜谱ID参数。");
+        throw Common::Exceptions::ValidationException("查看菜谱需要提供菜谱ID。");
     }
 
     int recipeId = 0;
     try {
         recipeId = result["recipe-view"].as<int>();
+        if (recipeId <= 0) {
+            spdlog::error("提供的菜谱ID '{}' 无效，ID必须为正整数。", recipeId);
+            throw Common::Exceptions::ValidationException("无效的菜谱ID: ID必须为正整数。");
+        }
     } catch (const cxxopts::exceptions::exception &e) {
-        (void)e;  // Mark as intentionally unused
-        std::cerr << "错误：无效的菜谱ID '"
-                  << result["recipe-view"].as<std::string>()
-                  << "'。请输入一个数字。" << std::endl;
-        return RecipeApp::Cli::EX_DATAERR;
+        spdlog::error("解析菜谱ID时出错: {}。提供的参数: '{}'。", e.what(), result["recipe-view"].as<std::string>());
+        throw Common::Exceptions::ValidationException("无效的菜谱ID格式，请输入一个数字。");
     }
 
     std::optional<RecipeApp::Recipe> recipeOpt =
         recipeManager.findRecipeById(recipeId);
-    if (recipeOpt)  // Or recipeOpt.has_value()
+    if (recipeOpt)
     {
         RecipeApp::CliUtils::displayRecipeDetailsFull(recipeOpt.value());
         return RecipeApp::Cli::EX_OK;
     } else {
-        std::cerr << "未找到ID为 " << recipeId << " 的菜谱。" << std::endl;
+        spdlog::warn("未找到ID为 {} 的菜谱。", recipeId);
+        // Consider throwing a specific NotFoundException or returning a specific code
+        // For now, let main.cpp's catch-all handle or return a specific code
+        std::cout << "未找到ID为 " << recipeId << " 的菜谱。" << std::endl; // User-facing message
         return RecipeApp::Cli::EX_APP_ITEM_NOT_FOUND;
     }
 }
@@ -236,13 +257,10 @@ int RecipeCommandHandler::handleSearchRecipes(
         // value. If it's allowed, it implies "list all", but that's
         // `recipe-list`. For a "search" command, some criteria should be
         // present.
-        if (result.count("recipe-search")) {  // Check if the command itself was
-                                              // recipe-search
-            std::cerr << "错误：请为搜索提供查询词或标签。" << std::endl;
-            std::cerr << "用法: recipe-cli --recipe-search [查询词] [--tag "
-                         "<标签>] [--tags <标签1,标签2>]"
-                      << std::endl;
-            return RecipeApp::Cli::EX_USAGE;
+        if (result.count("recipe-search")) {
+            spdlog::error("请为搜索提供查询词或标签。");
+            throw Common::Exceptions::ValidationException(
+                "请为搜索提供查询词或标签。用法: --recipe-search [查询词] [--tag <标签>] [--tags <标签1,标签2>]");
         }
         // If not even --recipe-search command, this handler shouldn't be
         // called. But if it is, and no criteria, it's an issue. For safety, if
@@ -269,28 +287,27 @@ int RecipeCommandHandler::handleSearchRecipes(
 int RecipeCommandHandler::handleUpdateRecipe(
     const cxxopts::ParseResult &result) {
     if (!result.count("recipe-update")) {
-        std::cerr << "错误：recipe-update 命令缺少参数 (RECIPE_ID)。"
-                  << std::endl;
-        std::cerr << "用法: recipe-cli --recipe-update <菜谱ID>" << std::endl;
-        return RecipeApp::Cli::EX_USAGE;
+        spdlog::error("更新菜谱命令 (--recipe-update) 需要一个菜谱ID参数。");
+        throw Common::Exceptions::ValidationException("更新菜谱需要提供菜谱ID。");
     }
 
     int recipeId = 0;
     try {
         recipeId = result["recipe-update"].as<int>();
+        if (recipeId <= 0) {
+            spdlog::error("提供的菜谱ID '{}' 无效，ID必须为正整数。", recipeId);
+            throw Common::Exceptions::ValidationException("无效的菜谱ID: ID必须为正整数。");
+        }
     } catch (const cxxopts::exceptions::exception &e) {
-        (void)e;
-        std::cerr << "错误：无效的菜谱ID '"
-                  << result["recipe-update"].as<std::string>()
-                  << "'。请输入一个数字。" << std::endl;
-        return RecipeApp::Cli::EX_DATAERR;
+        spdlog::error("解析菜谱ID时出错: {}。提供的参数: '{}'。", e.what(), result["recipe-update"].as<std::string>());
+        throw Common::Exceptions::ValidationException("无效的菜谱ID格式，请输入一个数字。");
     }
 
     std::optional<RecipeApp::Recipe> recipeToUpdateOpt =
         recipeManager.findRecipeById(recipeId);
     if (!recipeToUpdateOpt) {
-        std::cerr << "错误：未找到ID为 " << recipeId << " 的菜谱。"
-                  << std::endl;
+        spdlog::warn("尝试更新但未找到ID为 {} 的菜谱。", recipeId);
+        std::cout << "错误：未找到ID为 " << recipeId << " 的菜谱。" << std::endl; // User-facing
         return RecipeApp::Cli::EX_APP_ITEM_NOT_FOUND;
     }
     RecipeApp::Recipe recipeToUpdate = recipeToUpdateOpt.value();
@@ -303,22 +320,9 @@ int RecipeCommandHandler::handleUpdateRecipe(
     std::string newName = RecipeApp::CliUtils::getStringFromConsole(
         "新名称 [" + recipeToUpdate.getName() + "]: ");
     if (!newName.empty()) {
-        if (newName != recipeToUpdate.getName()) {
-            std::vector<RecipeApp::Recipe> existing =
-                recipeManager.findRecipeByName(newName, false);
-            bool conflict = false;
-            for (const auto &r : existing) {
-                if (r.getRecipeId() != recipeId) {
-                    conflict = true;
-                    break;
-                }
-            }
-            if (conflict) {
-                std::cerr << "错误：新菜谱名称 '" << newName
-                          << "' 已被其他菜谱使用。" << std::endl;
-                return RecipeApp::Cli::EX_APP_ALREADY_EXISTS;
-            }
-        }
+        // Name conflict check is handled by RecipeManager::updateRecipe.
+        // If it returns false due to conflict, the final error message will be generic.
+        // For a more specific error here, RecipeManager::updateRecipe would need to throw ValidationException.
         recipeToUpdate.setName(newName);
     }
 
@@ -422,9 +426,12 @@ int RecipeCommandHandler::handleUpdateRecipe(
 
     if (recipeManager.updateRecipe(recipeToUpdate)) {
         std::cout << "菜谱 ID " << recipeId << " 更新成功！" << std::endl;
+        spdlog::info("菜谱 ID {} 更新成功。", recipeId);
         return RecipeApp::Cli::EX_OK;
     } else {
-        std::cerr << "更新菜谱失败。" << std::endl;
+        // RecipeManager::updateRecipe might have logged more specific reasons if it failed (e.g., name conflict if not throwing).
+        spdlog::error("更新菜谱 ID {} 失败。", recipeId);
+        std::cout << "更新菜谱失败。请检查日志获取更多信息。" << std::endl; // User-facing
         return RecipeApp::Cli::EX_APP_OPERATION_FAILED;
     }
 }
@@ -448,28 +455,27 @@ int RecipeCommandHandler::handleDeleteRecipe(
     // }
 
     if (!result.count("recipe-delete")) {
-        std::cerr << "错误：recipe-delete 命令缺少参数 (RECIPE_ID)。"
-                  << std::endl;
-        std::cerr << "用法: recipe-cli --recipe-delete <菜谱ID>" << std::endl;
-        return RecipeApp::Cli::EX_USAGE;
+        spdlog::error("删除菜谱命令 (--recipe-delete) 需要一个菜谱ID参数。");
+        throw Common::Exceptions::ValidationException("删除菜谱需要提供菜谱ID。");
     }
 
     int recipeId = 0;
     try {
         recipeId = result["recipe-delete"].as<int>();
+        if (recipeId <= 0) {
+            spdlog::error("提供的菜谱ID '{}' 无效，ID必须为正整数。", recipeId);
+            throw Common::Exceptions::ValidationException("无效的菜谱ID: ID必须为正整数。");
+        }
     } catch (const cxxopts::exceptions::exception &e) {
-        (void)e;  // Mark as intentionally unused
-        std::cerr << "错误：无效的菜谱ID '"
-                  << result["recipe-delete"].as<std::string>()
-                  << "'。请输入一个数字。" << std::endl;
-        return RecipeApp::Cli::EX_DATAERR;
+        spdlog::error("解析菜谱ID时出错: {}。提供的参数: '{}'。", e.what(), result["recipe-delete"].as<std::string>());
+        throw Common::Exceptions::ValidationException("无效的菜谱ID格式，请输入一个数字。");
     }
 
     std::optional<RecipeApp::Recipe> recipeToDeleteOpt =
         recipeManager.findRecipeById(recipeId);
     if (!recipeToDeleteOpt) {
-        std::cerr << "错误：未找到ID为 " << recipeId << " 的菜谱。"
-                  << std::endl;
+        spdlog::warn("尝试删除但未找到ID为 {} 的菜谱。", recipeId);
+        std::cout << "错误：未找到ID为 " << recipeId << " 的菜谱。" << std::endl; // User-facing
         return RecipeApp::Cli::EX_APP_ITEM_NOT_FOUND;
     }
 

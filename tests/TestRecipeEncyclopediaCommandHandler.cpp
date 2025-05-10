@@ -8,6 +8,7 @@
 #include <iostream> // For std::cout, std::cerr
 #include <sstream>  // For std::ostringstream to capture output
 #include <fstream>  // Required for std::ofstream
+#include "../src/common/exceptions/ValidationException.h" // For testing exception throws
 
 // Helper to create a Recipe for mocking manager responses
 RecipeApp::Recipe createTestRecipe(int id, const std::string& name, const std::vector<std::string>& tags = {}) {
@@ -46,7 +47,7 @@ protected:
         // Configure options once in the constructor
         testOptions.add_options("Encyclopedia")
             ("enc-search", "Search keywords", cxxopts::value<std::string>())
-            ("id", "Recipe ID", cxxopts::value<int>());
+            ("enc-view", "Recipe ID to view", cxxopts::value<int>()); // Changed "id" to "enc-view"
     }
 
     void SetUp() override {
@@ -113,8 +114,9 @@ TEST_F(RecipeEncyclopediaCommandHandlerTest, SearchRecipesWithKeywordsSuccess) {
 
     EXPECT_EQ(exitCode, RecipeApp::Cli::EX_OK);
     std::string output = ss_out.str();
-    EXPECT_THAT(output, testing::HasSubstr("Found 1 recipes matching 'Pie'"));
-    EXPECT_THAT(output, testing::HasSubstr("ID: 201, Name: Handler Test Pie"));
+    // Actual output: "找到 1 个与关键词匹配的食谱 'Pie':\n  ID: 201, 名称: Handler Test Pie\n"
+    EXPECT_THAT(output, testing::HasSubstr("找到 1 个与关键词匹配的食谱 'Pie'"));
+    EXPECT_THAT(output, testing::HasSubstr("ID: 201, 名称: Handler Test Pie"));
 }
 
 TEST_F(RecipeEncyclopediaCommandHandlerTest, SearchRecipesWithKeywordsNoMatch) {
@@ -128,28 +130,29 @@ TEST_F(RecipeEncyclopediaCommandHandlerTest, SearchRecipesWithKeywordsNoMatch) {
     std::cout.rdbuf(old_cout);
 
     EXPECT_EQ(exitCode, RecipeApp::Cli::EX_OK);
-    EXPECT_THAT(ss_out.str(), testing::HasSubstr("No recipes found matching your keywords: 'NonExistent'"));
+    // Actual output: "未找到与关键词匹配的食谱: 'NonExistent'.\n"
+    EXPECT_THAT(ss_out.str(), testing::HasSubstr("未找到与关键词匹配的食谱: 'NonExistent'"));
 }
 
 TEST_F(RecipeEncyclopediaCommandHandlerTest, SearchRecipesMissingKeywords) {
     RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler handler(*managerToUse);
     auto parseResult = createParseResult(testOptions, {}); // No "enc-search" argument
-    std::stringstream ss_err;
-    std::streambuf* old_cerr = std::cerr.rdbuf();
-    std::cerr.rdbuf(ss_err.rdbuf());
-
-    int exitCode = handler.handleSearchEncyclopediaRecipes(parseResult);
-    std::cerr.rdbuf(old_cerr);
-
-    EXPECT_EQ(exitCode, RecipeApp::Cli::EX_USAGE);
-    // The error message in the handler was also updated.
-    EXPECT_THAT(ss_err.str(), testing::HasSubstr("Error: Missing keyword for encyclopedia search"));
+    
+    EXPECT_THROW({
+        try {
+            handler.handleSearchEncyclopediaRecipes(parseResult);
+        } catch (const RecipeApp::Common::Exceptions::ValidationException& e) {
+            // Verify the exception message if needed, then rethrow to satisfy ASSERT_THROW
+            EXPECT_THAT(e.what(), testing::HasSubstr("搜索食谱大全需要 --enc-search 选项和关键词"));
+            throw;
+        }
+    }, RecipeApp::Common::Exceptions::ValidationException);
 }
 
 // Test handleViewEncyclopediaRecipe
 TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeWithIdSuccess) {
     RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler handler(*managerToUse);
-    auto parseResult = createParseResult(testOptions, {{"id", "202"}});
+    auto parseResult = createParseResult(testOptions, {{"enc-view", "202"}}); // Changed "id" to "enc-view"
     std::stringstream ss_out;
     std::streambuf* old_cout = std::cout.rdbuf();
     std::cout.rdbuf(ss_out.rdbuf());
@@ -164,7 +167,7 @@ TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeWithIdSuccess) {
 
 TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeWithIdNotFound) {
     RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler handler(*managerToUse);
-    auto parseResult = createParseResult(testOptions, {{"id", "999"}});
+    auto parseResult = createParseResult(testOptions, {{"enc-view", "999"}}); // Changed "id" to "enc-view"
      std::stringstream ss_out;
     std::streambuf* old_cout = std::cout.rdbuf();
     std::cout.rdbuf(ss_out.rdbuf());
@@ -173,21 +176,22 @@ TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeWithIdNotFound) {
     std::cout.rdbuf(old_cout);
 
     EXPECT_EQ(exitCode, RecipeApp::Cli::EX_OK); // Handler returns OK even if not found, prints message
-    EXPECT_THAT(ss_out.str(), testing::HasSubstr("Recipe with ID 999 not found"));
+    // Actual output: "未在百科中找到ID为 999 的食谱。\n"
+    EXPECT_THAT(ss_out.str(), testing::HasSubstr("未在百科中找到ID为 999 的食谱"));
 }
 
 TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeMissingId) {
     RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler handler(*managerToUse);
-    auto parseResult = createParseResult(testOptions, {}); // No ID
-    std::stringstream ss_err;
-    std::streambuf* old_cerr = std::cerr.rdbuf();
-    std::cerr.rdbuf(ss_err.rdbuf());
-
-    int exitCode = handler.handleViewEncyclopediaRecipe(parseResult);
-    std::cerr.rdbuf(old_cerr);
-
-    EXPECT_EQ(exitCode, RecipeApp::Cli::EX_USAGE);
-    EXPECT_THAT(ss_err.str(), testing::HasSubstr("Error: Missing --id option"));
+    auto parseResult = createParseResult(testOptions, {}); // No "enc-view" option provided
+    
+    EXPECT_THROW({
+        try {
+            handler.handleViewEncyclopediaRecipe(parseResult);
+        } catch (const RecipeApp::Common::Exceptions::ValidationException& e) {
+            EXPECT_THAT(e.what(), testing::HasSubstr("查看百科食谱需要 --enc-view 选项和ID"));
+            throw;
+        }
+    }, RecipeApp::Common::Exceptions::ValidationException);
 }
 
 // TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeInvalidIdFormat) {
@@ -210,16 +214,16 @@ TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeMissingId) {
 
 TEST_F(RecipeEncyclopediaCommandHandlerTest, ViewRecipeNegativeId) {
     RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler handler(*managerToUse);
-    auto parseResult = createParseResult(testOptions, {{"id", "-5"}});
-    std::stringstream ss_err;
-    std::streambuf* old_cerr = std::cerr.rdbuf();
-    std::cerr.rdbuf(ss_err.rdbuf());
-
-    int exitCode = handler.handleViewEncyclopediaRecipe(parseResult);
-    std::cerr.rdbuf(old_cerr);
-
-    EXPECT_EQ(exitCode, RecipeApp::Cli::EX_APP_INVALID_INPUT);
-    EXPECT_THAT(ss_err.str(), testing::HasSubstr("Error: Recipe ID must be a positive integer"));
+    auto parseResult = createParseResult(testOptions, {{"enc-view", "-5"}});
+    
+    EXPECT_THROW({
+        try {
+            handler.handleViewEncyclopediaRecipe(parseResult);
+        } catch (const RecipeApp::Common::Exceptions::ValidationException& e) {
+            EXPECT_THAT(e.what(), testing::HasSubstr("百科食谱ID必须为正整数"));
+            throw;
+        }
+    }, RecipeApp::Common::Exceptions::ValidationException);
 }
 
 // Example using MockManager (if you want to switch)

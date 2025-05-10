@@ -368,7 +368,7 @@ TEST(RecipeTest, AddAndGetTags) {
         if (t == "Easy") easy_count++;
     EXPECT_GE(easy_count, 1);  // At least one "Easy" tag
     EXPECT_EQ(recipe.getTags().size(),
-              3);  // If duplicates are allowed by addTag
+              2);  // Now expects 2 due to uniqueness
 
     // Adding empty tag
     recipe.addTag("");
@@ -379,7 +379,8 @@ TEST(RecipeTest, AddAndGetTags) {
     }
     EXPECT_FALSE(foundEmpty);
     EXPECT_EQ(recipe.getTags().size(),
-              3);  // Size should not change if empty tags are ignored
+              2);  // Size should not change if empty tags are ignored, and was 2
+
 }
 
 TEST(RecipeTest, RemoveTags) {
@@ -395,8 +396,8 @@ TEST(RecipeTest, RemoveTags) {
     recipe.addTag("Breakfast");
     recipe.addTag("Quick");
     recipe.addTag("Healthy");
-    recipe.addTag("Quick");                 // Add a duplicate for removal test
-    ASSERT_EQ(recipe.getTags().size(), 4);  // Now this should be correct
+    recipe.addTag("Quick");                 // Add a duplicate, should be ignored
+    ASSERT_EQ(recipe.getTags().size(), 3);  // Expect 3 unique tags
 
     // Remove existing tag (all instances)
     recipe.removeTag("Quick");
@@ -507,3 +508,76 @@ TEST(RecipeTest,
 // vector<pair<string,string>> and vector<string> within the Recipe's
 // to_json/from_json, those aspects are largely covered by the library's tests
 // and our full serialization/deserialization test.
+// --- Additional Builder Tests ---
+TEST(RecipeBuilderTest, BuildWithOnlyMandatoryFields) {
+    ASSERT_NO_THROW({
+        Recipe recipe = Recipe::builder(200, "Minimal Recipe Build")
+                            // No other .withXxx calls
+                            .build();
+        EXPECT_EQ(recipe.getRecipeId(), 200);
+        EXPECT_EQ(recipe.getName(), "Minimal Recipe Build");
+        EXPECT_TRUE(recipe.getIngredients().empty());
+        EXPECT_TRUE(recipe.getSteps().empty());
+        EXPECT_EQ(recipe.getCookingTime(), 0); // Assuming 0 is default
+        EXPECT_EQ(recipe.getDifficulty(), RecipeApp::Difficulty::Easy); // Default is Easy as per RecipeBuilder
+        EXPECT_TRUE(recipe.getTags().empty());
+        EXPECT_FALSE(recipe.getNutritionalInfo().has_value());
+        EXPECT_FALSE(recipe.getImageUrl().has_value());
+    });
+}
+
+TEST(RecipeBuilderTest, BuilderMethodOverwriting) {
+    ASSERT_NO_THROW({
+        Recipe recipe = Recipe::builder(201, "Overwrite Test")
+                            .withCookingTime(10)
+                            .withCookingTime(20) // This should overwrite the previous
+                            .withDifficulty(Difficulty::Easy)
+                            .withDifficulty(Difficulty::Hard) // Overwrite
+                            .withTags({"InitialTag"})
+                            .withTags({"FinalTag"}) // Overwrite
+                            .withIngredients({Ingredient{"OldIng", "1"}})
+                            .withIngredients({Ingredient{"NewIng", "2"}}) // Overwrite
+                            .withSteps({"OldStep"})
+                            .withSteps({"NewStep"}) // Overwrite
+                            .withNutritionalInfo("OldInfo")
+                            .withNutritionalInfo("NewInfo") // Overwrite
+                            .withImageUrl("old.url")
+                            .withImageUrl("new.url") // Overwrite
+                            .build();
+
+        EXPECT_EQ(recipe.getCookingTime(), 20);
+        EXPECT_EQ(recipe.getDifficulty(), Difficulty::Hard);
+        ASSERT_EQ(recipe.getTags().size(), 1);
+        EXPECT_EQ(recipe.getTags()[0], "FinalTag");
+        ASSERT_EQ(recipe.getIngredients().size(), 1);
+        EXPECT_EQ(recipe.getIngredients()[0].name, "NewIng");
+        ASSERT_EQ(recipe.getSteps().size(), 1);
+        EXPECT_EQ(recipe.getSteps()[0], "NewStep");
+        ASSERT_TRUE(recipe.getNutritionalInfo().has_value());
+        EXPECT_EQ(recipe.getNutritionalInfo().value(), "NewInfo");
+        ASSERT_TRUE(recipe.getImageUrl().has_value());
+        EXPECT_EQ(recipe.getImageUrl().value(), "new.url");
+    });
+}
+
+TEST(RecipeTest, AddTagEnforcesUniquenessAndIgnoresEmpty) {
+    Recipe recipe = Recipe::builder(1, "Tag Uniqueness Test")
+                        .withIngredients({})
+                        .withSteps({})
+                        .build();
+    
+    recipe.addTag("Fruit");
+    ASSERT_EQ(recipe.getTags().size(), 1);
+    EXPECT_TRUE(recipe.hasTag("Fruit"));
+
+    recipe.addTag("Fruit"); // Add duplicate
+    ASSERT_EQ(recipe.getTags().size(), 1); // Size should remain 1 if unique
+
+    recipe.addTag(""); // Add empty tag
+    ASSERT_EQ(recipe.getTags().size(), 1); // Size should remain 1 if empty is ignored
+    EXPECT_FALSE(recipe.hasTag(""));
+
+    recipe.addTag("Vegetable");
+    ASSERT_EQ(recipe.getTags().size(), 2);
+    EXPECT_TRUE(recipe.hasTag("Vegetable"));
+}
