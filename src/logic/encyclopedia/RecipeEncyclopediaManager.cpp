@@ -135,6 +135,16 @@ std::vector<RecipeApp::Recipe> RecipeEncyclopediaManager::searchRecipes(
     return results;
 }
 
+std::optional<RecipeApp::Recipe> RecipeEncyclopediaManager::getRecipeById(
+    int recipeId) const {
+    for (const auto& recipe : encyclopediaRecipes) {
+        if (recipe.getRecipeId() == recipeId) {
+            return recipe;
+        }
+    }
+    return std::nullopt;  // Return empty optional if not found
+}
+
 }  // namespace Encyclopedia
 }  // namespace Logic
 }  // namespace RecipeApp

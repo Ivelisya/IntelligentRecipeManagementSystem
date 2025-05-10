@@ -49,6 +49,7 @@ set(EXECUTABLE_SOURCES
     src/cli/recipe/RecipeCommandHandler.cpp # 菜谱命令处理程序
     src/cli/restaurant/RestaurantCommandHandler.cpp
     src/cli/user/UserCommandHandler.cpp
+    src/cli/encyclopedia/RecipeEncyclopediaCommandHandler.cpp # ADDED: 食谱大全命令处理程序
     # src/api/dll_api.cpp # DLL 接口文件暂时不包含在 CLI 中
     # 注意: CustomLinkedList.h 是仅头文件库，不需要添加到源文件列表
 )
@@ -222,3 +223,36 @@ target_link_libraries(TestRecipeManager PRIVATE GTest::gtest_main)
 add_test(NAME TestRecipeManager COMMAND TestRecipeManager)
 
 message(STATUS "Added test: TestRecipeManager")
+
+# --- 添加测试: TestRecipeEncyclopediaManager ---
+add_executable(TestRecipeEncyclopediaManager
+    tests/TestRecipeEncyclopediaManager.cpp
+    src/logic/encyclopedia/RecipeEncyclopediaManager.cpp
+    src/domain/recipe/Recipe.cpp # Dependency for Recipe objects
+    src/persistence/JsonRecipeRepository.cpp # Recipe loading might use this if manager is extended
+)
+target_include_directories(TestRecipeEncyclopediaManager PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+target_link_libraries(TestRecipeEncyclopediaManager PRIVATE GTest::gtest_main)
+add_test(NAME TestRecipeEncyclopediaManager COMMAND TestRecipeEncyclopediaManager)
+message(STATUS "Added test: TestRecipeEncyclopediaManager")
+
+# --- 添加测试: TestRecipeEncyclopediaCommandHandler ---
+add_executable(TestRecipeEncyclopediaCommandHandler
+    tests/TestRecipeEncyclopediaCommandHandler.cpp
+    src/cli/encyclopedia/RecipeEncyclopediaCommandHandler.cpp
+    src/logic/encyclopedia/RecipeEncyclopediaManager.cpp # Handler depends on Manager
+    src/domain/recipe/Recipe.cpp                         # For Recipe objects
+    src/cli/CliUtils.cpp                                 # Handler might use CliUtils
+    src/persistence/JsonRecipeRepository.cpp             # Manager might use for loading
+)
+target_include_directories(TestRecipeEncyclopediaCommandHandler PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+# For GMock, if used more extensively, link GTest::gmock_main or GTest::gmock and GTest::gtest_main
+target_link_libraries(TestRecipeEncyclopediaCommandHandler PRIVATE GTest::gmock GTest::gtest_main)
+add_test(NAME TestRecipeEncyclopediaCommandHandler COMMAND TestRecipeEncyclopediaCommandHandler)
+message(STATUS "Added test: TestRecipeEncyclopediaCommandHandler")

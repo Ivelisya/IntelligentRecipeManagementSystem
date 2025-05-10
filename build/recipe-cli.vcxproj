@@ -344,6 +344,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\recipe\RecipeCommandHandler.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\restaurant\RestaurantCommandHandler.cpp" />
     <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\user\UserCommandHandler.cpp" />
+    <ClCompile Include="D:\Github\IntelligentRecipeManagementSystem\src\cli\encyclopedia\RecipeEncyclopediaCommandHandler.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

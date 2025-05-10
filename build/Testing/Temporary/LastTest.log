@@ -1,10 +1,10 @@
-Start testing: May 10 05:58 中国标准时间
+Start testing: May 10 07:56 中国标准时间
 ----------------------------------------------------------
-1/5 Testing: TestRestaurant
-1/5 Test: TestRestaurant
+1/7 Testing: TestRestaurant
+1/7 Test: TestRestaurant
 Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRestaurant.exe"
 Directory: D:/Github/IntelligentRecipeManagementSystem/build
-"TestRestaurant" start time: May 10 05:58 中国标准时间
+"TestRestaurant" start time: May 10 07:56 中国标准时间
 Output:
 ----------------------------------------------------------
 --- Running Restaurant Tests ---
@@ -17,15 +17,15 @@ Test Remove Featured Recipe IDs: PASSED
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"TestRestaurant" end time: May 10 05:58 中国标准时间
+"TestRestaurant" end time: May 10 07:56 中国标准时间
 "TestRestaurant" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/5 Testing: TestRestaurantManager
-2/5 Test: TestRestaurantManager
+2/7 Testing: TestRestaurantManager
+2/7 Test: TestRestaurantManager
 Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRestaurantManager.exe"
 Directory: D:/Github/IntelligentRecipeManagementSystem/build
-"TestRestaurantManager" start time: May 10 05:58 中国标准时间
+"TestRestaurantManager" start time: May 10 07:56 中国标准时间
 Output:
 ----------------------------------------------------------
 --- Running RestaurantManager Tests ---
@@ -53,15 +53,15 @@ Test Update Restaurant: PASSED
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"TestRestaurantManager" end time: May 10 05:58 中国标准时间
+"TestRestaurantManager" end time: May 10 07:56 中国标准时间
 "TestRestaurantManager" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/5 Testing: TestRecipe
-3/5 Test: TestRecipe
+3/7 Testing: TestRecipe
+3/7 Test: TestRecipe
 Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRecipe.exe"
 Directory: D:/Github/IntelligentRecipeManagementSystem/build
-"TestRecipe" start time: May 10 05:58 中国标准时间
+"TestRecipe" start time: May 10 07:56 中国标准时间
 Output:
 ----------------------------------------------------------
 Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -102,18 +102,18 @@ Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\goog
 [==========] 14 tests from 1 test suite ran. (1 ms total)
 [  PASSED  ] 14 tests.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"TestRecipe" end time: May 10 05:58 中国标准时间
+"TestRecipe" end time: May 10 07:56 中国标准时间
 "TestRecipe" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/5 Testing: TestJsonRecipeRepository
-4/5 Test: TestJsonRecipeRepository
+4/7 Testing: TestJsonRecipeRepository
+4/7 Test: TestJsonRecipeRepository
 Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestJsonRecipeRepository.exe"
 Directory: D:/Github/IntelligentRecipeManagementSystem/build
-"TestJsonRecipeRepository" start time: May 10 05:58 中国标准时间
+"TestJsonRecipeRepository" start time: May 10 07:56 中国标准时间
 Output:
 ----------------------------------------------------------
 Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -121,14 +121,14 @@ Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\goog
 [----------] Global test environment set-up.
 [----------] 19 tests from JsonRecipeRepositoryTest
 [ RUN      ] JsonRecipeRepositoryTest.ConstructorAndDirectoryCreation
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862161\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993974\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.ConstructorAndDirectoryCreation (0 ms)
 [ RUN      ] JsonRecipeRepositoryTest.LoadNonExistentFile
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862162\recipes_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862162\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993974\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993974\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.LoadNonExistentFile (0 ms)
 [ RUN      ] JsonRecipeRepositoryTest.LoadEmptyJsonFile
-[       OK ] JsonRecipeRepositoryTest.LoadEmptyJsonFile (0 ms)
+[       OK ] JsonRecipeRepositoryTest.LoadEmptyJsonFile (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.LoadValidRecipes
 [       OK ] JsonRecipeRepositoryTest.LoadValidRecipes (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.LoadInvalidRecipeDataInFile
@@ -180,67 +180,67 @@ Warning: Failed to load an item for recipes due to error: Recipe ID in JSON must
 }
 [       OK ] JsonRecipeRepositoryTest.LoadInvalidRecipeDataInFile (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.SaveAllAndReload
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862166\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993979\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.SaveAllAndReload (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.SaveNewRecipe
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862168\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993981\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.SaveNewRecipe (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.UpdateExistingRecipe
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862169\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993982\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.UpdateExistingRecipe (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.FindById
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862171\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993983\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.FindById (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.FindByName
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862172\recipes_test.json. Starting with an empty list for recipes.
-[       OK ] JsonRecipeRepositoryTest.FindByName (1 ms)
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993985\recipes_test.json. Starting with an empty list for recipes.
+[       OK ] JsonRecipeRepositoryTest.FindByName (2 ms)
 [ RUN      ] JsonRecipeRepositoryTest.FindAll
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862174\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993987\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.FindAll (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.RemoveRecipe
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862175\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993988\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.RemoveRecipe (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.GetAndSetNextId
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862177\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993990\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.GetAndSetNextId (0 ms)
 [ RUN      ] JsonRecipeRepositoryTest.SaveRecipeWithPreAssignedIdNotInList
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862177\recipes_test.json. Starting with an empty list for recipes.
-[       OK ] JsonRecipeRepositoryTest.SaveRecipeWithPreAssignedIdNotInList (1 ms)
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993991\recipes_test.json. Starting with an empty list for recipes.
+[       OK ] JsonRecipeRepositoryTest.SaveRecipeWithPreAssignedIdNotInList (2 ms)
 [ RUN      ] JsonRecipeRepositoryTest.SaveRecipeWithPreAssignedIdAlreadyInList_ShouldUpdate
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862179\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993993\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.SaveRecipeWithPreAssignedIdAlreadyInList_ShouldUpdate (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.AtomicSave_SuccessfulSave
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862180\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993995\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.AtomicSave_SuccessfulSave (0 ms)
 [ RUN      ] JsonRecipeRepositoryTest.AtomicSave_TempFileNotWritable
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862181\recipes_test.json. Starting with an empty list for recipes.
-Error: Could not open temporary data file for writing: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862181\recipes_test.json.tmp
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993996\recipes_test.json. Starting with an empty list for recipes.
+Error: Could not open temporary data file for writing: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993996\recipes_test.json.tmp
 [       OK ] JsonRecipeRepositoryTest.AtomicSave_TempFileNotWritable (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.AtomicSave_RenameFails
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862182\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993998\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.AtomicSave_RenameFails (1 ms)
 [ RUN      ] JsonRecipeRepositoryTest.AtomicSave_OriginalFileMissing_TempFileExists_LoadRecoversFromTemp
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862183\recipes_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_26862183\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993999\recipes_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_repo_dir_33993999\recipes_test.json. Starting with an empty list for recipes.
 [       OK ] JsonRecipeRepositoryTest.AtomicSave_OriginalFileMissing_TempFileExists_LoadRecoversFromTemp (0 ms)
-[----------] 19 tests from JsonRecipeRepositoryTest (22 ms total)
+[----------] 19 tests from JsonRecipeRepositoryTest (26 ms total)
 
 [----------] Global test environment tear-down
-[==========] 19 tests from 1 test suite ran. (22 ms total)
+[==========] 19 tests from 1 test suite ran. (26 ms total)
 [  PASSED  ] 19 tests.
 <end of output>
 Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"TestJsonRecipeRepository" end time: May 10 05:58 中国标准时间
+"TestJsonRecipeRepository" end time: May 10 07:56 中国标准时间
 "TestJsonRecipeRepository" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-5/5 Testing: TestRecipeManager
-5/5 Test: TestRecipeManager
+5/7 Testing: TestRecipeManager
+5/7 Test: TestRecipeManager
 Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRecipeManager.exe"
 Directory: D:/Github/IntelligentRecipeManagementSystem/build
-"TestRecipeManager" start time: May 10 05:58 中国标准时间
+"TestRecipeManager" start time: May 10 07:56 中国标准时间
 Output:
 ----------------------------------------------------------
 Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\src\gtest_main.cc
@@ -248,26 +248,26 @@ Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\goog
 [----------] Global test environment set-up.
 [----------] 6 tests from RecipeManagerTest
 [ RUN      ] RecipeManagerTest.AddRecipeWithTags
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862193\recipes_manager_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862193\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994008\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994008\recipes_manager_test.json. Starting with an empty list for recipes.
 [INFO] Adding recipe: Pasta Carbonara
 [INFO] Recipe added successfully with ID: 1
 [       OK ] RecipeManagerTest.AddRecipeWithTags (1 ms)
 [ RUN      ] RecipeManagerTest.UpdateRecipeChangeTags
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862194\recipes_manager_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862194\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994009\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994009\recipes_manager_test.json. Starting with an empty list for recipes.
 [INFO] Adding recipe: Salad
 [INFO] Recipe added successfully with ID: 1
 [       OK ] RecipeManagerTest.UpdateRecipeChangeTags (1 ms)
 [ RUN      ] RecipeManagerTest.UpdateRecipeClearAllTags
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862195\recipes_manager_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862195\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994011\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994011\recipes_manager_test.json. Starting with an empty list for recipes.
 [INFO] Adding recipe: Steak
 [INFO] Recipe added successfully with ID: 1
 [       OK ] RecipeManagerTest.UpdateRecipeClearAllTags (1 ms)
 [ RUN      ] RecipeManagerTest.FindRecipesBySingleTag
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862197\recipes_manager_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862197\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994012\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994012\recipes_manager_test.json. Starting with an empty list for recipes.
 [INFO] Adding recipe: Recipe A
 [INFO] Recipe added successfully with ID: 1
 [INFO] Adding recipe: Recipe B
@@ -276,8 +276,8 @@ Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManage
 [INFO] Recipe added successfully with ID: 3
 [       OK ] RecipeManagerTest.FindRecipesBySingleTag (2 ms)
 [ RUN      ] RecipeManagerTest.FindRecipesByMultipleTags_MatchAll
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862199\recipes_manager_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862199\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994015\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994015\recipes_manager_test.json. Starting with an empty list for recipes.
 [INFO] Adding recipe: Recipe Alpha
 [INFO] Recipe added successfully with ID: 1
 [INFO] Adding recipe: Recipe Beta
@@ -288,8 +288,8 @@ Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManage
 [INFO] Recipe added successfully with ID: 4
 [       OK ] RecipeManagerTest.FindRecipesByMultipleTags_MatchAll (3 ms)
 [ RUN      ] RecipeManagerTest.FindRecipesByMultipleTags_MatchAny
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862202\recipes_manager_test.json. Starting with an empty list for recipes.
-Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_26862202\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994019\recipes_manager_test.json. Starting with an empty list for recipes.
+Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManagementSystem\build\test_manager_dir_33994019\recipes_manager_test.json. Starting with an empty list for recipes.
 [INFO] Adding recipe: Recipe X
 [INFO] Recipe added successfully with ID: 1
 [INFO] Adding recipe: Recipe Y
@@ -298,18 +298,123 @@ Warning: Could not open data file for reading: D:\Github\IntelligentRecipeManage
 [INFO] Recipe added successfully with ID: 3
 [INFO] Adding recipe: Recipe W
 [INFO] Recipe added successfully with ID: 4
-[       OK ] RecipeManagerTest.FindRecipesByMultipleTags_MatchAny (2 ms)
-[----------] 6 tests from RecipeManagerTest (12 ms total)
+[       OK ] RecipeManagerTest.FindRecipesByMultipleTags_MatchAny (3 ms)
+[----------] 6 tests from RecipeManagerTest (14 ms total)
 
 [----------] Global test environment tear-down
-[==========] 6 tests from 1 test suite ran. (12 ms total)
+[==========] 6 tests from 1 test suite ran. (14 ms total)
 [  PASSED  ] 6 tests.
 <end of output>
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"TestRecipeManager" end time: May 10 05:58 中国标准时间
+"TestRecipeManager" end time: May 10 07:56 中国标准时间
 "TestRecipeManager" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: May 10 05:58 中国标准时间
+6/7 Testing: TestRecipeEncyclopediaManager
+6/7 Test: TestRecipeEncyclopediaManager
+Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRecipeEncyclopediaManager.exe"
+Directory: D:/Github/IntelligentRecipeManagementSystem/build
+"TestRecipeEncyclopediaManager" start time: May 10 07:56 中国标准时间
+Output:
+----------------------------------------------------------
+Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 11 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 11 tests from RecipeEncyclopediaManagerTest
+[ RUN      ] RecipeEncyclopediaManagerTest.GetRecipeByIdExisting
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.GetRecipeByIdExisting (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.GetRecipeByIdNonExisting
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.GetRecipeByIdNonExisting (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.GetRecipeByIdWithEmptyEncyclopedia
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[RecipeEncyclopediaManager] Successfully loaded 0 recipes from empty_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.GetRecipeByIdWithEmptyEncyclopedia (1 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.SearchRecipesByName
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.SearchRecipesByName (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.SearchRecipesByIngredient
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.SearchRecipesByIngredient (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.SearchRecipesByTag
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.SearchRecipesByTag (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.SearchRecipesNoMatch
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.SearchRecipesNoMatch (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.SearchRecipesEmptyTerm
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.SearchRecipesEmptyTerm (0 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.LoadRecipesFileNotFound
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[RecipeEncyclopediaManager] Error: Could not open file: non_existent_file.json
+[       OK ] RecipeEncyclopediaManagerTest.LoadRecipesFileNotFound (1 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.LoadRecipesMalformedJson
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[RecipeEncyclopediaManager] Error parsing JSON file malformed_recipes.json: [json.exception.parse_error.101] parse error at line 1, column 35: syntax error while parsing object key - unexpected end of input; expected string literal
+[       OK ] RecipeEncyclopediaManagerTest.LoadRecipesMalformedJson (1 ms)
+[ RUN      ] RecipeEncyclopediaManagerTest.GetAllRecipes
+[RecipeEncyclopediaManager] Successfully loaded 3 recipes from test_encyclopedia_recipes.json
+[       OK ] RecipeEncyclopediaManagerTest.GetAllRecipes (0 ms)
+[----------] 11 tests from RecipeEncyclopediaManagerTest (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 11 tests from 1 test suite ran. (10 ms total)
+[  PASSED  ] 11 tests.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestRecipeEncyclopediaManager" end time: May 10 07:56 中国标准时间
+"TestRecipeEncyclopediaManager" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/7 Testing: TestRecipeEncyclopediaCommandHandler
+7/7 Test: TestRecipeEncyclopediaCommandHandler
+Command: "D:/Github/IntelligentRecipeManagementSystem/build/Debug/TestRecipeEncyclopediaCommandHandler.exe"
+Directory: D:/Github/IntelligentRecipeManagementSystem/build
+"TestRecipeEncyclopediaCommandHandler" start time: May 10 07:56 中国标准时间
+Output:
+----------------------------------------------------------
+Running main() from D:\Github\IntelligentRecipeManagementSystem\build\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 7 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 7 tests from RecipeEncyclopediaCommandHandlerTest
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.SearchRecipesWithKeywordsSuccess
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.SearchRecipesWithKeywordsSuccess (1 ms)
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.SearchRecipesWithKeywordsNoMatch
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.SearchRecipesWithKeywordsNoMatch (0 ms)
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.SearchRecipesMissingKeywords
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.SearchRecipesMissingKeywords (0 ms)
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeWithIdSuccess
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeWithIdSuccess (0 ms)
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeWithIdNotFound
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeWithIdNotFound (0 ms)
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeMissingId
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeMissingId (0 ms)
+[ RUN      ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeNegativeId
+[RecipeEncyclopediaManager] Successfully loaded 2 recipes from handler_test_recipes.json
+[       OK ] RecipeEncyclopediaCommandHandlerTest.ViewRecipeNegativeId (0 ms)
+[----------] 7 tests from RecipeEncyclopediaCommandHandlerTest (6 ms total)
+
+[----------] Global test environment tear-down
+[==========] 7 tests from 1 test suite ran. (6 ms total)
+[  PASSED  ] 7 tests.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestRecipeEncyclopediaCommandHandler" end time: May 10 07:56 中国标准时间
+"TestRecipeEncyclopediaCommandHandler" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 10 07:56 中国标准时间

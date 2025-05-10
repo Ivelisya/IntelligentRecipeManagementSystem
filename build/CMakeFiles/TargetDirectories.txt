@@ -4,6 +4,8 @@ D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/TestRestaurantManag
 D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/TestRecipe.dir
 D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/TestJsonRecipeRepository.dir
 D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/TestRecipeManager.dir
+D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/TestRecipeEncyclopediaManager.dir
+D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/TestRecipeEncyclopediaCommandHandler.dir
 D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/RUN_TESTS.dir
 D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/INSTALL.dir
 D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/ALL_BUILD.dir

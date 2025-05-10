@@ -4,6 +4,7 @@
 #include <memory>  // For std::unique_ptr if needed, or just raw pointers for now
 #include <string>
 #include <vector>
+#include <optional> // For std::optional
 
 #include "../../domain/recipe/Recipe.h"  // Assuming Recipe.h is in domain/recipe
 #include "../../../include/json.hpp"     // For nlohmann::json (Corrected relative path)
@@ -42,6 +43,14 @@ class RecipeEncyclopediaManager {
      */
     std::vector<RecipeApp::Recipe> searchRecipes(
         const std::string& searchTerm) const;
+
+    /**
+     * @brief Gets a specific recipe by its ID.
+     * @param recipeId The ID of the recipe to retrieve.
+     * @return An std::optional<RecipeApp::Recipe> containing the recipe if found,
+     *         otherwise an empty optional.
+     */
+    std::optional<RecipeApp::Recipe> getRecipeById(int recipeId) const;
 
    private:
     std::vector<RecipeApp::Recipe> encyclopediaRecipes;

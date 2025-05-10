@@ -1,0 +1,4 @@
+D:\Github\IntelligentRecipeManagementSystem\tests\TestRecipeEncyclopediaManager.cpp;D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeEncyclopediaManager.dir\Debug\TestRecipeEncyclopediaManager.obj
+D:\Github\IntelligentRecipeManagementSystem\src\logic\encyclopedia\RecipeEncyclopediaManager.cpp;D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeEncyclopediaManager.dir\Debug\RecipeEncyclopediaManager.obj
+D:\Github\IntelligentRecipeManagementSystem\src\domain\recipe\Recipe.cpp;D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeEncyclopediaManager.dir\Debug\Recipe.obj
+D:\Github\IntelligentRecipeManagementSystem\src\persistence\JsonRecipeRepository.cpp;D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeEncyclopediaManager.dir\Debug\JsonRecipeRepository.obj

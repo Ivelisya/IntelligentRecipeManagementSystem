@@ -10,3 +10,4 @@ D:\Github\IntelligentRecipeManagementSystem\src\cli\CliUtils.cpp;D:\Github\Intel
 D:\Github\IntelligentRecipeManagementSystem\src\cli\recipe\RecipeCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\RecipeCommandHandler.obj
 D:\Github\IntelligentRecipeManagementSystem\src\cli\restaurant\RestaurantCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\RestaurantCommandHandler.obj
 D:\Github\IntelligentRecipeManagementSystem\src\cli\user\UserCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\UserCommandHandler.obj
+D:\Github\IntelligentRecipeManagementSystem\src\cli\encyclopedia\RecipeEncyclopediaCommandHandler.cpp;D:\Github\IntelligentRecipeManagementSystem\build\recipe-cli.dir\Debug\RecipeEncyclopediaCommandHandler.obj

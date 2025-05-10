@@ -182,6 +182,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{E02C4D5D-36E1-35F1-940B-2236434925EB}</Project>
       <Name>TestRecipe</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeEncyclopediaCommandHandler.vcxproj">
+      <Project>{878903BC-6B6C-35AB-A44D-D68D25C16F6F}</Project>
+      <Name>TestRecipeEncyclopediaCommandHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeEncyclopediaManager.vcxproj">
+      <Project>{3CACB372-3977-36C4-86AE-9D75B9D203A0}</Project>
+      <Name>TestRecipeEncyclopediaManager</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\Github\IntelligentRecipeManagementSystem\build\TestRecipeManager.vcxproj">
       <Project>{42D0D884-8E37-3406-9A03-272543073353}</Project>
       <Name>TestRecipeManager</Name>

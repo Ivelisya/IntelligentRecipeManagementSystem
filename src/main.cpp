@@ -31,6 +31,7 @@
 #include "cli/recipe/RecipeCommandHandler.h"  // Include the new Recipe handler
 #include "cli/restaurant/RestaurantCommandHandler.h"
 #include "cli/user/UserCommandHandler.h"
+#include "cli/encyclopedia/RecipeEncyclopediaCommandHandler.h" // ADDED: New encyclopedia handler
 // #include "cli/handlers/AdminCommandHandler.h"  // AdminCommandHandler removed
 #include "cli/ExitCodes.h"  // Include ExitCodes
 
@@ -115,34 +116,42 @@ int main(int argc, char *argv[]) {
 
     // Instantiate RecipeEncyclopediaManager
     RecipeApp::Logic::Encyclopedia::RecipeEncyclopediaManager encyclopediaManager;
-    // Attempt to load encyclopedia recipes.
-    // IMPORTANT: The path "data/encyclopedia_recipes.json" is relative.
-    // This assumes the executable is run from a directory where "data/encyclopedia_recipes.json" is accessible.
-    // When running '.\build\Debug\recipe-cli.exe' from the project root, CWD is project root.
-    // When running 'Debug\recipe-cli.exe' from 'build' directory, CWD is 'build'.
-    // The file is at 'PROJECT_ROOT/data/encyclopedia_recipes.json'.
-    // If CWD is 'build', the path should be '../data/encyclopedia_recipes.json'.
-    // If CWD is project root, path should be 'data/encyclopedia_recipes.json'.
-    // The RecipeEncyclopediaManager itself uses the provided path directly.
-    // Let's assume the executable's CWD will be the project root for now, or that the user runs it from there.
-    // The previous warning indicated it tried to open "data/encyclopedia_recipes.json" from CWD.
-    // If CWD is 'build', it fails.
-    // A common practice for bundled data is to locate it relative to the executable, or have CMake copy it.
-    // For a quick fix, assuming CWD is 'build' when running 'Debug\recipe-cli.exe' from 'build':
-    std::string encyclopediaDataPath = "../data/encyclopedia_recipes.json"; // Adjusted path
-    // If running '.\build\Debug\recipe-cli.exe' from project root, this would be 'PROJECT_ROOT/../data/', which is wrong.
-    // The most reliable way is for RecipeEncyclopediaManager to take an absolute path, or for CMake to place the file.
-    // Given the current execution method (cwd=build, cmd=Debug\recipe-cli.exe), this path should work.
+
+    // Determine the path to encyclopedia_recipes.json relative to the executable
+    std::filesystem::path executablePath(argv[0]); // Path to the executable
+    std::filesystem::path projectRootPath = executablePath.parent_path().parent_path(); // Assuming executable is in build/Debug or build/Release
+    if (executablePath.filename() == "recipe-cli" || executablePath.filename() == "recipe-cli.exe") {
+         // If directly in 'build' (e.g. from 'cmake --build build' then 'cd build && Debug\recipe-cli.exe')
+         // or if it's in a subdirectory of build like 'build/Debug'
+        if (executablePath.parent_path().filename() == "Debug" || executablePath.parent_path().filename() == "Release") {
+            projectRootPath = executablePath.parent_path().parent_path().parent_path(); // build/Debug/exe -> build/Debug -> build -> project_root
+        } else {
+             projectRootPath = executablePath.parent_path().parent_path(); // build/exe -> build -> project_root
+        }
+    } else {
+        // Fallback or if structure is different, assume current_path might be project root
+        // This part might need adjustment based on actual deployment/execution scenarios
+        projectRootPath = std::filesystem::current_path();
+        std::cerr << "Warning: Could not reliably determine project root from executable path. Assuming current_path is project root for encyclopedia data." << std::endl;
+    }
+
+    std::filesystem::path encyclopediaDataPathFs = projectRootPath / "data" / "encyclopedia_recipes.json";
+    std::string encyclopediaDataPath = encyclopediaDataPathFs.string();
+
+    if (RecipeApp::CliUtils::isVerbose()) {
+        std::cout << "[调试] 尝试从以下路径加载食谱大全: " << encyclopediaDataPath << std::endl;
+        std::cout << "[调试] 可执行文件路径: " << executablePath.string() << std::endl;
+        std::cout << "[调试] 推断的项目根目录: " << projectRootPath.string() << std::endl;
+    }
+
     if (!encyclopediaManager.loadRecipes(encyclopediaDataPath)) {
         std::cerr << "警告：无法加载食谱大全数据 (" << encyclopediaDataPath
                   << ")。食谱大全功能可能不可用。" << std::endl;
-        // Not returning an error, as the main app can still function for user recipes.
     } else {
-        if (RecipeApp::CliUtils::isVerbose()) { // Check if verbose is already set, though it's set later
+        if (RecipeApp::CliUtils::isVerbose()) {
              std::cout << "[调试] 食谱大全数据从 " << encyclopediaDataPath << " 加载成功。" << std::endl;
         }
     }
-
 
     // 4. Instantiate Command Handlers with Manager Dependencies
     RecipeApp::CliHandlers::RecipeCommandHandler recipeCommandHandler(
@@ -150,6 +159,7 @@ int main(int argc, char *argv[]) {
     RecipeApp::CliHandlers::RestaurantCommandHandler restaurantCommandHandler(
         restaurantManager);
     RecipeApp::CliHandlers::UserCommandHandler userCommandHandler;
+    RecipeApp::CliHandlers::RecipeEncyclopediaCommandHandler encyclopediaCommandHandler(encyclopediaManager); // ADDED: Instantiate new handler
     // RecipeApp::CliHandlers::AdminCommandHandler
     // adminCommandHandler(userManager); // AdminCommandHandler removed
 
@@ -215,8 +225,10 @@ int main(int argc, char *argv[]) {
 
     options.add_options("Encyclopedia")(
         "enc-list", u8"列出食谱大全中的所有菜谱。\n  例如: recipe-cli --enc-list")
-        ("enc-search", u8"在食谱大全中按名称、食材或标签搜索菜谱。\n  例如: recipe-cli --enc-search \"汤\"",
-         cxxopts::value<std::string>()->implicit_value(""), u8"搜索关键词 (可选)");
+        ("enc-search", u8"在食谱大全中按关键词 (名称、食材、标签) 搜索菜谱。\n  例如: recipe-cli encyclopedia search --keywords \"鸡肉 汤\"", // Updated description
+         cxxopts::value<std::string>(), u8"搜索关键词 (必需)") // Made keywords mandatory for the handler
+        ("enc-view", u8"按 ID 查看食谱大全中特定菜谱的详细信息。\n  例如: recipe-cli encyclopedia view --id 123", // Added new option
+         cxxopts::value<int>(), u8"菜谱ID (必需)");
 
     // options.add_options("Admin")
     // ("admin-user-list", u8"列出系统中的所有用户。\n  例如: recipe-cli
@@ -303,36 +315,13 @@ int main(int argc, char *argv[]) {
             }
             exit_code = RecipeApp::Cli::EX_OK;
         } else if (result.count("enc-search")) {
+            // Delegate to the new handler
+            exit_code = encyclopediaCommandHandler.handleSearchEncyclopediaRecipes(result);
             command_handled = true;
-            std::string searchTerm;
-            if (result["enc-search"].count()) { // Check if a value was provided
-                 searchTerm = result["enc-search"].as<std::string>();
-            }
-
-            if (searchTerm.empty()) {
-                std::cerr << "错误：请输入搜索关键词。" << std::endl;
-                std::cout << options.help({"Encyclopedia"}) << std::endl;
-                exit_code = RecipeApp::Cli::EX_USAGE;
-            } else {
-                const auto& searchResults = encyclopediaManager.searchRecipes(searchTerm);
-                if (searchResults.empty()) {
-                    std::cout << "在食谱大全中没有找到与 \"" << searchTerm << "\"相关的菜谱。" << std::endl;
-                } else {
-                    std::cout << "--- 食谱大全搜索结果 (关键词: \"" << searchTerm << "\") ---" << std::endl;
-                    for (const auto& recipe : searchResults) {
-                        std::cout << "  ID: " << recipe.getId() << ", 名称: " << recipe.getName();
-                         if (!recipe.getTags().empty()) {
-                            std::cout << ", 标签: ";
-                            for (size_t i = 0; i < recipe.getTags().size(); ++i) {
-                                std::cout << recipe.getTags()[i] << (i == recipe.getTags().size() - 1 ? "" : ", ");
-                            }
-                        }
-                        std::cout << std::endl;
-                    }
-                    std::cout << "找到 " << searchResults.size() << " 个匹配的菜谱。" << std::endl;
-                }
-                exit_code = RecipeApp::Cli::EX_OK;
-            }
+        } else if (result.count("enc-view")) {
+            // Delegate to the new handler
+            exit_code = encyclopediaCommandHandler.handleViewEncyclopediaRecipe(result);
+            command_handled = true;
         }
         // Admin Commands (Commented out)
         // else if (result.count("admin-user-list"))
@@ -369,7 +358,7 @@ int main(int argc, char *argv[]) {
                 for (const auto &cmd_opt : { // Added new encyclopedia commands to this check
                          "recipe-add", "recipe-list", "recipe-search",
                          "recipe-view", "recipe-update", "recipe-delete",
-                         "enc-list", "enc-search"
+                         "enc-list", "enc-search", "enc-view" // Added enc-view to check
                          // "admin-user-update" // Temporarily add back for
                          // testing "admin-user-list", "admin-user-create",
                          // "admin-user-delete" // Commented out
