@@ -534,7 +534,7 @@ SOFTWARE.
 
 ## 十四、联系方式与支持渠道
 
-*   **项目维护者邮箱**：simazhangyu@gmail.com (来自原 README)
+*   **项目维护者邮箱**：simazhangyu@gmail.com
 *   **GitHub Issues**：如果您有任何问题、BUG报告或功能建议，请通过项目仓库的 [Issues](https://github.com/ivekasy/IntelligentRecipeManagementSystem/issues) 页面提交。
 
 ---
