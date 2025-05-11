@@ -24,7 +24,7 @@ events:
       The output was:
       0
       适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-      生成启动时间为 2025/5/10 20:53:07。
+      生成启动时间为 2025/5/12 1:08:37。
       
       节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\3.31.5\\CompilerIdCXX\\CompilerIdCXX.vcxproj”(默认目标)。
       PrepareForBuild:
@@ -53,7 +53,7 @@ events:
           0 个警告
           0 个错误
       
-      已用时间 00:00:00.34
+      已用时间 00:00:01.30
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -72,8 +72,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-6zus1p"
-      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-6zus1p"
+      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-ch3s9d"
+      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-ch3s9d"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -83,40 +83,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-6zus1p'
+        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-ch3s9d'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9f7ca.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e0ff7.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-        生成启动时间为 2025/5/10 20:53:07。
+        生成启动时间为 2025/5/12 1:08:39。
         
-        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6zus1p\\cmTC_9f7ca.vcxproj”(默认目标)。
+        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ch3s9d\\cmTC_e0ff7.vcxproj”(默认目标)。
         PrepareForBuild:
-          正在创建目录“cmTC_9f7ca.dir\\Debug\\”。
+          正在创建目录“cmTC_e0ff7.dir\\Debug\\”。
           已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
-          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6zus1p\\Debug\\”。
-          正在创建目录“cmTC_9f7ca.dir\\Debug\\cmTC_9f7ca.tlog\\”。
+          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ch3s9d\\Debug\\”。
+          正在创建目录“cmTC_e0ff7.dir\\Debug\\cmTC_e0ff7.tlog\\”。
         InitializeBuildStatus:
-          正在创建“cmTC_9f7ca.dir\\Debug\\cmTC_9f7ca.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-          正在对“cmTC_9f7ca.dir\\Debug\\cmTC_9f7ca.tlog\\unsuccessfulbuild”执行 Touch 任务。
+          正在创建“cmTC_e0ff7.dir\\Debug\\cmTC_e0ff7.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+          正在对“cmTC_e0ff7.dir\\Debug\\cmTC_e0ff7.tlog\\unsuccessfulbuild”执行 Touch 任务。
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9f7ca.dir\\Debug\\\\" /Fd"cmTC_9f7ca.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_e0ff7.dir\\Debug\\\\" /Fd"cmTC_e0ff7.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
           用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34808 版
           版权所有(C) Microsoft Corporation。保留所有权利。
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9f7ca.dir\\Debug\\\\" /Fd"cmTC_9f7ca.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_e0ff7.dir\\Debug\\\\" /Fd"cmTC_e0ff7.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6zus1p\\Debug\\cmTC_9f7ca.exe" /INCREMENTAL /ILK:"cmTC_9f7ca.dir\\Debug\\cmTC_9f7ca.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-6zus1p/Debug/cmTC_9f7ca.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-6zus1p/Debug/cmTC_9f7ca.lib" /MACHINE:X64  /machine:x64 cmTC_9f7ca.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_9f7ca.vcxproj -> D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6zus1p\\Debug\\cmTC_9f7ca.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ch3s9d\\Debug\\cmTC_e0ff7.exe" /INCREMENTAL /ILK:"cmTC_e0ff7.dir\\Debug\\cmTC_e0ff7.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-ch3s9d/Debug/cmTC_e0ff7.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-ch3s9d/Debug/cmTC_e0ff7.lib" /MACHINE:X64  /machine:x64 cmTC_e0ff7.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_e0ff7.vcxproj -> D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ch3s9d\\Debug\\cmTC_e0ff7.exe
         FinalizeBuildStatus:
-          正在删除文件“cmTC_9f7ca.dir\\Debug\\cmTC_9f7ca.tlog\\unsuccessfulbuild”。
-          正在对“cmTC_9f7ca.dir\\Debug\\cmTC_9f7ca.tlog\\cmTC_9f7ca.lastbuildstate”执行 Touch 任务。
-        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6zus1p\\cmTC_9f7ca.vcxproj”(默认目标)的操作。
+          正在删除文件“cmTC_e0ff7.dir\\Debug\\cmTC_e0ff7.tlog\\unsuccessfulbuild”。
+          正在对“cmTC_e0ff7.dir\\Debug\\cmTC_e0ff7.tlog\\cmTC_e0ff7.lastbuildstate”执行 Touch 任务。
+        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ch3s9d\\cmTC_e0ff7.vcxproj”(默认目标)的操作。
         
         已成功生成。
             0 个警告
             0 个错误
         
-        已用时间 00:00:00.40
+        已用时间 00:00:01.10
         
       exitCode: 0
   -
@@ -163,7 +163,7 @@ events:
       The output was:
       0
       适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-      生成启动时间为 2025/5/10 20:53:13。
+      生成启动时间为 2025/5/12 1:09:17。
       
       节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\3.31.5\\CompilerIdC\\CompilerIdC.vcxproj”(默认目标)。
       PrepareForBuild:
@@ -192,7 +192,7 @@ events:
           0 个警告
           0 个错误
       
-      已用时间 00:00:00.36
+      已用时间 00:00:01.10
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -211,8 +211,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-qwua2e"
-      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-qwua2e"
+      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-vsebq2"
+      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-vsebq2"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -222,40 +222,40 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-qwua2e'
+        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-vsebq2'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_f1363.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b7ea0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-        生成启动时间为 2025/5/10 20:53:14。
+        生成启动时间为 2025/5/12 1:09:18。
         
-        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qwua2e\\cmTC_f1363.vcxproj”(默认目标)。
+        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vsebq2\\cmTC_b7ea0.vcxproj”(默认目标)。
         PrepareForBuild:
-          正在创建目录“cmTC_f1363.dir\\Debug\\”。
+          正在创建目录“cmTC_b7ea0.dir\\Debug\\”。
           已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
-          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qwua2e\\Debug\\”。
-          正在创建目录“cmTC_f1363.dir\\Debug\\cmTC_f1363.tlog\\”。
+          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vsebq2\\Debug\\”。
+          正在创建目录“cmTC_b7ea0.dir\\Debug\\cmTC_b7ea0.tlog\\”。
         InitializeBuildStatus:
-          正在创建“cmTC_f1363.dir\\Debug\\cmTC_f1363.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-          正在对“cmTC_f1363.dir\\Debug\\cmTC_f1363.tlog\\unsuccessfulbuild”执行 Touch 任务。
+          正在创建“cmTC_b7ea0.dir\\Debug\\cmTC_b7ea0.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+          正在对“cmTC_b7ea0.dir\\Debug\\cmTC_b7ea0.tlog\\unsuccessfulbuild”执行 Touch 任务。
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_f1363.dir\\Debug\\\\" /Fd"cmTC_f1363.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b7ea0.dir\\Debug\\\\" /Fd"cmTC_b7ea0.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
           用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34808 版
           版权所有(C) Microsoft Corporation。保留所有权利。
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_f1363.dir\\Debug\\\\" /Fd"cmTC_f1363.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b7ea0.dir\\Debug\\\\" /Fd"cmTC_b7ea0.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\cmake-3.31.5-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qwua2e\\Debug\\cmTC_f1363.exe" /INCREMENTAL /ILK:"cmTC_f1363.dir\\Debug\\cmTC_f1363.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-qwua2e/Debug/cmTC_f1363.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-qwua2e/Debug/cmTC_f1363.lib" /MACHINE:X64  /machine:x64 cmTC_f1363.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_f1363.vcxproj -> D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qwua2e\\Debug\\cmTC_f1363.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vsebq2\\Debug\\cmTC_b7ea0.exe" /INCREMENTAL /ILK:"cmTC_b7ea0.dir\\Debug\\cmTC_b7ea0.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-vsebq2/Debug/cmTC_b7ea0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-vsebq2/Debug/cmTC_b7ea0.lib" /MACHINE:X64  /machine:x64 cmTC_b7ea0.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_b7ea0.vcxproj -> D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vsebq2\\Debug\\cmTC_b7ea0.exe
         FinalizeBuildStatus:
-          正在删除文件“cmTC_f1363.dir\\Debug\\cmTC_f1363.tlog\\unsuccessfulbuild”。
-          正在对“cmTC_f1363.dir\\Debug\\cmTC_f1363.tlog\\cmTC_f1363.lastbuildstate”执行 Touch 任务。
-        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qwua2e\\cmTC_f1363.vcxproj”(默认目标)的操作。
+          正在删除文件“cmTC_b7ea0.dir\\Debug\\cmTC_b7ea0.tlog\\unsuccessfulbuild”。
+          正在对“cmTC_b7ea0.dir\\Debug\\cmTC_b7ea0.tlog\\cmTC_b7ea0.lastbuildstate”执行 Touch 任务。
+        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vsebq2\\cmTC_b7ea0.vcxproj”(默认目标)的操作。
         
         已成功生成。
             0 个警告
             0 个错误
         
-        已用时间 00:00:00.40
+        已用时间 00:00:01.10
         
       exitCode: 0
   -
@@ -298,8 +298,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-550o9n"
-      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-550o9n"
+      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-xkav3t"
+      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-xkav3t"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -309,40 +309,40 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-550o9n'
+        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-xkav3t'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b6f41.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1de33.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-        生成启动时间为 2025/5/10 20:53:15。
+        生成启动时间为 2025/5/12 1:09:21。
         
-        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\cmTC_b6f41.vcxproj”(默认目标)。
+        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\cmTC_1de33.vcxproj”(默认目标)。
         PrepareForBuild:
-          正在创建目录“cmTC_b6f41.dir\\Debug\\”。
+          正在创建目录“cmTC_1de33.dir\\Debug\\”。
           已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
-          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\Debug\\”。
-          正在创建目录“cmTC_b6f41.dir\\Debug\\cmTC_b6f41.tlog\\”。
+          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\Debug\\”。
+          正在创建目录“cmTC_1de33.dir\\Debug\\cmTC_1de33.tlog\\”。
         InitializeBuildStatus:
-          正在创建“cmTC_b6f41.dir\\Debug\\cmTC_b6f41.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-          正在对“cmTC_b6f41.dir\\Debug\\cmTC_b6f41.tlog\\unsuccessfulbuild”执行 Touch 任务。
+          正在创建“cmTC_1de33.dir\\Debug\\cmTC_1de33.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+          正在对“cmTC_1de33.dir\\Debug\\cmTC_1de33.tlog\\unsuccessfulbuild”执行 Touch 任务。
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b6f41.dir\\Debug\\\\" /Fd"cmTC_b6f41.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\src.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1de33.dir\\Debug\\\\" /Fd"cmTC_1de33.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\src.c"
           用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34808 版
           版权所有(C) Microsoft Corporation。保留所有权利。
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b6f41.dir\\Debug\\\\" /Fd"cmTC_b6f41.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\src.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1de33.dir\\Debug\\\\" /Fd"cmTC_1de33.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\src.c"
           src.c
-        D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\src.c(1,10): error C1083: 无法打开包括文件: “pthread.h”: No such file or directory [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\cmTC_b6f41.vcxproj]
-        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\cmTC_b6f41.vcxproj”(默认目标)的操作 - 失败。
+        D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\src.c(1,10): error C1083: 无法打开包括文件: “pthread.h”: No such file or directory [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\cmTC_1de33.vcxproj]
+        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\cmTC_1de33.vcxproj”(默认目标)的操作 - 失败。
         
         生成失败。
         
-        “D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\cmTC_b6f41.vcxproj”(默认目标) (1) ->
+        “D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\cmTC_1de33.vcxproj”(默认目标) (1) ->
         (ClCompile 目标) -> 
-          D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\src.c(1,10): error C1083: 无法打开包括文件: “pthread.h”: No such file or directory [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-550o9n\\cmTC_b6f41.vcxproj]
+          D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\src.c(1,10): error C1083: 无法打开包括文件: “pthread.h”: No such file or directory [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xkav3t\\cmTC_1de33.vcxproj]
         
             0 个警告
             1 个错误
         
-        已用时间 00:00:00.23
+        已用时间 00:00:01.05
         
       exitCode: 1
   -
@@ -356,8 +356,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-93awkm"
-      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-93awkm"
+      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s37wxm"
+      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s37wxm"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -367,42 +367,42 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-93awkm'
+        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s37wxm'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_bd3e2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_7c1d8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-        生成启动时间为 2025/5/10 20:53:15。
+        生成启动时间为 2025/5/12 1:09:22。
         
-        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\cmTC_bd3e2.vcxproj”(默认目标)。
+        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\cmTC_7c1d8.vcxproj”(默认目标)。
         PrepareForBuild:
-          正在创建目录“cmTC_bd3e2.dir\\Debug\\”。
+          正在创建目录“cmTC_7c1d8.dir\\Debug\\”。
           已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
-          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\Debug\\”。
-          正在创建目录“cmTC_bd3e2.dir\\Debug\\cmTC_bd3e2.tlog\\”。
+          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\Debug\\”。
+          正在创建目录“cmTC_7c1d8.dir\\Debug\\cmTC_7c1d8.tlog\\”。
         InitializeBuildStatus:
-          正在创建“cmTC_bd3e2.dir\\Debug\\cmTC_bd3e2.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-          正在对“cmTC_bd3e2.dir\\Debug\\cmTC_bd3e2.tlog\\unsuccessfulbuild”执行 Touch 任务。
+          正在创建“cmTC_7c1d8.dir\\Debug\\cmTC_7c1d8.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+          正在对“cmTC_7c1d8.dir\\Debug\\cmTC_7c1d8.tlog\\unsuccessfulbuild”执行 Touch 任务。
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bd3e2.dir\\Debug\\\\" /Fd"cmTC_bd3e2.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\CheckFunctionExists.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7c1d8.dir\\Debug\\\\" /Fd"cmTC_7c1d8.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\CheckFunctionExists.c"
           用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34808 版
           版权所有(C) Microsoft Corporation。保留所有权利。
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bd3e2.dir\\Debug\\\\" /Fd"cmTC_bd3e2.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\CheckFunctionExists.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7c1d8.dir\\Debug\\\\" /Fd"cmTC_7c1d8.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\Debug\\cmTC_bd3e2.exe" /INCREMENTAL /ILK:"cmTC_bd3e2.dir\\Debug\\cmTC_bd3e2.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-93awkm/Debug/cmTC_bd3e2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-93awkm/Debug/cmTC_bd3e2.lib" /MACHINE:X64  /machine:x64 cmTC_bd3e2.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 无法打开文件“pthreads.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\cmTC_bd3e2.vcxproj]
-        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\cmTC_bd3e2.vcxproj”(默认目标)的操作 - 失败。
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\Debug\\cmTC_7c1d8.exe" /INCREMENTAL /ILK:"cmTC_7c1d8.dir\\Debug\\cmTC_7c1d8.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s37wxm/Debug/cmTC_7c1d8.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s37wxm/Debug/cmTC_7c1d8.lib" /MACHINE:X64  /machine:x64 cmTC_7c1d8.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 无法打开文件“pthreads.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\cmTC_7c1d8.vcxproj]
+        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\cmTC_7c1d8.vcxproj”(默认目标)的操作 - 失败。
         
         生成失败。
         
-        “D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\cmTC_bd3e2.vcxproj”(默认目标) (1) ->
+        “D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\cmTC_7c1d8.vcxproj”(默认目标) (1) ->
         (Link 目标) -> 
-          LINK : fatal error LNK1104: 无法打开文件“pthreads.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-93awkm\\cmTC_bd3e2.vcxproj]
+          LINK : fatal error LNK1104: 无法打开文件“pthreads.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s37wxm\\cmTC_7c1d8.vcxproj]
         
             0 个警告
             1 个错误
         
-        已用时间 00:00:00.29
+        已用时间 00:00:00.98
         
       exitCode: 1
   -
@@ -416,8 +416,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-x6odk0"
-      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-x6odk0"
+      source: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s741j0"
+      binary: "D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s741j0"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -427,42 +427,42 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-x6odk0'
+        Change Dir: 'D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s741j0'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6c96b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0f623.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         适用于 .NET Framework MSBuild 版本 17.13.9+e0f243f1e
-        生成启动时间为 2025/5/10 20:53:16。
+        生成启动时间为 2025/5/12 1:09:24。
         
-        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\cmTC_6c96b.vcxproj”(默认目标)。
+        节点 1 上的项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\cmTC_0f623.vcxproj”(默认目标)。
         PrepareForBuild:
-          正在创建目录“cmTC_6c96b.dir\\Debug\\”。
+          正在创建目录“cmTC_0f623.dir\\Debug\\”。
           已启用结构化输出。编译器诊断的格式设置将反映错误层次结构。有关详细信息，请参阅 https://aka.ms/cpp/structured-output。
-          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\Debug\\”。
-          正在创建目录“cmTC_6c96b.dir\\Debug\\cmTC_6c96b.tlog\\”。
+          正在创建目录“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\Debug\\”。
+          正在创建目录“cmTC_0f623.dir\\Debug\\cmTC_0f623.tlog\\”。
         InitializeBuildStatus:
-          正在创建“cmTC_6c96b.dir\\Debug\\cmTC_6c96b.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-          正在对“cmTC_6c96b.dir\\Debug\\cmTC_6c96b.tlog\\unsuccessfulbuild”执行 Touch 任务。
+          正在创建“cmTC_0f623.dir\\Debug\\cmTC_0f623.tlog\\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+          正在对“cmTC_0f623.dir\\Debug\\cmTC_0f623.tlog\\unsuccessfulbuild”执行 Touch 任务。
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6c96b.dir\\Debug\\\\" /Fd"cmTC_6c96b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\CheckFunctionExists.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_0f623.dir\\Debug\\\\" /Fd"cmTC_0f623.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\CheckFunctionExists.c"
           用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34808 版
           版权所有(C) Microsoft Corporation。保留所有权利。
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6c96b.dir\\Debug\\\\" /Fd"cmTC_6c96b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\CheckFunctionExists.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_0f623.dir\\Debug\\\\" /Fd"cmTC_0f623.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\Debug\\cmTC_6c96b.exe" /INCREMENTAL /ILK:"cmTC_6c96b.dir\\Debug\\cmTC_6c96b.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-x6odk0/Debug/cmTC_6c96b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-x6odk0/Debug/cmTC_6c96b.lib" /MACHINE:X64  /machine:x64 cmTC_6c96b.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 无法打开文件“pthread.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\cmTC_6c96b.vcxproj]
-        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\cmTC_6c96b.vcxproj”(默认目标)的操作 - 失败。
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\Debug\\cmTC_0f623.exe" /INCREMENTAL /ILK:"cmTC_0f623.dir\\Debug\\cmTC_0f623.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s741j0/Debug/cmTC_0f623.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Github/IntelligentRecipeManagementSystem/build/CMakeFiles/CMakeScratch/TryCompile-s741j0/Debug/cmTC_0f623.lib" /MACHINE:X64  /machine:x64 cmTC_0f623.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 无法打开文件“pthread.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\cmTC_0f623.vcxproj]
+        已完成生成项目“D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\cmTC_0f623.vcxproj”(默认目标)的操作 - 失败。
         
         生成失败。
         
-        “D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\cmTC_6c96b.vcxproj”(默认目标) (1) ->
+        “D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\cmTC_0f623.vcxproj”(默认目标) (1) ->
         (Link 目标) -> 
-          LINK : fatal error LNK1104: 无法打开文件“pthread.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x6odk0\\cmTC_6c96b.vcxproj]
+          LINK : fatal error LNK1104: 无法打开文件“pthread.lib” [D:\\Github\\IntelligentRecipeManagementSystem\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s741j0\\cmTC_0f623.vcxproj]
         
             0 个警告
             1 个错误
         
-        已用时间 00:00:00.30
+        已用时间 00:00:00.98
         
       exitCode: 1
 ...

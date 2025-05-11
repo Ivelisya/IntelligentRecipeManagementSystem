@@ -256,94 +256,84 @@ int main(int argc, char *argv[]) {
 
     // --- CLI Options Parsing ---
     cxxopts::Options options("recipe-cli",
-                             "菜谱命令行工具 - 管理您的菜谱和用户");
+                             "菜谱命令行工具 - 管理您的菜谱、餐馆和浏览食谱大全"); // 更新描述
     options.set_width(100);
 
     options.add_options()("h,help", "打印此帮助信息并退出")(
         "v,version", "打印应用程序版本号并退出")(
         "verbose", "启用详细输出模式，显示更多调试信息。");
 
-    // options.add_options("User")("login", "User login.\n  Example: recipe-cli
-    // --login myuser\n  Example: recipe-cli --login",
-    // cxxopts::value<std::string>()->implicit_value(""),
-    // "USERNAME")("register", "Register a new user.\n  Example: recipe-cli
-    // --register newuser\n  Example: recipe-cli --register",
-    // cxxopts::value<std::string>()->implicit_value(""), "USERNAME")("logout",
-    // "Logout the current user.\n  Example: recipe-cli
-    // --logout")("user-profile", "Display current logged-in user's details.
-    // Requires login.\n  Example: recipe-cli --user-profile")("update-profile",
-    // "Update current logged-in user's password. Requires login.\n  Example:
-    // recipe-cli --update-profile"); User commands removed. Help text for
-    // "User" group might need removal or rephrasing if group is empty.
+    // User commands removed.
     options.add_options("Recipe")(
         "recipe-add",
-        u8"添加一个新菜谱。\n  可附加 --tags \"标签1,标签2\" 来指定标签。\n  "
-        u8"例如: recipe-cli --recipe-add [--tags \"家常菜,快捷\"]")(
+        u8"添加一个新菜谱 (交互式)。\n"
+        u8"  可选参数 --tags \"标签1,标签2\" 可用于在添加时预设标签。\n"
+        u8"  例如 1: recipe-cli --recipe-add\n"
+        u8"  例如 2: recipe-cli --recipe-add --tags \"家常菜,快捷\"",
+        // The implicit value for recipe-add is not directly used for a name,
+        // as adding is interactive. It's kept for cxxopts structure.
+        cxxopts::value<std::string>()->implicit_value("unused_placeholder_for_add"), u8"菜谱名称 (通过交互式输入)")(
         "recipe-list",
-        u8"列出所有可用的菜谱。\n  例如: recipe-cli --recipe-list")(
+        u8"列出所有已保存的菜谱。\n  例如: recipe-cli --recipe-list")(
         "recipe-search",
-        u8"按名称和/或标签搜索菜谱。\n  名称搜索: recipe-cli --recipe-search \"鸡肉\"\n  "
-        u8"单标签搜索: recipe-cli --recipe-search --tag \"素食\"\n  多标签搜索 (AND): "
-        u8"recipe-cli --recipe-search --tags \"晚餐,快捷\"\n  组合搜索: recipe-cli --recipe-search "
-        u8"\"汤\" --tag \"冬季\"",
-        cxxopts::value<std::string>()->implicit_value(""), u8"查询内容 (可选)")(
+        u8"按名称和/或标签搜索已保存的菜谱。\n"
+        u8"  用法 1 (按名称): recipe-cli --recipe-search \"宫保鸡丁\"\n"
+        u8"  用法 2 (按单个标签): recipe-cli --recipe-search --tag \"川菜\"\n"
+        u8"  用法 3 (按多个独立标签 AND 匹配): recipe-cli --recipe-search --tag \"晚餐\" --tag \"快捷\"\n"
+        u8"  用法 4 (按逗号分隔的多标签 AND 匹配): recipe-cli --recipe-search --tags \"晚餐,快捷\"\n"
+        u8"  用法 5 (名称和单标签): recipe-cli --recipe-search \"汤\" --tag \"冬季\"\n"
+        u8"  用法 6 (名称和多标签): recipe-cli --recipe-search \"沙拉\" --tags \"夏季,健康\"\n"
+        u8"  注意: 如果只提供标签，则仅按标签搜索。如果同时提供名称和标签，则进行组合搜索。",
+        cxxopts::value<std::string>()->implicit_value(""), u8"搜索关键词 (可选)")(
         "recipe-view",
-        u8"按 ID 查看菜谱详情。\n  例如: recipe-cli --recipe-view 101",
+        u8"按 ID 查看已保存菜谱的详细信息。\n  例如: recipe-cli --recipe-view 101",
         cxxopts::value<int>(),
-        u8"菜谱ID")("recipe-update",
-                    u8"按 ID 更新菜谱。\n  可附加 --tags \"新标签1,新标签2\" "
-                    u8"来更新标签 (将替换所有旧标签)。\n  例如: recipe-cli "
-                    u8"--recipe-update 101 [--tags \"健康,午餐\"]",
-                    cxxopts::value<int>(), u8"菜谱ID")(
+        u8"菜谱ID (必需)")("recipe-update",
+                    u8"按 ID 更新已保存的菜谱 (交互式)。\n"
+                    u8"  可选参数 --tags \"新标签1,新标签2\" 可用于更新标签 (将替换所有旧标签)。\n"
+                    u8"  例如 1: recipe-cli --recipe-update 101\n"
+                    u8"  例如 2: recipe-cli --recipe-update 101 --tags \"健康,午餐\"",
+                    cxxopts::value<int>(), u8"菜谱ID (必需)")(
         "recipe-delete",
-        u8"按 ID 删除菜谱。\n  例如: recipe-cli --recipe-delete 101",
-        cxxopts::value<int>(), u8"菜谱ID")
-        // Tag specific options for search and update
-        ("tag", u8"用于 --recipe-search, 按单个标签过滤。",
-         cxxopts::value<std::string>(), u8"标签名")(
+        u8"按 ID 删除已保存的菜谱。\n  例如: recipe-cli --recipe-delete 101",
+        cxxopts::value<int>(), u8"菜谱ID (必需)")
+        ("tag", u8"用于 --recipe-search，按单个标签过滤。可多次使用以进行 AND 匹配 (例如 --tag \"素食\" --tag \"快捷\")。",
+         cxxopts::value<std::vector<std::string>>(), u8"标签名")( // Changed to vector for multiple --tag
             "tags",
-            u8"用于 --recipe-add, --recipe-update (替换) 或 --recipe-search "
-            u8"(AND 匹配)。\n  格式: \"标签1,标签2,标签3\"",
+            u8"用于 --recipe-add (预设标签), --recipe-update (替换所有标签), 或 --recipe-search (AND 匹配所有列出的标签)。\n"
+            u8"  格式为逗号分隔的字符串: \"标签1,标签2,标签3\"\n"
+            u8"  例如 (搜索): recipe-cli --recipe-search --tags \"晚餐,快捷\"",
             cxxopts::value<std::string>(), u8"逗号分隔的标签列表");
 
     options.add_options("Encyclopedia")(
-        "enc-list", u8"列出食谱大全中的所有菜谱。\n  例如: recipe-cli --enc-list")
-        ("enc-search", u8"在食谱大全中按关键词 (名称、食材、标签) 搜索菜谱。\n  例如: recipe-cli --enc-search --keywords \"鸡肉 汤\"", // Updated description
-         cxxopts::value<std::string>(), u8"搜索关键词 (必需)") // Made keywords mandatory for the handler
-        ("enc-view", u8"按 ID 查看食谱大全中特定菜谱的详细信息。\n  例如: recipe-cli --enc-view --id 123", // Added new option
+        "enc-list", u8"列出食谱大全中的所有菜谱条目。\n  例如: recipe-cli --enc-list")
+        ("enc-search", u8"在食谱大全中按关键词 (如名称、食材、标签) 搜索菜谱。\n  例如: recipe-cli --enc-search \"美味的鸡肉汤\"",
+         cxxopts::value<std::string>(), u8"搜索关键词 (必需)")
+        ("enc-view", u8"按 ID 查看食谱大全中特定菜谱的详细信息。\n  例如: recipe-cli --enc-view 123",
          cxxopts::value<int>(), u8"菜谱ID (必需)");
 
     options.add_options("Restaurant")(
         "restaurant-add",
-        u8"添加一个新餐馆。\n  例如: recipe-cli --restaurant-add")(
+        u8"添加一个新餐馆 (交互式)。\n  例如: recipe-cli --restaurant-add")(
         "restaurant-list",
         u8"列出所有已保存的餐馆。\n  例如: recipe-cli --restaurant-list")(
         "restaurant-view",
-        u8"按 ID 查看餐馆详情。\n  例如: recipe-cli --restaurant-view <ID>",
-        cxxopts::value<int>(), u8"餐馆ID")(
+        u8"按 ID 查看已保存餐馆的详情。\n  例如: recipe-cli --restaurant-view 1",
+        cxxopts::value<int>(), u8"餐馆ID (必需)")(
         "restaurant-update",
-        u8"按 ID 更新餐馆信息。\n  例如: recipe-cli --restaurant-update <ID>",
-        cxxopts::value<int>(), u8"餐馆ID")(
+        u8"按 ID 更新已保存餐馆的信息 (交互式)。\n  例如: recipe-cli --restaurant-update 1",
+        cxxopts::value<int>(), u8"餐馆ID (必需)")(
         "restaurant-delete",
-        u8"按 ID 删除餐馆。\n  例如: recipe-cli --restaurant-delete <ID>",
-        cxxopts::value<int>(), u8"餐馆ID");
-    // options.add_options("Admin")
-    // ("admin-user-list", u8"列出系统中的所有用户。\n  例如: recipe-cli
-    // --admin-user-list")
-    // ("admin-user-create", u8"创建一个新用户。\n  例如: recipe-cli
-    // --admin-user-create")
-    // ("admin-user-update", u8"按 ID 更新用户信息。\n  例如: recipe-cli
-    // --admin-user-update 201", cxxopts::value<int>(), u8"用户ID");
-    // ("admin-user-delete", u8"按 ID 删除用户。\n  例如: recipe-cli
-    // --admin-user-delete 201", cxxopts::value<int>(), u8"用户ID");
+        u8"按 ID 删除已保存的餐馆。\n  例如: recipe-cli --restaurant-delete 1",
+        cxxopts::value<int>(), u8"餐馆ID (必需)");
+    // Admin commands removed
 
     try {
         auto result = options.parse(argc, argv);
 
         if (result.count("help")) {
-            // 隐藏餐馆指令 可以自己添加
-            
-            std::cout << options.help({"", "Recipe", "Encyclopedia"})
+            // 显示所有定义的命令组
+            std::cout << options.help({"", "Recipe", "Encyclopedia", "Restaurant"})
                       << std::endl;
             return RecipeApp::Cli::EX_OK;
         }

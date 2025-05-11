@@ -143,9 +143,9 @@ cd .. # 返回项目根目录
 
 ## 使用指南
 
-构建完成后，您可以在相应的构建输出目录 (例如 `build/Debug/` 或 `build/Release/` 在 Windows 上) 找到可执行文件 `recipe-cli.exe`。
+构建完成后，您可以在相应的构建输出目录 (例如 Windows 上的 `build\Debug\` 或 `build\Release\`，Linux/macOS 上的 `build/`) 找到可执行文件 (`recipe-cli.exe` 或 `recipe-cli`)。
 
-从项目根目录执行的示例 (Windows, Debug 模式):
+以下示例主要针对 Windows Debug 模式，从项目根目录执行。请根据您的操作系统和构建配置相应调整命令和路径。
 
 #### 基本命令
 
@@ -157,10 +157,11 @@ cd .. # 返回项目根目录
     ```bash
     .\build\Debug\recipe-cli.exe --version
     ```
-*   启用详细输出:
+*   启用详细输出 (可与其他命令组合使用):
     ```bash
     .\build\Debug\recipe-cli.exe <command> --verbose
     ```
+    例如: `.\build\Debug\recipe-cli.exe --recipe-list --verbose`
 
 #### 菜谱管理命令示例
 
@@ -168,79 +169,86 @@ cd .. # 返回项目根目录
     ```bash
     .\build\Debug\recipe-cli.exe --recipe-add
     ```
-    程序将通过分步提示引导您输入菜谱的各项信息（名称、食材、步骤、标签等）。
-*   **添加菜谱 (通过命令行参数指定初始标签)**:
+    程序将通过分步提示引导您输入菜谱的各项信息。
+*   **添加菜谱 (交互式，并预设标签)**:
     ```bash
-    .\build\Debug\recipe-cli.exe --recipe-add --tags "家常菜,快捷,晚餐,川菜"
+    .\build\Debug\recipe-cli.exe --recipe-add --tags "家常菜,快捷,晚餐"
     ```
-    (菜系现在作为标签的一部分，其他信息仍会通过交互式提示输入)
-*   **列出所有菜谱**:
+    其他信息仍会通过交互式提示输入。
+*   **列出所有已保存的菜谱**:
     ```bash
     .\build\Debug\recipe-cli.exe --recipe-list
     ```
-*   **查看菜谱详情**:
+*   **查看已保存菜谱的详情**:
     ```bash
-    .\build\Debug\recipe-cli.exe --recipe-view <菜谱ID>
+    .\build\Debug\recipe-cli.exe --recipe-view 101
     ```
-    (将 `<菜谱ID>` 替换为实际的菜谱ID, 例如: `.\build\Debug\recipe-cli.exe --recipe-view 1`)
-*   **搜索菜谱**:
-    *   按名称 (模糊匹配): `.\build\Debug\recipe-cli.exe --recipe-search=<查询词>` (例如: `.\build\Debug\recipe-cli.exe --recipe-search=鸡丁`)
-    *   按单个标签 (例如搜索菜系为川菜的): `.\build\Debug\recipe-cli.exe --recipe-search --tag "川菜"`
-    *   按多个标签 (AND匹配): `.\build\Debug\recipe-cli.exe --recipe-search --tags "晚餐,快捷"`
-    *   组合名称和标签: `.\build\Debug\recipe-cli.exe --recipe-search=汤 --tag "冬季"`
-    (注意: 搜索功能已由内部检索引擎增强，提供更快的响应速度)
-*   **更新菜谱 (交互式)**:
+    (将 `101` 替换为实际的菜谱ID)
+*   **搜索已保存的菜谱**:
+    *   按名称: `.\build\Debug\recipe-cli.exe --recipe-search "宫保鸡丁"`
+    *   按单个标签: `.\build\Debug\recipe-cli.exe --recipe-search --tag "川菜"`
+    *   按多个独立标签 (AND 匹配): `.\build\Debug\recipe-cli.exe --recipe-search --tag "晚餐" --tag "快捷"`
+    *   按逗号分隔的多标签 (AND 匹配): `.\build\Debug\recipe-cli.exe --recipe-search --tags "晚餐,快捷"`
+    *   组合名称和单标签: `.\build\Debug\recipe-cli.exe --recipe-search "汤" --tag "冬季"`
+    *   组合名称和多标签: `.\build\Debug\recipe-cli.exe --recipe-search "沙拉" --tags "夏季,健康"`
+    (注意: 如果只提供标签，则仅按标签搜索。如果同时提供名称和标签，则进行组合搜索。)
+*   **更新已保存的菜谱 (交互式)**:
     ```bash
-    .\build\Debug\recipe-cli.exe --recipe-update <菜谱ID>
+    .\build\Debug\recipe-cli.exe --recipe-update 101
     ```
-    (将 `<菜谱ID>` 替换为实际的菜谱ID) 程序将引导您更新信息。
-*   **更新菜谱 (通过命令行参数更新标签)**:
+    (将 `101` 替换为实际的菜谱ID) 程序将引导您更新信息。
+*   **更新已保存的菜谱 (交互式，并更新标签)**:
     ```bash
-    .\build\Debug\recipe-cli.exe --recipe-update <菜谱ID> --tags "健康,午餐,低卡"
+    .\build\Debug\recipe-cli.exe --recipe-update 101 --tags "健康,午餐,低卡"
     ```
     (这将替换指定菜谱的所有现有标签，其他字段的更新仍会通过交互式提示进行)
-*   **删除菜谱 (交互式确认)**:
+*   **删除已保存的菜谱 (交互式确认)**:
     ```bash
-    .\build\Debug\recipe-cli.exe --recipe-delete <菜谱ID>
+    .\build\Debug\recipe-cli.exe --recipe-delete 101
     ```
-    (将 `<菜谱ID>` 替换为实际的菜谱ID)
+    (将 `101` 替换为实际的菜谱ID)
 
 #### 菜谱管理完整流程示例 (Windows, Debug 模式, 从项目根目录执行)
 
-1.  **添加菜谱**:
+1.  **添加菜谱 (预设标签)**:
     ```powershell
-    .\build\Debug\recipe-cli.exe --recipe-add
+    .\build\Debug\recipe-cli.exe --recipe-add --tags "测试,演示"
     ```
-    (按照提示输入菜谱名称 "测试菜谱A", 配料 "水 1杯", 步骤 "烧开", 时长 "5", 难度 "简单", 标签 "测试")
+    (按照提示输入菜谱名称 "测试菜谱A", 配料 "水 1杯", 步骤 "烧开", 时长 "5", 难度 "简单"。标签 "测试,演示" 已预设)
 
 2.  **列出菜谱 (确认添加)**:
     ```powershell
     .\build\Debug\recipe-cli.exe --recipe-list
     ```
-    (应能看到 "测试菜谱A")
+    (应能看到 "测试菜谱A" 及其标签)
 
-3.  **搜索菜谱**:
+3.  **搜索菜谱 (按名称)**:
     ```powershell
-    .\build\Debug\recipe-cli.exe --recipe-search=测试菜谱A
+    .\build\Debug\recipe-cli.exe --recipe-search "测试菜谱A"
+    ```
+    (应能找到 "测试菜谱A")
+    **搜索菜谱 (按标签)**:
+    ```powershell
+    .\build\Debug\recipe-cli.exe --recipe-search --tag "测试"
     ```
     (应能找到 "测试菜谱A")
 
-4.  **查看菜谱详情 (假设ID为1)**:
+4.  **查看菜谱详情 (假设其ID为1，请根据实际列表输出调整)**:
     ```powershell
     .\build\Debug\recipe-cli.exe --recipe-view 1
     ```
 
-5.  **更新菜谱 (假设ID为1)**:
+5.  **更新菜谱 (假设ID为1，更新名称和标签)**:
     ```powershell
-    .\build\Debug\recipe-cli.exe --recipe-update 1
+    .\build\Debug\recipe-cli.exe --recipe-update 1 --tags "测试更新,美味"
     ```
-    (按照提示将名称修改为 "测试菜谱B", 其他可跳过或修改)
+    (按照提示将名称修改为 "测试菜谱B", 其他可跳过。标签将被更新为 "测试更新,美味")
 
 6.  **列出菜谱 (确认更新)**:
     ```powershell
     .\build\Debug\recipe-cli.exe --recipe-list
     ```
-    (应能看到 "测试菜谱B")
+    (应能看到 "测试菜谱B" 及其新标签)
 
 7.  **删除菜谱 (假设ID为1)**:
     ```powershell
@@ -257,52 +265,51 @@ cd .. # 返回项目根目录
 #### 餐馆管理命令示例
 *   **添加餐馆 (交互式)**:
     ```bash
-    .\build\Release\recipe-cli.exe --restaurant-add
+    .\build\Debug\recipe-cli.exe --restaurant-add
     ```
     程序将提示您输入餐馆的名称、地址、联系方式等。
-*   **列出所有餐馆**:
+*   **列出所有已保存的餐馆**:
     ```bash
-    .\build\Release\recipe-cli.exe --restaurant-list
+    .\build\Debug\recipe-cli.exe --restaurant-list
     ```
-*   **查看餐馆详情**:
+*   **查看已保存餐馆的详情**:
     ```bash
-    .\build\Release\recipe-cli.exe --restaurant-view <餐馆ID>
+    .\build\Debug\recipe-cli.exe --restaurant-view 1
     ```
-    例如: `.\build\Release\recipe-cli.exe --restaurant-view 2`
-*   **更新餐馆 (交互式)**:
+    (将 `1` 替换为实际的餐馆ID)
+*   **更新已保存餐馆的信息 (交互式)**:
     ```bash
-    .\build\Release\recipe-cli.exe --restaurant-update <餐馆ID>
+    .\build\Debug\recipe-cli.exe --restaurant-update 1
     ```
-    例如: `.\build\Release\recipe-cli.exe --restaurant-update 2`
-*   **删除餐馆 (交互式确认)**:
+    (将 `1` 替换为实际的餐馆ID)
+*   **删除已保存的餐馆 (交互式确认)**:
     ```bash
-    .\build\Release\recipe-cli.exe --restaurant-delete <餐馆ID>
+    .\build\Debug\recipe-cli.exe --restaurant-delete 1
     ```
-    例如: `.\build\Release\recipe-cli.exe --restaurant-delete 2`
+    (将 `1` 替换为实际的餐馆ID)
 
-#### 食谱大全命令示例 (Windows, Debug 模式, 从项目根目录的 `build` 子目录执行 `Debug\recipe-cli.exe`)
+#### 食谱大全命令示例 (Windows, Debug 模式)
+(假设您在项目根目录，可执行文件位于 `.\build\Debug\recipe-cli.exe`)
 
-*   **列出食谱大全所有菜谱**:
+*   **列出食谱大全所有菜谱条目**:
     ```powershell
-    Debug\recipe-cli.exe --enc-list
+    .\build\Debug\recipe-cli.exe --enc-list
     ```
-    (需在 `build` 目录下执行此命令)
 
-*   **按关键词搜索食谱大全 (例如搜索 "鸡肉" 或 "汤")**:
+*   **按关键词搜索食谱大全**:
     ```powershell
-    Debug\recipe-cli.exe --enc-search "鸡肉"
+    .\build\Debug\recipe-cli.exe --enc-search "美味的鸡肉汤"
     ```
     或
     ```powershell
-    Debug\recipe-cli.exe --enc-search "汤"
+    .\build\Debug\recipe-cli.exe --enc-search "素食"
     ```
-    (需在 `build` 目录下执行此命令。注意：这里的 `<关键词>` 是直接作为 `--enc-search` 选项的值提供的。)
 
-*   **按ID查看食谱大全中的特定菜谱 (例如查看 ID 为 101 的菜谱)**:
+*   **按ID查看食谱大全中的特定菜谱**:
     ```powershell
-    Debug\recipe-cli.exe --enc-view 101
+    .\build\Debug\recipe-cli.exe --enc-view 123
     ```
-    (需在 `build` 目录下执行此命令)
+    (将 `123` 替换为食谱大全中实际存在的菜谱ID)
 
 #### 数据文件位置
 *   用户个人菜谱数据 (`recipes.json`) 和餐馆数据 (`restaurants.json`) 默认情况下，程序会尝试从以下用户特定的配置目录中读取和保存：
